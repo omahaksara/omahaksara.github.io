@@ -2,136 +2,106 @@
 <html lang="id">
 <head>
 <script>
-// REDIRECT AMAN - Gak bakal blank walau folder /invitation/ belum ada
+// REDIRECT AMAN
 if (location.search.includes('c=')) {
-  const redirect = async () => {
-    try {
-      const res = await fetch('/invitation/' + location.search, {method: 'HEAD'});
-      if (res.ok) location.replace('/invitation/' + location.search);
-    } catch(e) {}
-  };
-  redirect();
+  try {
+    location.replace('/invitation/' + location.search);
+  } catch(e) {}
 }
 </script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Omah Aksara — Undangan Digital Premium Promo 95K</title>
-<meta name="description" content="Undangan digital interaktif promo 95rb. Diskon 40% terbatas. Musik, galeri, nama tamu otomatis.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Undangan digital interaktif promo 95rb. Diskon 40% terbatas.">
 
 <style>
-:root {
-  --bg:#fbf8f5;
-  --primary:#c07a43;
-  --primary-dark:#a06535;
-  --text:#2f2a25;
-  --muted:#7d726a;
-  --card:#ffffff;
-  --border:rgba(0,0,0,.06);
-  --shadow:0 10px 30px rgba(0,0,0,.08);
-  --red:#d93025;
-}
-
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  background:#fbf8f5;
+  color:#2f2a25;
+  line-height:1.7;
   min-height:100vh;
-  -webkit-font-smoothing:antialiased;
 }
 
-.reveal{opacity:0;transform:translateY(16px);transition:opacity.8s ease,transform.8s ease}
-.reveal.active{opacity:1;transform:translateY(0)}
-
-/* BADGE DISKON */
+.hero{
+  text-align:center;
+  padding:60px 20px 40px;
+  background:#f7efe9;
+}
 .badge-promo{
   display:inline-block;
-  background:var(--red);
+  background:#d93025;
   color:#fff;
   font-size:11px;
   font-weight:700;
   padding:6px 12px;
   border-radius:30px;
-  letter-spacing:0.5px;
   margin-bottom:12px;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-
-/* HERO */
-.hero{
-  text-align:center;
-  padding:70px 20px 40px;
-  background:linear-gradient(to bottom,#f7efe9,var(--bg));
 }
 .logo{
-  font-family:'Playfair Display',serif;
-  font-size:40px;
-  color:var(--primary);
+  font-family:Georgia,serif;
+  font-size:36px;
+  color:#c07a43;
+  font-weight:700;
 }
 .hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(30px,6vw,44px);
+  font-family:Georgia,serif;
+  font-size:28px;
   margin-top:8px;
-  line-height:1.15;
+  line-height:1.2;
+  color:#2f2a25;
 }
 .hero p{
-  max-width:650px;
+  max-width:600px;
   margin:12px auto;
-  color:var(--muted);
+  color:#7d726a;
   font-size:14px;
 }
-
 .social-proof{
   font-size:12px;
-  letter-spacing:2px;
+  letter-spacing:1px;
   text-transform:uppercase;
-  color:var(--primary);
-  margin-top:24px;
+  color:#c07a43;
+  margin-top:20px;
   font-weight:600;
 }
-
 #countdown{
   font-size:13px;
-  color:var(--red);
-  margin-top:10px;
+  color:#d93025;
+  margin-top:8px;
   font-weight:700;
 }
 
-/* FEATURES */
 .features{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
-  max-width:1000px;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  max-width:900px;
   margin:40px auto;
   padding:0 20px;
 }
+@media(min-width:640px){.features{grid-template-columns:repeat(4,1fr)}}
 .feature{
   background:#fff;
-  padding:20px;
+  padding:18px;
   border-radius:16px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.06);
   text-align:center;
 }
 .feature h3{
   font-size:13px;
-  color:var(--primary);
-  margin-bottom:5px;
+  color:#c07a43;
+  margin-bottom:4px;
 }
 .feature p{
   font-size:12px;
-  color:var(--muted);
+  color:#7d726a;
 }
 
-/* CATALOG */
 .catalog-section{
   padding:40px 20px;
   max-width:1100px;
@@ -139,59 +109,49 @@ body{
 }
 .section-title{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:24px;
 }
 .section-title h2{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(26px,4vw,32px);
+  font-family:Georgia,serif;
+  font-size:24px;
 }
 .section-title p{
   font-size:13px;
-  color:var(--muted);
+  color:#7d726a;
   margin-top:6px;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:12px;
 }
-@media(min-width:768px){
- .grid{grid-template-columns:repeat(3,1fr);}
-}
-@media(min-width:1024px){
- .grid{grid-template-columns:repeat(4,1fr);}
-}
+@media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
 
 .card{
   background:#fff;
-  border-radius:20px;
+  border-radius:18px;
   overflow:hidden;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
-  transition:.4s;
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.06);
   position:relative;
 }
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 40px rgba(0,0,0,.12);
-}
-
 .badge-save{
   position:absolute;
-  top:10px;
-  right:10px;
-  background:var(--red);
+  top:8px;
+  right:8px;
+  background:#d93025;
   color:#fff;
   font-size:10px;
   font-weight:700;
-  padding:5px 8px;
-  border-radius:8px;
+  padding:4px 7px;
+  border-radius:6px;
   z-index:2;
 }
-
 .thumb{
   aspect-ratio:3/4;
+  background:#f3f0eb;
 }
 .thumb img{
   width:100%;
@@ -203,100 +163,81 @@ body{
   text-align:center;
 }
 .card-body h3{
-  font-size:14px;
+  font-size:13px;
   margin-bottom:8px;
-  font-family:'Playfair Display',serif;
+  font-family:Georgia,serif;
 }
-
 .price{
   font-size:13px;
   margin-bottom:10px;
 }
 .price s{color:#bbb;font-size:12px}
-.price strong{color:var(--primary);font-size:15px}
-
+.price strong{color:#c07a43;font-size:14px}
 .actions{
   display:flex;
   flex-direction:column;
   gap:6px;
 }
-
 .btn-sm{
-  padding:9px;
+  padding:8px;
   font-size:12px;
-  border-radius:10px;
+  border-radius:9px;
   text-decoration:none;
   font-weight:600;
-  transition:.3s;
 }
-.btn-sm:active{transform:scale(0.96)}
-
 .btn-fill{
-  background:var(--primary);
+  background:#c07a43;
   color:#fff;
 }
-.btn-fill:hover{background:var(--primary-dark)}
 .btn-line{
-  border:1.5px solid var(--primary);
-  color:var(--primary);
+  border:1.5px solid #c07a43;
+  color:#c07a43;
 }
-.btn-line:hover{background:rgba(192,122,67,.08)}
 
-/* GALLERY AUTO SCROLL + BISA DIGESER */
 .gallery{
-  padding:50px 0 80px;
+  padding:40px 0 70px;
   overflow:hidden;
 }
 .gallery-head{
   text-align:center;
-  margin-bottom:32px;
+  margin-bottom:24px;
   padding:0 24px;
 }
 .gallery-head h2{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(26px,4vw,32px);
-  margin-bottom:8px;
+  font-family:Georgia,serif;
+  font-size:24px;
+  margin-bottom:6px;
 }
-.gallery-head p{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.gallery-head p{font-size:12px;color:#7d726a}
 
 .gallery-wrap{
   overflow-x:auto;
   overflow-y:hidden;
-  padding:0 24px 20px;
-  cursor:grab;
-  scrollbar-width:none;
+  padding:0 20px 20px;
   -webkit-overflow-scrolling:touch;
-  touch-action:pan-x;
 }
 .gallery-wrap::-webkit-scrollbar{display:none}
-.gallery-wrap.active{cursor:grabbing}
 
 .gallery-track{
   display:flex;
-  gap:20px;
+  gap:16px;
   width:max-content;
+  animation:scrollGallery 50s linear infinite;
 }
-.gallery-track.auto{
-  animation:scrollGallery 60s linear infinite;
-}
-.gallery-wrap:hover.gallery-track.auto,
-.gallery-wrap.active.gallery-track.auto{
+.gallery-wrap:active.gallery-track{
   animation-play-state:paused;
 }
 
 .gallery-item{
-  flex:0 0 240px;
+  flex:0 0 220px;
   aspect-ratio:3/4;
   overflow:hidden;
   border-radius:12px;
 }
 .gallery-item img{
   width:100%;height:100%;object-fit:cover;
-  user-select:none;
-  -webkit-user-drag:none;
-  pointer-events:none;
 }
-@media(max-width:480px){.gallery-item{flex:0 0 200px}}
+@media(max-width:480px){.gallery-item{flex:0 0 180px}}
 
 @keyframes scrollGallery{
   from{transform:translateX(0)}
@@ -305,18 +246,19 @@ body{
 
 .cta{
   text-align:center;
-  padding:70px 20px;
-  background:linear-gradient(to right,#f6e7db,#fff);
+  padding:60px 20px;
+  background:#fff;
+  border-top:1px solid rgba(0,0,0,.06);
 }
 .cta h2{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(26px,4vw,34px);
+  font-family:Georgia,serif;
+  font-size:26px;
 }
 .btn-main{
   display:inline-block;
   margin-top:15px;
-  padding:14px 26px;
-  background:var(--primary);
+  padding:13px 24px;
+  background:#c07a43;
   color:#fff;
   border-radius:12px;
   text-decoration:none;
@@ -327,26 +269,23 @@ body{
   position:fixed;
   bottom:20px;
   left:20px;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(10px);
+  background:#fff;
   padding:12px 16px;
   font-size:12px;
   border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  border:1px solid var(--border);
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+  border:1px solid rgba(0,0,0,.06);
   display:none;
   z-index:998;
-  animation:slideIn.4s ease;
 }
-@keyframes slideIn{from{transform:translateX(-20px);opacity:0}to{transform:translateX(0);opacity:1}}
 
 .sticky{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:var(--primary);
+  background:#c07a43;
   color:#fff;
-  padding:12px 18px;
+  padding:11px 16px;
   border-radius:30px;
   text-decoration:none;
   font-size:13px;
@@ -358,26 +297,23 @@ body{
 
 footer{
   text-align:center;
-  padding:30px;
+  padding:30px 20px;
   font-size:12px;
-  color:var(--muted);
-  border-top:1px solid var(--border);
+  color:#7d726a;
+  border-top:1px solid rgba(0,0,0,.06);
 }
 
 .skeleton{
-  height:360px;
-  background:linear-gradient(90deg,#f7f3ef 25%,#fbf8f5 50%,#f7f3ef 75%);
-  background-size:200% 100%;
-  border-radius:20px;
-  animation:shimmer 1.5s infinite;
+  height:320px;
+  background:#f7f3ef;
+  border-radius:18px;
 }
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 </head>
 
 <body>
 
-<header class="hero reveal">
+<header class="hero">
   <div class="badge-promo">DISKON 40% TERBATAS</div>
   <div class="logo">Omah Aksara</div>
   <h1>Undangan Digital Premium</h1>
@@ -386,14 +322,14 @@ footer{
   <p id="countdown"></p>
 </header>
 
-<section class="features reveal">
+<section class="features">
   <div class="feature"><h3>Request Musik</h3><p>Lagu bisa disesuaikan</p></div>
   <div class="feature"><h3>Galeri Foto</h3><p>Bebas ditampilkan</p></div>
   <div class="feature"><h3>Auto Nama</h3><p>Nama tamu otomatis</p></div>
   <div class="feature"><h3>Full Custom</h3><p>Warna & font bebas</p></div>
 </section>
 
-<section class="catalog-section reveal">
+<section class="catalog-section">
   <div class="section-title">
     <h2>Koleksi Template Terlaris</h2>
     <p>Harga normal 150rb, promo jadi 95rb aja</p>
@@ -406,19 +342,19 @@ footer{
   </div>
 </section>
 
-<section class="gallery reveal">
+<section class="gallery">
   <div class="gallery-head">
     <h2>Hasil Jadi Klien</h2>
     <p>Geser manual atau biar jalan sendiri</p>
   </div>
   <div class="gallery-wrap" id="gallery-wrap">
-    <div class="gallery-track auto" id="gallery-track"></div>
+    <div class="gallery-track" id="gallery-track"></div>
   </div>
 </section>
 
-<section class="cta reveal">
+<section class="cta">
   <h2>Ambil Promo Sekarang</h2>
-  <p style="font-size:13px;color:var(--muted);margin-top:8px">Slot terbatas tiap bulan</p>
+  <p style="font-size:13px;color:#7d726a;margin-top:8px">Slot terbatas tiap bulan</p>
   <a href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau ambil promo 95rb" class="btn-main">Chat WhatsApp</a>
 </section>
 
@@ -428,43 +364,32 @@ footer{
 <a href="https://wa.me/6285796461157?text=Halo Omah Aksara, mau tanya promo 95rb" class="sticky">Konsultasi</a>
 
 <script>
-// REVEAL
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-const grid = document.getElementById('catalog-grid');
-const galleryTrack = document.getElementById('gallery-track');
-const galleryWrap = document.getElementById('gallery-wrap');
-const waNumber = '6285796461157';
+var grid = document.getElementById('catalog-grid');
+var galleryTrack = document.getElementById('gallery-track');
+var galleryWrap = document.getElementById('gallery-wrap');
+var waNumber = '6285796461157';
 
 function toTitleCase(str){
-  return str.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  return str.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()});
 }
 
-// COUNTDOWN 3 HARI - SEOLAH2 DISKON
-const end = new Date();
+// COUNTDOWN
+var end = new Date();
 end.setDate(end.getDate() + 3);
-setInterval(()=>{
-  let diff = end - new Date();
+setInterval(function(){
+  var diff = end - new Date();
   if(diff <= 0){
-    document.getElementById("countdown").innerText = "Promo berakhir hari ini!";
+    document.getElementById("countdown").innerHTML = "Promo berakhir hari ini!";
     return;
   }
-  let d = Math.floor(diff/1000/60/60/24);
-  let h = Math.floor(diff/1000/60/60)%24;
-  let m = Math.floor(diff/1000/60)%60;
-  document.getElementById("countdown").innerText = `Promo berakhir dalam ${d}h ${h}j ${m}m`;
+  var d = Math.floor(diff/1000/60/60/24);
+  var h = Math.floor(diff/1000/60/60)%24;
+  var m = Math.floor(diff/1000/60)%60;
+  document.getElementById("countdown").innerHTML = "Promo berakhir dalam " + d + "h " + h + "j " + m + "m";
 },1000);
 
-// FALLBACK KALO API GAGAL
-const fallbackTemplates = [
+// FALLBACK TEMPLATE - PASTI MUNCUL
+var fallbackTemplates = [
   {name: 'classic-gold'},
   {name: 'modern-white'},
   {name: 'floral-pink'},
@@ -472,112 +397,117 @@ const fallbackTemplates = [
 ];
 
 function renderCatalog(items){
-  grid.innerHTML="";
-  items.forEach(folder=>{
-    const name = toTitleCase(folder.name);
-    const thumb = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${folder.name}/preview.jpg`;
-    const demo = `https://omahaksara.github.io/invitation/templates/${folder.name}/?c=budi-ani&to=Tamu`;
-    const wa = `https://wa.me/${waNumber}?text=Halo saya mau template ${name} promo 95rb`;
+  grid.innerHTML = "";
+  for(var i=0;i<items.length;i++){
+    var f = items[i];
+    var name = toTitleCase(f.name);
+    var img = 'https://raw.githubusercontent.com/omahaksara/invitation/main/templates/' + f.name + '/preview.jpg';
+    var demo = 'https://omahaksara.github.io/invitation/templates/' + f.name + '/?c=budi-ani&to=Tamu';
+    var wa = 'https://wa.me/' + waNumber + '?text=Halo saya mau template ' + name + ' promo 95rb';
 
-    grid.innerHTML+=`
-    <div class="card">
-      <div class="badge-save">HEMAT 60RB</div>
-      <div class="thumb"><img src="${thumb}" loading="lazy" alt="${name}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'"></div>
-      <div class="card-body">
-        <h3>${name}</h3>
-        <div class="price">
-          <s>150rb</s><br>
-          <strong>95rb</strong>
-        </div>
-        <div class="actions">
-          <a href="${demo}" target="_blank" class="btn-sm btn-line">Demo</a>
-          <a href="${wa}" target="_blank" class="btn-sm btn-fill">Ambil Promo</a>
-        </div>
-      </div>
-    </div>
-    `;
-  });
-}
+    var html = '<div class="card">';
+    html += '<div class="badge-save">HEMAT 60RB</div>';
+    html += '<div class="thumb"><img src="' + img + '" alt="' + name + '" onerror="this.src=\'https://images.unsplash.com/photo-1519741497674-611481863552?w=400\'"></div>';
+    html += '<div class="card-body">';
+    html += '<h3>' + name + '</h3>';
+    html += '<div class="price"><s>150rb</s><br><strong>95rb</strong></div>';
+    html += '<div class="actions">';
+    html += '<a href="' + demo + '" target="_blank" class="btn-sm btn-line">Demo</a>';
+    html += '<a href="' + wa + '" target="_blank" class="btn-sm btn-fill">Ambil Promo</a>';
+    html += '</div></div></div>';
 
-// LOAD KATALOG - ANTI BLANK
-fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates')
-.then(r=>{
-  if(!r.ok) throw new Error();
-  return r.json();
-})
-.then(d=>{
-  const folders = d.filter(i=>i.type==="dir").map(i=>({name:i.name}));
-  if(folders.length === 0) throw new Error();
-  renderCatalog(folders);
-})
-.catch(()=>{
-  renderCatalog(fallbackTemplates);
-});
-
-// GALLERY AUTO + MANUAL SCROLL
-async function loadGallery() {
-  try {
-    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
-    if (!res.ok) return;
-    const files = await res.json();
-    const images = files.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name));
-    if(images.length === 0) return;
-
-    const allImages = [...images,...images];
-    galleryTrack.innerHTML = '';
-    allImages.forEach(img => {
-      galleryTrack.innerHTML += `<div class="gallery-item"><img src="${img.download_url}" loading="lazy" alt="Hasil undangan"></div>`;
-    });
-
-    const duration = images.length * 4;
-    galleryTrack.style.animationDuration = `${duration}s`;
-
-  } catch(e){
-    document.querySelector('.gallery').style.display='none';
+    grid.innerHTML += html;
   }
 }
-loadGallery();
 
-// DRAG TO SCROLL - MOUSE
-let isDown = false;
-let startX;
-let scrollLeft;
+// LOAD KATALOG
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.github.com/repos/omahaksara/invitation/contents/templates', true);
+xhr.onreadystatechange = function() {
+  if(xhr.readyState === 4){
+    if(xhr.status === 200){
+      try{
+        var data = JSON.parse(xhr.responseText);
+        var folders = [];
+        for(var i=0;i<data.length;i++){
+          if(data[i].type === 'dir') folders.push({name: data[i].name});
+        }
+        if(folders.length > 0){
+          renderCatalog(folders);
+          return;
+        }
+      }catch(e){}
+    }
+    renderCatalog(fallbackTemplates);
+  }
+};
+xhr.send();
 
-galleryWrap.addEventListener('mousedown', (e) => {
-  isDown = true;
-  galleryWrap.classList.add('active');
-  galleryTrack.style.animationPlayState = 'paused';
-  startX = e.pageX - galleryWrap.offsetLeft;
-  scrollLeft = galleryWrap.scrollLeft;
-});
+// GALLERY
+var xhr2 = new XMLHttpRequest();
+xhr2.open('GET', 'https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album', true);
+xhr2.onreadystatechange = function() {
+  if(xhr2.readyState === 4 && xhr2.status === 200){
+    try{
+      var files = JSON.parse(xhr2.responseText);
+      var images = [];
+      for(var i=0;i<files.length;i++){
+        if(files[i].type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(files[i].name)){
+          images.push(files[i]);
+        }
+      }
+      if(images.length > 0){
+        var allImages = images.concat(images);
+        var html = '';
+        for(var j=0;j<allImages.length;j++){
+          html += '<div class="gallery-item"><img src="' + allImages[j].download_url + '" alt="Hasil undangan"></div>';
+        }
+        galleryTrack.innerHTML = html;
+        galleryTrack.style.animationDuration = (images.length * 4) + 's';
+      }
+    }catch(e){}
+  }
+};
+xhr2.send();
 
-galleryWrap.addEventListener('mouseleave', () => {
-  isDown = false;
-  galleryWrap.classList.remove('active');
-});
+// DRAG GALLERY
+var isDown = false;
+var startX;
+var scrollLeft;
 
-galleryWrap.addEventListener('mouseup', () => {
-  isDown = false;
-  galleryWrap.classList.remove('active');
-});
-
-galleryWrap.addEventListener('mousemove', (e) => {
-  if(!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - galleryWrap.offsetLeft;
-  const walk = (x - startX) * 2;
-  galleryWrap.scrollLeft = scrollLeft - walk;
-});
-
-// DRAG TO SCROLL - TOUCH HP
-galleryWrap.addEventListener('touchstart', (e) => {
+galleryWrap.addEventListener('touchstart', function(e) {
   isDown = true;
   galleryTrack.style.animationPlayState = 'paused';
   startX = e.touches[0].pageX - galleryWrap.offsetLeft;
   scrollLeft = galleryWrap.scrollLeft;
 }, {passive: true});
 
-galleryWrap.addEventListener('touchend', () => {
+galleryWrap.addEventListener('touchend', function() {
   isDown = false;
-  setTimeout(() => {
-    galleryTrack.style.animationPlayState = 'running
+  setTimeout(function() {
+    galleryTrack.style.animationPlayState = 'running';
+  }, 1000);
+});
+
+galleryWrap.addEventListener('touchmove', function(e) {
+  if(!isDown) return;
+  var x = e.touches[0].pageX - galleryWrap.offsetLeft;
+  var walk = (x - startX) * 2;
+  galleryWrap.scrollLeft = scrollLeft - walk;
+}, {passive: true});
+
+// FAKE NOTIF
+var names = ["Ani Bandung","Budi Jakarta","Siti Surabaya","Rina Medan","Dewi Bali","Andi Makassar"];
+setTimeout(function() {
+  setInterval(function(){
+    var n = names[Math.floor(Math.random()*names.length)];
+    var notif = document.getElementById("notif");
+    notif.innerText = n + " baru ambil promo 95K";
+    notif.style.display = "block";
+    setTimeout(function(){notif.style.display = "none"},4000);
+  },12000);
+},8000);
+</script>
+
+</body>
+</html>
