@@ -1,222 +1,236 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
-<script>
-if (location.search.includes('c=')) {
-  const url = '/invitation/' + location.search;
-  fetch(url, { method: 'HEAD' })
-    .then(res => { if (res.ok) location.replace(url); })
-    .catch(() => {});
-}
-</script>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Omah Aksara — Undangan Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omah Aksara - Undangan Digital</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#FAF9F7;
   --primary:#9C7A54;
-  --text:#2E2A27;
-  --muted:#8A8178;
-  --line:#E8E3DC;
-  --white:#fff;
+  --dark:#2E2A27;
+  --light:#F8F6F3;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
 body{
+  margin:0;
   font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  font-weight:300;
+  background:var(--light);
+  color:var(--dark);
 }
 
-h1,h2,h3{
-  font-family:'Cormorant Garamond',serif;
-  letter-spacing:.5px;
-}
-
+/* HERO */
 .hero{
   text-align:center;
-  padding:120px 24px 80px;
+  padding:80px 20px;
 }
 
 .logo{
-  letter-spacing:4px;
-  color:var(--primary);
-  margin-bottom:30px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+  position:relative;
+}
+
+.logo::after{
+  content:"";
+  display:block;
+  width:40px;
+  height:1px;
+  background:var(--primary);
+  margin:12px auto;
+  opacity:.5;
 }
 
 .hero h1{
-  font-size:42px;
-  margin-bottom:16px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
 }
 
 .hero p{
-  color:var(--muted);
-  font-weight:400;
+  margin:10px 0;
+  color:#6f6f6f;
 }
 
+.btn-main{
+  background:var(--primary);
+  color:#fff;
+  padding:14px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:25px;
+}
+
+/* ANIMATION */
+.hero h1, .hero p, .logo, .btn-main{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.hero p:nth-child(3){animation-delay:.3s}
+.hero p:nth-child(4){animation-delay:.6s}
+.btn-main{animation-delay:1s}
+
+@keyframes fadeUp{
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* CATALOG */
 .catalog{
-  padding:40px 24px 80px;
-  max-width:1100px;
-  margin:auto;
+  padding:40px 20px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:20px;
 }
 
 .card{
   background:#fff;
-  border:1px solid var(--line);
-}
-
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.card-body{
-  padding:16px;
+  border-radius:16px;
+  overflow:hidden;
   text-align:center;
+  padding-bottom:10px;
+}
+
+.card img{
+  width:100%;
 }
 
 .price{
-  font-size:13px;
-  color:var(--muted);
+  margin:10px 0;
+  font-size:14px;
+}
+
+/* FEATURES */
+.features{
+  padding:40px 20px;
+  text-align:center;
+}
+
+.features div{
   margin:10px 0;
 }
 
-.btn{
-  display:block;
-  padding:10px;
-  margin-top:8px;
-  text-decoration:none;
-  font-size:13px;
+/* GALLERY */
+.gallery{
+  overflow:hidden;
+  white-space:nowrap;
 }
 
-.btn-ghost{
-  border:1px solid var(--line);
-  color:var(--text);
-}
-
-.btn-solid{
-  background:var(--text);
-  color:#fff;
-}
-
-.cta{
-  text-align:center;
-  padding:80px 24px;
-}
-
-.btn-main{
+.gallery img{
+  width:200px;
+  margin:5px;
+  border-radius:12px;
   display:inline-block;
-  padding:14px 30px;
-  background:var(--text);
-  color:#fff;
-  text-decoration:none;
+  animation:scroll 20s linear infinite;
 }
 
-.sticky-wa{
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-100%)}
+}
+
+/* STICKY WA */
+.sticky{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:var(--text);
+  background:#25D366;
   color:#fff;
-  padding:10px 16px;
+  padding:12px 18px;
   border-radius:30px;
-  font-size:13px;
+  text-decoration:none;
 }
 </style>
-
 </head>
 
 <body>
 
+<!-- HERO -->
 <header class="hero">
   <div class="logo">Omah Aksara</div>
-  <h1>Undangan Digital Elegan<br>Tanpa Ribet & Hemat</h1>
-  <p>Desain modern, bisa custom, langsung kirim tanpa batas</p>
-  <p style="margin-top:10px;color:var(--primary)">⭐ 4.9/5 dari 1.200+ pasangan</p>
+
+  <h1>Undangan Digital<br>Mulai <span style="color:var(--primary)">95rb</span></h1>
+
+  <p>Desain elegan • Bisa custom • Kirim tanpa batas</p>
+  <p style="color:var(--primary)">🔥 Promo terbatas minggu ini</p>
+
+  <a href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau pesan undangan digital promo 95rb"
+     class="btn-main">
+     Pesan Sekarang
+  </a>
 </header>
 
+<!-- CATALOG -->
 <section class="catalog">
-  <div class="grid" id="catalog-grid"></div>
+  <h2 style="text-align:center">Pilihan Template</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x400">
+      <h4>Elegant 01</h4>
+      <p class="price">
+        <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
+        <b>95rb</b>
+      </p>
+      <a href="https://wa.me/6285796461157?text=Halo saya mau template Elegant 01 promo 95rb">Pesan</a>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x400">
+      <h4>Minimal 02</h4>
+      <p class="price">
+        <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
+        <b>95rb</b>
+      </p>
+      <a href="https://wa.me/6285796461157?text=Halo saya mau template Minimal 02 promo 95rb">Pesan</a>
+    </div>
+
+  </div>
 </section>
 
-<section class="cta">
-  <h2>Mulai Undangan Digitalmu</h2>
-  <p style="margin:16px 0;color:var(--muted)">
-    Tanpa ribet • Bisa custom • Respon cepat
+<!-- FEATURES -->
+<section class="features">
+  <h2>Fitur Lengkap</h2>
+  <div>✔ Musik</div>
+  <div>✔ Galeri Foto</div>
+  <div>✔ Peta Lokasi</div>
+  <div>✔ RSVP</div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <img src="https://via.placeholder.com/200x300">
+  <img src="https://via.placeholder.com/200x300">
+  <img src="https://via.placeholder.com/200x300">
+  <img src="https://via.placeholder.com/200x300">
+</section>
+
+<!-- CTA -->
+<section style="text-align:center;padding:40px">
+  <h2>Siap Buat Undangan Kamu?</h2>
+  <p>Langsung chat sekarang, proses cepat!</p>
+  <a href="https://wa.me/6285796461157?text=Halo saya mau pesan undangan digital promo 95rb"
+     class="btn-main">Chat Sekarang</a>
+
+  <p style="font-size:13px;color:#888;margin-top:10px">
+    ⚠️ Promo bisa berakhir kapan saja
   </p>
-  <a class="btn-main"
-  href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau konsultasi undangan digital pernikahan"
-  target="_blank">Konsultasi WhatsApp</a>
 </section>
 
-<a href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau tanya undangan digital"
-class="sticky-wa" target="_blank">Chat WA</a>
-
-<script>
-const grid = document.getElementById('catalog-grid');
-const waNumber = '6285796461157';
-
-function toTitleCase(str){
-  return str.replace(/-/g,' ')
-    .split(' ')
-    .map(w=>w.charAt(0).toUpperCase()+w.slice(1))
-    .join(' ');
-}
-
-async function loadCatalog(){
-  try{
-    const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
-    const data = await res.json();
-    const folders = data.filter(i=>i.type==='dir').map(i=>i.name);
-
-    folders.forEach(folder=>{
-      const name = toTitleCase(folder);
-
-      const thumb = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${folder}/preview.jpg`;
-      const demo = `https://omahaksara.github.io/invitation/templates/${folder}/?c=demo&to=Nama-Tamu`;
-
-      const waLink = `https://wa.me/${waNumber}?text=Halo Omah Aksara, saya tertarik dengan template *${name}*. Bisa minta detailnya?`;
-
-      const card = document.createElement('div');
-      card.className='card';
-
-      card.innerHTML=`
-        <div class="thumb">
-          <img src="${thumb}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'">
-        </div>
-        <div class="card-body">
-          <h3>${name}</h3>
-          <p class="price">Mulai 100rb • All in</p>
-          <a href="${demo}" target="_blank" class="btn btn-ghost">Preview</a>
-          <a href="${waLink}" target="_blank" class="btn btn-solid">Pesan</a>
-        </div>
-      `;
-
-      grid.appendChild(card);
-    });
-
-  }catch{
-    grid.innerHTML = "<p style='text-align:center'>Katalog gagal dimuat</p>";
-  }
-}
-
-loadCatalog();
-</script>
+<!-- STICKY -->
+<a href="https://wa.me/6285796461157?text=Halo saya mau promo undangan 95rb"
+   class="sticky">
+   Chat Promo 95rb
+</a>
 
 </body>
 </html>
