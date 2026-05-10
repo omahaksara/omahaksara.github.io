@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <script>
-  // Redirect kalo ada ?c= langsung ke mesin undangan
+  // JANGAN DISENTUH - Setting lompat link lu
   if (location.search.includes('c=')) {
     location.replace('/invitation/' + location.search);
   }
@@ -10,184 +10,279 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Omah Aksara - Undangan Digital Premium</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<title>Omah Aksara — Undangan Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #fbf8f5;
-  --primary: #c07a43;
-  --primary-dark: #a06535;
-  --text: #2f2a25;
-  --muted: #7d726a;
-  --card: #ffffff;
-  --border: rgba(0,0,0,.04);
-  --shadow-soft: 0 8px 24px rgba(0,0,0,.06);
-  --shadow-glow: 0 20px 40px -15px rgba(192,122,67,.3);
+  --bg: #FAF9F7;
+  --bg-soft: #F3F0EB;
+  --primary: #9C7A54;
+  --primary-soft: rgba(156,122,84,.08);
+  --text: #2E2A27;
+  --muted: #8A8178;
+  --line: #E8E3DC;
+  --white: #FFFFFF;
+  --shadow: 0 12px 32px -12px rgba(46,42,39,.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:'Plus Jakarta Sans',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.6;
+  line-height:1.7;
+  font-weight:300;
   -webkit-font-smoothing:antialiased;
 }
 
-/* SCROLL REVEAL BASE */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(0.165, 0.84, 0.44, 1),transform .8s cubic-bezier(0.165, 0.84, 0.44, 1)}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:0.2px}
+p{font-size:15px;color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s ease}
 .reveal.active{opacity:1;transform:translateY(0)}
 
-/* HERO */
 .hero{
   text-align:center;
-  padding:70px 20px 40px;
-  background:linear-gradient(to bottom,#f7efe9,var(--bg));
+  padding:120px 24px 80px;
+  max-width:680px;
+  margin:0 auto;
 }
-.logo{font-family:'Playfair Display',serif;font-size:40px;color:var(--primary);font-weight:700}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,42px);margin-top:12px;line-height:1.15}
-.hero p{max-width:650px;margin:16px auto 0;color:var(--muted);font-size:16px}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--primary);
+  margin-bottom:40px;
+}
+.hero h1{
+  font-size:clamp(36px,5vw,52px);
+  line-height:1.1;
+  margin-bottom:20px;
+  font-weight:500;
+}
+.hero p{
+  font-size:16px;
+  max-width:480px;
+  margin:0 auto;
+}
+.social-proof{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:32px;
+  color:var(--primary);
+}
 
-/* KATALOG - LANGSUNG SETELAH HERO */
-.catalog-section{padding:50px 16px;max-width:1100px;margin:0 auto}
-.section-title{text-align:center;margin-bottom:32px}
-.section-title h2{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,34px)}
-.section-title p{color:var(--muted);margin-top:8px;font-size:15px}
+.catalog{
+  padding:40px 24px 100px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.catalog-head{
+  text-align:center;
+  margin-bottom:60px;
+}
+.catalog-head h2{
+  font-size:clamp(28px,4vw,36px);
+  margin-bottom:12px;
+}
+.catalog-head p{font-size:14px}
 
-/* GRID 2 KOLOM MOBILE */
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:32px 20px;
 }
-@media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr);gap:18px}}
-@media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr);gap:40px 28px}}
+@media(min-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}
 
 .card{
-  background:var(--card);
-  border-radius:20px;
+  background:var(--white);
+  border-radius:2px;
   overflow:hidden;
-  box-shadow:var(--shadow-soft);
-  border:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
-  transition:all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  will-change:transform,box-shadow;
+  transition:all .5s ease;
+  border:1px solid var(--line);
 }
 .card:hover{
-  transform:translateY(-10px);
-  box-shadow:var(--shadow-glow);
+  transform:translateY(-8px);
+  box-shadow:var(--shadow);
 }
-.thumb{aspect-ratio:3/4;overflow:hidden;background:#f0ebe6}
+.thumb{
+  aspect-ratio:4/5;
+  overflow:hidden;
+  background:var(--bg-soft);
+}
 .thumb img{
   width:100%;height:100%;object-fit:cover;
-  transition:transform .6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition:transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.card:hover .thumb img{transform:scale(1.04)}
+.card-body{
+  padding:20px 16px 24px;
+  text-align:center;
+}
+.card-body h3{
+  font-size:18px;
+  margin-bottom:8px;
+  font-weight:500;
+}
+.price{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:20px;
+  letter-spacing:0.3px;
+}
+
+.actions{display:flex;flex-direction:column;gap:10px}
+.btn{
+  padding:12px;
+  font-size:13px;
+  border-radius:2px;
+  text-decoration:none;
+  font-weight:400;
+  letter-spacing:0.5px;
+  transition:all .4s ease;
+  text-align:center;
+}
+.btn:active{transform:scale(0.98)}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--primary);background:var(--primary-soft)}
+.btn-solid{background:var(--text);color:var(--white)}
+.btn-solid:hover{background:var(--primary)}
+
+.features{
+  max-width:700px;
+  margin:0 auto 100px;
+  padding:0 24px;
+  border-top:1px solid var(--line);
+  padding-top:60px;
+}
+.features-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px 60px;
+}
+@media(max-width:640px){.features-grid{grid-template-columns:1fr;gap:32px}}
+.feature-item h3{
+  font-size:15px;
+  margin-bottom:8px;
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  letter-spacing:0.3px;
+}
+.feature-item p{font-size:14px;line-height:1.6}
+
+.gallery{
+  padding:0 0 120px;
+  overflow:hidden;
+}
+.gallery-head{
+  text-align:center;
+  margin-bottom:40px;
+  padding:0 24px;
+}
+.gallery-head h2{
+  font-size:clamp(28px,4vw,36px);
+  margin-bottom:8px;
+}
+.gallery-head p{font-size:13px;letter-spacing:1px;text-transform:uppercase}
+
+/* AUTO SCROLL GALLERY - INI YANG BIKIN KEREN */
+.gallery-track{
+  display:flex;
+  gap:24px;
   will-change:transform;
 }
-.card:hover .thumb img{transform:scale(1.05)}
-.card-body{padding:14px;text-align:center}
-.card-body h3{font-size:14px;margin-bottom:12px;font-family:'Playfair Display',serif;font-weight:700}
-
-/* BUTTONS - MICRO INTERACTION */
-.actions{display:flex;flex-direction:column;gap:8px}
-.btn-sm{
-  padding:11px 10px;font-size:13px;border-radius:11px;
-  text-decoration:none;font-weight:600;
-  transition:all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  text-align:center;
-}
-.btn-sm:active{transform:scale(0.97)}
-.btn-fill{background:var(--primary);color:#fff}
-.btn-line{border:1.5px solid var(--primary);color:var(--primary)}
-.btn-fill:hover{background:var(--primary-dark)}
-.btn-line:hover{background:var(--primary);color:#fff}
-
-/* FEATURES - PINDAH KE BAWAH KATALOG */
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:14px;
-  max-width:1000px;
-  margin:60px auto;
-  padding:0 16px;
-}
-.feature{
-  background:var(--card);
-  padding:24px 20px;
-  border-radius:18px;
-  box-shadow:var(--shadow-soft);
-  border:1px solid var(--border);
-  text-align:center;
-  transition:all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-.feature:hover{transform:translateY(-5px);border-color:var(--primary)}
-.feature h3{font-size:14px;margin-bottom:8px;color:var(--primary);text-transform:uppercase;letter-spacing:1px;font-weight:700}
-.feature p{font-size:13px;color:var(--muted)}
-
-/* GALLERY SCROLL - FOTOCONTOH */
-.gallery-scroll{padding:20px 0 60px;overflow:hidden}
-.gallery-header{text-align:center;margin-bottom:20px;padding:0 16px}
-.gallery-header h2{font-family:'Playfair Display',serif;font-size:24px}
-.gallery-header p{font-size:13px;color:var(--muted);margin-top:5px}
-.gallery-container{
-  display:flex;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding:0 16px 20px;
-  gap:14px;
-  scrollbar-width:none;
-}
-.gallery-container::-webkit-scrollbar{display:none}
-.gallery-item{
-  flex:0 0 250px;
-  scroll-snap-align:center;
-  border-radius:20px;
+.gallery-wrap{
   overflow:hidden;
-  aspect-ratio:3/4;
-  box-shadow:var(--shadow-soft);
-  border:1px solid var(--border);
-  transition:transform .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding:0 24px;
+  position:relative;
 }
-.gallery-item:hover{transform:scale(1.03)}
+.gallery-wrap:hover .gallery-track{
+  animation-play-state:paused;
+}
+.gallery-item{
+  flex:0 0 280px;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  transition:opacity .4s ease;
+}
+.gallery-item:hover{opacity:.85}
 .gallery-item img{width:100%;height:100%;object-fit:cover}
-@media(max-width:480px){.gallery-item{flex:0 0 200px}}
+@media(max-width:480px){.gallery-item{flex:0 0 220px}}
 
-/* CTA */
+@keyframes scrollGallery {
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
 .cta{
   text-align:center;
-  padding:80px 16px;
-  margin-top:60px;
-  background:linear-gradient(to right,#f6e7db,#ffffff);
+  padding:100px 24px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--white);
 }
-.cta h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,34px);margin-bottom:10px}
+.cta h2{
+  font-size:clamp(32px,4vw,42px);
+  margin-bottom:24px;
+}
 .btn-main{
   display:inline-block;
-  margin-top:20px;
-  padding:16px 32px;
-  background:var(--primary);
-  color:#fff;
-  border-radius:14px;
+  padding:16px 40px;
+  background:var(--text);
+  color:var(--white);
   text-decoration:none;
-  font-weight:700;
-  transition:all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:1px;
+  border-radius:2px;
+  transition:all .4s ease;
 }
-.btn-main:hover{transform:scale(1.05);background:var(--primary-dark)}
-.btn-main:active{transform:scale(0.98)}
+.btn-main:hover{background:var(--primary)}
 
-/* SKELETON SHIMMER */
 .skeleton{
-  height:350px;
-  background:linear-gradient(90deg,#f0ebe6 25%,#f7f3ef 50%,#f0ebe6 75%);
+  height:420px;
+  background:linear-gradient(90deg,var(--bg-soft) 25%,#F7F5F2 50%,var(--bg-soft) 75%);
   background-size:200% 100%;
-  border-radius:20px;
   animation:shimmer 1.5s infinite;
 }
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-footer{text-align:center;padding:40px 16px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
-footer a{color:var(--primary);text-decoration:none;font-weight:600}
+footer{
+  text-align:center;
+  padding:60px 24px;
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:0.5px;
+}
+footer a{color:var(--primary);text-decoration:none}
+
+.sticky-wa{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--text);
+  color:#fff;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  z-index:999;
+  transition:all .3s ease;
+}
+.sticky-wa:hover{background:var(--primary);transform:scale(1.05)}
+.sticky-wa:active{transform:scale(0.95)}
+@media(min-width:768px){.sticky-wa{display:none}}
 </style>
 </head>
 
@@ -195,15 +290,15 @@ footer a{color:var(--primary);text-decoration:none;font-weight:600}
 
 <header class="hero reveal">
   <div class="logo">Omah Aksara</div>
-  <h1>Undangan Digital Era Modern</h1>
-  <p>Lihat dulu koleksinya. Ini bukan kertas, tapi pengalaman interaktif yang tamu gak akan lupa.</p>
+  <h1>Undangan yang Bercerita</h1>
+  <p>Desain digital interaktif untuk momen yang tak terlupakan.</p>
+  <p class="social-proof">Dipercaya 1.200+ pasangan</p>
 </header>
 
-<!-- 1. KATALOG DULU - VISUAL HOOK -->
-<section class="catalog-section reveal">
-  <div class="section-title">
-    <h2>Pilih Desain Favoritmu</h2>
-    <p>Semua bisa custom warna, font, musik, dan foto</p>
+<section class="catalog reveal">
+  <div class="catalog-head">
+    <h2>Koleksi Template</h2>
+    <p>Custom warna, musik, dan foto sesuai keinginanmu</p>
   </div>
   <div id="catalog-grid" class="grid">
     <div class="skeleton"></div>
@@ -213,46 +308,62 @@ footer a{color:var(--primary);text-decoration:none;font-weight:600}
   </div>
 </section>
 
-<!-- 2. BARU FITUR - EDUKASI SETELAH TERTARIK -->
 <section class="features reveal">
-  <div class="feature"><h3>🎵 Request Musik</h3><p>Pilih lagu favorit untuk diputar di undanganmu.</p></div>
-  <div class="feature"><h3>🖼️ Galeri Custom</h3><p>Bisa pakai foto prewedding atau ilustrasi kartun.</p></div>
-  <div class="feature"><h3>📱 Auto Nama</h3><p>Nama tamu otomatis muncul eksklusif di link WA.</p></div>
-  <div class="feature"><h3>🎨 Full Custom</h3><p>Warna, font, dan konsep bebas request sepuasnya.</p></div>
+  <div class="features-grid">
+    <div class="feature-item">
+      <h3>Musik Pilihan</h3>
+      <p>Request lagu favorit untuk mengiringi undanganmu.</p>
+    </div>
+    <div class="feature-item">
+      <h3>Galeri Personal</h3>
+      <p>Gunakan foto prewedding atau ilustrasi custom.</p>
+    </div>
+    <div class="feature-item">
+      <h3>Nama Tamu Otomatis</h3>
+      <p>Link eksklusif dengan nama tamu di halaman depan.</p>
+    </div>
+    <div class="feature-item">
+      <h3>Bebas Kustomisasi</h3>
+      <p>Warna, font, dan layout bisa disesuaikan sepenuhnya.</p>
+    </div>
+  </div>
 </section>
 
-<!-- 3. GALERI FOTOCONTOH - SOCIAL PROOF -->
-<section class="gallery-scroll reveal">
-  <div class="gallery-header">
-    <h2>Galeri Inspirasi</h2>
-    <p>Geser Kesamping</p>
+<section class="gallery reveal">
+  <div class="gallery-head">
+    <h2>Inspirasi</h2>
+    <p>Auto scroll • Hover untuk pause</p>
   </div>
-  <div class="gallery-container" id="gallery-scroll">
-    <!-- Auto load dari /album -->
+  <div class="gallery-wrap">
+    <div class="gallery-track" id="gallery-track">
+      <!-- Auto isi via JS -->
+    </div>
   </div>
 </section>
 
 <section class="cta reveal">
-  <h2>Siap Bikin yang Berkesan?</h2>
-  <p>Konsultasi gratis. Kirim konsep kamu, kita wujudkan.</p>
-  <a class="btn-main" href="https://wa.me/6285796461157?text=Kak, mau tanya undangan digital" target="_blank">Chat WhatsApp</a>
+  <h2>Mulai Sekarang</h2>
+  <a class="btn-main" href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau konsultasi undangan" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
 </section>
 
 <footer class="reveal">
-  © 2026 Omah Aksara — Undangan Digital Premium<br>
-  <a href="https://lynk.id/ondow" target="_blank">Crafting Digital Memories</a>
+  © 2026 Omah Aksara<br>
+  <a href="https://lynk.id/ondow" target="_blank" rel="noopener">Crafting Digital Memories</a>
 </footer>
+
+<a href="https://wa.me/6285796461157?text=Halo Omah Aksara, mau tanya undangan digital" class="sticky-wa" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16.6 14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.2.4-.4.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.6-1.3-.8-1.8-.2-.5-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2 1 2.4c.1.2 1.7 2.7 4.1 3.7.6.2 1 .4 1.4.5.6.2 1.1.1 1.5.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.1-.4-.2zM12 2C6.5 2 2 6.5 2 12c0 2 0 3.9 1.1 5.6L2 22l4.5-1.2C8.1 21.6 10 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
 
 <script>
 const grid = document.getElementById('catalog-grid');
-const gallery = document.getElementById('gallery-scroll');
+const galleryTrack = document.getElementById('gallery-track');
 const waNumber = '6285796461157';
 
 function toTitleCase(str) {
   return str.replace(/-/g,' ').split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
 }
 
-// INTERSECTION OBSERVER - SCROLL ANIMATION
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -260,14 +371,14 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// LOAD KATALOG TEMPLATE
 async function loadCatalog() {
   try {
     const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
+    if (!res.ok) throw new Error();
     const data = await res.json();
     const folders = data.filter(item => item.type === 'dir').map(item => item.name);
     
@@ -276,44 +387,55 @@ async function loadCatalog() {
       const name = toTitleCase(folder);
       const thumb = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${folder}/preview.jpg`;
       const demo = `https://omahaksara.github.io/invitation/templates/${folder}/?c=budi-ani&to=Nama-Tamu`;
-      const waLink = `https://wa.me/${waNumber}?text=Halo Omah Aksara, saya tertarik template ${name}`;
+      const waLink = `https://wa.me/${waNumber}?text=Halo, saya tertarik template ${name}`;
 
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
-        <div class="thumb"><img src="${thumb}" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'"></div>
+        <div class="thumb"><img src="${thumb}" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'" alt="Template ${name}"></div>
         <div class="card-body">
           <h3>${name}</h3>
+          <p class="price">Mulai 100rb</p>
           <div class="actions">
-            <a href="${demo}" target="_blank" class="btn-sm btn-line">Lihat Demo</a>
-            <a href="${waLink}" target="_blank" class="btn-sm btn-fill">Pesan</a>
+            <a href="${demo}" target="_blank" rel="noopener" class="btn btn-ghost">Pratinjau</a>
+            <a href="${waLink}" target="_blank" rel="noopener" class="btn btn-solid">Pesan</a>
           </div>
         </div>`;
       grid.appendChild(card);
       observer.observe(card);
     });
   } catch (e) {
-    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted)">Gagal memuat katalog.</p>';
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 20px">Katalog sedang dimuat. Hubungi kami via WhatsApp.</p>';
   }
 }
 
-// LOAD GALERI FOTOCONTOH
+// GALLERY AUTO SCROLL - INFINITE LOOP KEREN
 async function loadGallery() {
   try {
     const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
+    if (!res.ok) throw new Error();
     const files = await res.json();
     const images = files.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name));
     
-    gallery.innerHTML = '';
-    images.forEach(img => {
+    if(images.length === 0) return;
+    
+    // Duplikat isi biar bisa infinite scroll
+    const allImages = [...images, ...images];
+    
+    galleryTrack.innerHTML = '';
+    allImages.forEach(img => {
       const item = document.createElement('div');
       item.className = 'gallery-item';
-      item.innerHTML = `<img src="${img.download_url}" loading="lazy" decoding="async" alt="${img.name}">`;
-      gallery.appendChild(item);
-      observer.observe(item);
+      item.innerHTML = `<img src="${img.download_url}" loading="lazy" decoding="async" alt="Inspirasi undangan">`;
+      galleryTrack.appendChild(item);
     });
+    
+    // Set animation duration berdasarkan jumlah gambar. Makin banyak makin lama biar smooth
+    const duration = images.length * 5; // 5 detik per gambar
+    galleryTrack.style.animation = `scrollGallery ${duration}s linear infinite`;
+    
   } catch (e) {
-    gallery.innerHTML = '<p style="text-align:center;color:var(--muted);padding:20px">Galeri kosong. Upload foto ke folder /album</p>';
+    console.log('Gallery kosong');
   }
 }
 
