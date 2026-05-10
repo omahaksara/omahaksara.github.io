@@ -4,11 +4,13 @@
 <script>
 // REDIRECT AMAN - Gak bakal blank walau folder /invitation/ belum ada
 if (location.search.includes('c=')) {
-  try {
-    location.replace('/invitation/' + location.search);
-  } catch(e) {
-    console.log('Redirect skip');
-  }
+  const redirect = async () => {
+    try {
+      const res = await fetch('/invitation/' + location.search, {method: 'HEAD'});
+      if (res.ok) location.replace('/invitation/' + location.search);
+    } catch(e) {}
+  };
+  redirect();
 }
 </script>
 
@@ -288,6 +290,15 @@ border-radius:10px;
 animation:shimmer 1.5s infinite;
 }
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+.error-box{
+grid-column:1/-1;
+text-align:center;
+padding:60px 20px;
+background:var(--white);
+border:1px solid var(--line);
+border-radius:10px;
+}
 </style>
 </head>
 
