@@ -1,212 +1,583 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<script>
+// REDIRECT AMAN - Gak bakal blank walau folder /invitation/ belum ada
+if (location.search.includes('c=')) {
+  const redirect = async () => {
+    try {
+      const res = await fetch('/invitation/' + location.search, {method: 'HEAD'});
+      if (res.ok) location.replace('/invitation/' + location.search);
+    } catch(e) {}
+  };
+  redirect();
+}
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omah Aksara</title>
+<title>Omah Aksara — Undangan Digital Premium Promo 95K</title>
+<meta name="description" content="Undangan digital interaktif promo 95rb. Diskon 40% terbatas. Musik, galeri, nama tamu otomatis.">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --primary:#9C7A54;
-  --dark:#2E2A27;
-  --light:#F8F6F3;
+:root {
+  --bg:#fbf8f5;
+  --primary:#c07a43;
+  --primary-dark:#a06535;
+  --text:#2f2a25;
+  --muted:#7d726a;
+  --card:#ffffff;
+  --border:rgba(0,0,0,.06);
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --red:#d93025;
 }
 
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:var(--light);
-  color:var(--dark);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
 }
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity.8s ease,transform.8s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* BADGE DISKON */
+.badge-promo{
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:6px 12px;
+  border-radius:30px;
+  letter-spacing:0.5px;
+  margin-bottom:12px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:70px 20px 30px;
+  padding:70px 20px 40px;
+  background:linear-gradient(to bottom,#f7efe9,var(--bg));
 }
-
 .logo{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  color:var(--primary);
 }
-
 .hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:32px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,6vw,44px);
+  margin-top:8px;
+  line-height:1.15;
+}
+.hero p{
+  max-width:650px;
+  margin:12px auto;
+  color:var(--muted);
+  font-size:14px;
 }
 
-.btn-main{
-  background:var(--primary);
-  color:#fff;
-  padding:12px 25px;
-  border-radius:30px;
-  text-decoration:none;
-  display:inline-block;
-  margin-top:20px;
+.social-proof{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--primary);
+  margin-top:24px;
+  font-weight:600;
 }
 
-/* GRID */
+#countdown{
+  font-size:13px;
+  color:var(--red);
+  margin-top:10px;
+  font-weight:700;
+}
+
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  max-width:1000px;
+  margin:40px auto;
+  padding:0 20px;
+}
+.feature{
+  background:#fff;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  text-align:center;
+}
+.feature h3{
+  font-size:13px;
+  color:var(--primary);
+  margin-bottom:5px;
+}
+.feature p{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* CATALOG */
+.catalog-section{
+  padding:40px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+.section-title{
+  text-align:center;
+  margin-bottom:30px;
+}
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,4vw,32px);
+}
+.section-title p{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  grid-template-columns:repeat(2,1fr);
   gap:15px;
-  padding:20px;
+}
+@media(min-width:768px){
+ .grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(min-width:1024px){
+ .grid{grid-template-columns:repeat(4,1fr);}
 }
 
 .card{
   background:#fff;
-  border-radius:14px;
+  border-radius:20px;
   overflow:hidden;
-  text-align:center;
-  padding-bottom:10px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  transition:.4s;
+  position:relative;
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
 }
 
-.card img{
+.badge-save{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--red);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  padding:5px 8px;
+  border-radius:8px;
+  z-index:2;
+}
+
+.thumb{
+  aspect-ratio:3/4;
+}
+.thumb img{
   width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.card-body{
+  padding:12px;
+  text-align:center;
+}
+.card-body h3{
+  font-size:14px;
+  margin-bottom:8px;
+  font-family:'Playfair Display',serif;
 }
 
 .price{
-  font-size:14px;
+  font-size:13px;
+  margin-bottom:10px;
+}
+.price s{color:#bbb;font-size:12px}
+.price strong{color:var(--primary);font-size:15px}
+
+.actions{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
-/* GALLERY */
+.btn-sm{
+  padding:9px;
+  font-size:12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+.btn-sm:active{transform:scale(0.96)}
+
+.btn-fill{
+  background:var(--primary);
+  color:#fff;
+}
+.btn-fill:hover{background:var(--primary-dark)}
+.btn-line{
+  border:1.5px solid var(--primary);
+  color:var(--primary);
+}
+.btn-line:hover{background:rgba(192,122,67,.08)}
+
+/* GALLERY AUTO SCROLL + BISA DIGESER */
 .gallery{
+  padding:50px 0 80px;
   overflow:hidden;
-  white-space:nowrap;
-  padding:20px;
 }
-
-.gallery img{
-  width:180px;
-  margin:5px;
-  border-radius:12px;
-  display:inline-block;
-  animation:scroll 20s linear infinite;
-}
-
-@keyframes scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-100%)}
-}
-
-/* SECTION */
-.section{
-  padding:40px 20px;
+.gallery-head{
   text-align:center;
+  margin-bottom:32px;
+  padding:0 24px;
+}
+.gallery-head h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,4vw,32px);
+  margin-bottom:8px;
+}
+.gallery-head p{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+
+.gallery-wrap{
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:0 24px 20px;
+  cursor:grab;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x;
+}
+.gallery-wrap::-webkit-scrollbar{display:none}
+.gallery-wrap.active{cursor:grabbing}
+
+.gallery-track{
+  display:flex;
+  gap:20px;
+  width:max-content;
+}
+.gallery-track.auto{
+  animation:scrollGallery 60s linear infinite;
+}
+.gallery-wrap:hover.gallery-track.auto,
+.gallery-wrap.active.gallery-track.auto{
+  animation-play-state:paused;
 }
 
-/* STICKY */
+.gallery-item{
+  flex:0 0 240px;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  border-radius:12px;
+}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+@media(max-width:480px){.gallery-item{flex:0 0 200px}}
+
+@keyframes scrollGallery{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+.cta{
+  text-align:center;
+  padding:70px 20px;
+  background:linear-gradient(to right,#f6e7db,#fff);
+}
+.cta h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,4vw,34px);
+}
+.btn-main{
+  display:inline-block;
+  margin-top:15px;
+  padding:14px 26px;
+  background:var(--primary);
+  color:#fff;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+#notif{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  padding:12px 16px;
+  font-size:12px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+  display:none;
+  z-index:998;
+  animation:slideIn.4s ease;
+}
+@keyframes slideIn{from{transform:translateX(-20px);opacity:0}to{transform:translateX(0);opacity:1}}
+
 .sticky{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#25D366;
+  background:var(--primary);
   color:#fff;
   padding:12px 18px;
   border-radius:30px;
   text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  z-index:999;
 }
+@media(min-width:768px){.sticky{display:none}}
+
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:12px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+}
+
+.skeleton{
+  height:360px;
+  background:linear-gradient(90deg,#f7f3ef 25%,#fbf8f5 50%,#f7f3ef 75%);
+  background-size:200% 100%;
+  border-radius:20px;
+  animation:shimmer 1.5s infinite;
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 </head>
 
 <body>
 
-<!-- POPUP -->
-<div id="popup" style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:999">
-  <div style="background:#fff;padding:25px;border-radius:16px;text-align:center">
-    <h3>🎉 Promo Hari Ini</h3>
-    <p>Undangan Digital cuma <b>95rb</b></p>
-    <a href="https://wa.me/6285796461157?text=Halo saya mau promo 95rb"
-       style="background:#9C7A54;color:#fff;padding:10px 20px;border-radius:20px;display:inline-block">
-       Ambil Promo
-    </a>
-    <br><br>
-    <span onclick="popup.style.display='none'" style="font-size:12px;color:#888">Tutup</span>
-  </div>
-</div>
-
-<!-- HERO -->
-<header class="hero">
+<header class="hero reveal">
+  <div class="badge-promo">DISKON 40% TERBATAS</div>
   <div class="logo">Omah Aksara</div>
-
-  <h1>Undangan Digital<br>Mulai <span style="color:var(--primary)">95rb</span></h1>
-
-  <p>Desain elegan • Kirim tanpa batas</p>
-  <p style="color:red">🔥 17 orang pesan hari ini</p>
-
-  <a href="https://wa.me/6285796461157?text=Halo saya mau pesan undangan digital promo 95rb"
-     class="btn-main">Pesan Sekarang</a>
+  <h1>Undangan Digital Premium</h1>
+  <p>Undangan interaktif yang dapat dibuka dari mana saja, lengkap dengan musik, galeri, dan nama tamu otomatis.</p>
+  <p class="social-proof">HEMAT 60RB • DIPAKAI 1.200+ PASANGAN</p>
+  <p id="countdown"></p>
 </header>
 
-<!-- CATALOG (LANGSUNG KELIHATAN) -->
-<section class="grid">
+<section class="features reveal">
+  <div class="feature"><h3>Request Musik</h3><p>Lagu bisa disesuaikan</p></div>
+  <div class="feature"><h3>Galeri Foto</h3><p>Bebas ditampilkan</p></div>
+  <div class="feature"><h3>Auto Nama</h3><p>Nama tamu otomatis</p></div>
+  <div class="feature"><h3>Full Custom</h3><p>Warna & font bebas</p></div>
+</section>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300x400">
-    <h4>Elegant 01</h4>
-    <p class="price">
-      <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
-      <b>95rb</b>
-    </p>
-    <p style="color:red;font-size:12px">🔥 5x dipesan hari ini</p>
-    <a href="https://wa.me/6285796461157?text=Halo saya mau template Elegant 01 promo 95rb">Pesan</a>
+<section class="catalog-section reveal">
+  <div class="section-title">
+    <h2>Koleksi Template Terlaris</h2>
+    <p>Harga normal 150rb, promo jadi 95rb aja</p>
   </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/300x400">
-    <h4>Minimal 02</h4>
-    <p class="price">
-      <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
-      <b>95rb</b>
-    </p>
-    <p style="color:red;font-size:12px">🔥 8x dipesan hari ini</p>
-    <a href="https://wa.me/6285796461157?text=Halo saya mau template Minimal 02 promo 95rb">Pesan</a>
+  <div id="catalog-grid" class="grid">
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
   </div>
-
 </section>
 
-<!-- FEATURES -->
-<section class="section">
-  <h2>Fitur Lengkap</h2>
-  <p>✔ Musik • ✔ Galeri • ✔ Maps • ✔ RSVP</p>
-  <p>🎁 Bonus Revisi • 🎁 Bonus Cover Nama</p>
+<section class="gallery reveal">
+  <div class="gallery-head">
+    <h2>Hasil Jadi Klien</h2>
+    <p>Geser manual atau biar jalan sendiri</p>
+  </div>
+  <div class="gallery-wrap" id="gallery-wrap">
+    <div class="gallery-track auto" id="gallery-track"></div>
+  </div>
 </section>
 
-<!-- GALLERY (TETAP ADA) -->
-<section class="gallery">
-  <img src="https://via.placeholder.com/200x300">
-  <img src="https://via.placeholder.com/200x300">
-  <img src="https://via.placeholder.com/200x300">
-  <img src="https://via.placeholder.com/200x300">
+<section class="cta reveal">
+  <h2>Ambil Promo Sekarang</h2>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">Slot terbatas tiap bulan</p>
+  <a href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau ambil promo 95rb" class="btn-main">Chat WhatsApp</a>
 </section>
 
-<!-- TESTIMONI -->
-<section class="section">
-  <h2>Testimoni</h2>
+<footer>© 2026 Omah Aksara</footer>
 
-  <p>⭐⭐⭐⭐⭐</p>
-  <p>"Bagus banget, cepat selesai!"</p>
-  <small>- Rina</small>
+<div id="notif"></div>
+<a href="https://wa.me/6285796461157?text=Halo Omah Aksara, mau tanya promo 95rb" class="sticky">Konsultasi</a>
 
-  <p style="margin-top:20px">⭐⭐⭐⭐⭐</p>
-  <p>"Murah tapi mewah 😍"</p>
-  <small>- Andi</small>
-</section>
+<script>
+// REVEAL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-<!-- CTA -->
-<section class="section">
-  <h2>Pesan Sekarang</h2>
-  <a href="https://wa.me/6285796461157?text=Halo saya mau pesan undangan digital promo 95rb"
-     class="btn-main">Chat WhatsApp</a>
+const grid = document.getElementById('catalog-grid');
+const galleryTrack = document.getElementById('gallery-track');
+const galleryWrap = document.getElementById('gallery-wrap');
+const waNumber = '6285796461157';
 
-  <p style="font-size:12px;color:#888">⚠️ Promo bisa berakhir kapan saja</p>
-</section>
+function toTitleCase(str){
+  return str.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
 
-<!-- STICKY -->
-<a href="https://wa.me/6285796461157?text=Halo saya mau promo 95rb"
-   class="sticky">Chat Promo 95rb</a>
+// COUNTDOWN 3 HARI - SEOLAH2 DISKON
+const end = new Date();
+end.setDate(end.getDate() + 3);
+setInterval(()=>{
+  let diff = end - new Date();
+  if(diff <= 0){
+    document.getElementById("countdown").innerText = "Promo berakhir hari ini!";
+    return;
+  }
+  let d = Math.floor(diff/1000/60/60/24);
+  let h = Math.floor(diff/1000/60/60)%24;
+  let m = Math.floor(diff/1000/60)%60;
+  document.getElementById("countdown").innerText = `Promo berakhir dalam ${d}h ${h}j ${m}m`;
+},1000);
 
-</body>
-</html>
+// FALLBACK KALO API GAGAL
+const fallbackTemplates = [
+  {name: 'classic-gold'},
+  {name: 'modern-white'},
+  {name: 'floral-pink'},
+  {name: 'rustic-brown'}
+];
+
+function renderCatalog(items){
+  grid.innerHTML="";
+  items.forEach(folder=>{
+    const name = toTitleCase(folder.name);
+    const thumb = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${folder.name}/preview.jpg`;
+    const demo = `https://omahaksara.github.io/invitation/templates/${folder.name}/?c=budi-ani&to=Tamu`;
+    const wa = `https://wa.me/${waNumber}?text=Halo saya mau template ${name} promo 95rb`;
+
+    grid.innerHTML+=`
+    <div class="card">
+      <div class="badge-save">HEMAT 60RB</div>
+      <div class="thumb"><img src="${thumb}" loading="lazy" alt="${name}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'"></div>
+      <div class="card-body">
+        <h3>${name}</h3>
+        <div class="price">
+          <s>150rb</s><br>
+          <strong>95rb</strong>
+        </div>
+        <div class="actions">
+          <a href="${demo}" target="_blank" class="btn-sm btn-line">Demo</a>
+          <a href="${wa}" target="_blank" class="btn-sm btn-fill">Ambil Promo</a>
+        </div>
+      </div>
+    </div>
+    `;
+  });
+}
+
+// LOAD KATALOG - ANTI BLANK
+fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates')
+.then(r=>{
+  if(!r.ok) throw new Error();
+  return r.json();
+})
+.then(d=>{
+  const folders = d.filter(i=>i.type==="dir").map(i=>({name:i.name}));
+  if(folders.length === 0) throw new Error();
+  renderCatalog(folders);
+})
+.catch(()=>{
+  renderCatalog(fallbackTemplates);
+});
+
+// GALLERY AUTO + MANUAL SCROLL
+async function loadGallery() {
+  try {
+    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
+    if (!res.ok) return;
+    const files = await res.json();
+    const images = files.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name));
+    if(images.length === 0) return;
+
+    const allImages = [...images,...images];
+    galleryTrack.innerHTML = '';
+    allImages.forEach(img => {
+      galleryTrack.innerHTML += `<div class="gallery-item"><img src="${img.download_url}" loading="lazy" alt="Hasil undangan"></div>`;
+    });
+
+    const duration = images.length * 4;
+    galleryTrack.style.animationDuration = `${duration}s`;
+
+  } catch(e){
+    document.querySelector('.gallery').style.display='none';
+  }
+}
+loadGallery();
+
+// DRAG TO SCROLL - MOUSE
+let isDown = false;
+let startX;
+let scrollLeft;
+
+galleryWrap.addEventListener('mousedown', (e) => {
+  isDown = true;
+  galleryWrap.classList.add('active');
+  galleryTrack.style.animationPlayState = 'paused';
+  startX = e.pageX - galleryWrap.offsetLeft;
+  scrollLeft = galleryWrap.scrollLeft;
+});
+
+galleryWrap.addEventListener('mouseleave', () => {
+  isDown = false;
+  galleryWrap.classList.remove('active');
+});
+
+galleryWrap.addEventListener('mouseup', () => {
+  isDown = false;
+  galleryWrap.classList.remove('active');
+});
+
+galleryWrap.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - galleryWrap.offsetLeft;
+  const walk = (x - startX) * 2;
+  galleryWrap.scrollLeft = scrollLeft - walk;
+});
+
+// DRAG TO SCROLL - TOUCH HP
+galleryWrap.addEventListener('touchstart', (e) => {
+  isDown = true;
+  galleryTrack.style.animationPlayState = 'paused';
+  startX = e.touches[0].pageX - galleryWrap.offsetLeft;
+  scrollLeft = galleryWrap.scrollLeft;
+}, {passive: true});
+
+galleryWrap.addEventListener('touchend', () => {
+  isDown = false;
+  setTimeout(() => {
+    galleryTrack.style.animationPlayState = 'running
