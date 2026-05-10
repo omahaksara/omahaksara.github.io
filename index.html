@@ -16,7 +16,7 @@ if (location.search.includes('c=')) {
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Omah Aksara — Undangan Digital 90K</title>
+<title>Omah Aksara</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -305,9 +305,9 @@ border-radius:10px;
 <body>
 
 <header class="hero reveal">
-<h1>Promo Undangan Digital 90K</h1>
-<p>Desain elegan, fitur lengkap, siap pakai tanpa ribet.</p>
-<p class="social-proof">Diskon 40% • Hemat 60rb • Dipakai 1.200+ pasangan</p>
+<h1>Omah Aksara</h1>
+<p>Desain elegan, fitur lengkap.</p>
+<p class="social-proof">siap pakai tanpa ribet</p>
 <p id="countdown"></p>
 </header>
 
@@ -455,7 +455,7 @@ async function loadGallery() {
     const allImages = [...images,...images];
     galleryTrack.innerHTML = '';
     allImages.forEach(img => {
-      galleryTrack.innerHTML += `<div class="gallery-item"><img src="${img.download_url}" loading="lazy" alt="Hasil undangan"></div>`;
+      galleryTrack.innerHTML += `<div class="gallery-item"><img src="${img.download_url}" loading="lazy" alt="Inspirasi"></div>`;
     });
 
     const duration = images.length * 4;
