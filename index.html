@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<script>
+  // Redirect kalo ada ?c= langsung ke mesin undangan
+  if (location.search.includes('c=')) {
+    location.replace('/invitation/' + location.search);
+  }
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Omah Aksara - Undangan Digital Premium</title>
@@ -66,7 +73,6 @@ body{
   border:1px solid var(--border);
   display:flex;
   flex-direction:column;
-  /* KUNCI SMOOTH */
   transition:all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
   will-change:transform,box-shadow;
 }
@@ -222,7 +228,7 @@ footer a{color:var(--primary);text-decoration:none;font-weight:600}
     <p>Geser Kesamping</p>
   </div>
   <div class="gallery-container" id="gallery-scroll">
-    <!-- Auto load dari /katalog/fotocontoh -->
+    <!-- Auto load dari /album -->
   </div>
 </section>
 
@@ -294,7 +300,7 @@ async function loadCatalog() {
 // LOAD GALERI FOTOCONTOH
 async function loadGallery() {
   try {
-    const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/katalog/fotocontoh');
+    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
     const files = await res.json();
     const images = files.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name));
     
@@ -307,7 +313,7 @@ async function loadGallery() {
       observer.observe(item);
     });
   } catch (e) {
-    gallery.innerHTML = '<p style="text-align:center;color:var(--muted);padding:20px">Gagal load galeri</p>';
+    gallery.innerHTML = '<p style="text-align:center;color:var(--muted);padding:20px">Galeri kosong. Upload foto ke folder /album</p>';
   }
 }
 
