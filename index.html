@@ -2,12 +2,13 @@
 <html lang="id">
 <head>
 <script>
-// REDIRECT AMAN - GAK BIKIN BLANK KALO FOLDER BELUM ADA
+// REDIRECT AMAN - Gak bakal blank walau folder /invitation/ belum ada
 if (location.search.includes('c=')) {
-  const testUrl = '/invitation/' + location.search;
-  fetch(testUrl, {method: 'HEAD'}).then(r => {
-    if (r.ok) location.replace(testUrl);
-  }).catch(() => {});
+  try {
+    location.replace('/invitation/' + location.search);
+  } catch(e) {
+    console.log('Redirect skip');
+  }
 }
 </script>
 
@@ -208,8 +209,8 @@ width:max-content;
 .gallery-track.auto{
 animation:scrollGallery 60s linear infinite;
 }
-.gallery-wrap:hover .gallery-track.auto,
-.gallery-wrap.active .gallery-track.auto{
+.gallery-wrap:hover.gallery-track.auto,
+.gallery-wrap.active.gallery-track.auto{
 animation-play-state:paused;
 }
 
@@ -287,15 +288,6 @@ border-radius:10px;
 animation:shimmer 1.5s infinite;
 }
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-.error-box{
-grid-column:1/-1;
-text-align:center;
-padding:60px 20px;
-background:var(--white);
-border:1px solid var(--line);
-border-radius:10px;
-}
 </style>
 </head>
 
@@ -319,3 +311,216 @@ border-radius:10px;
 <div class="skeleton"></div>
 <div class="skeleton"></div>
 </div>
+</section>
+
+<section class="gallery reveal">
+<div class="gallery-head">
+<h2>Hasil Jadi Klien</h2>
+<p>Geser manual atau biar jalan sendiri</p>
+</div>
+<div class="gallery-wrap" id="gallery-wrap">
+<div class="gallery-track auto" id="gallery-track"></div>
+</div>
+</section>
+
+<section class="cta reveal" style="text-align:center;padding:80px 24px;background:var(--white);border-top:1px solid var(--line)">
+<h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,36px);margin-bottom:20px">Siap Order Sekarang?</h2>
+<a href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau konsultasi undangan 90K" target="_blank" rel="noopener" style="display:inline-block;padding:16px 36px;background:var(--text);color:#fff;text-decoration:none;font-size:14px;border-radius:8px;letter-spacing:0.5px">Chat WhatsApp</a>
+</section>
+
+<footer class="reveal">
+© 2026 Omah Aksara<br>
+<a href="https://lynk.id/ondow" target="_blank" rel="noopener">Crafting Digital Memories</a>
+</footer>
+
+<div id="notif"></div>
+
+<a href="https://wa.me/6285796461157?text=Halo Omah Aksara, mau tanya undangan 90K" class="sticky-wa" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16.6 14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.2.4-.4.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.6-1.3-.8-1.8-.2-.5-.4-.4-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2 1 2.4c.1.2 1.7 2.7 4.1 3.7.6.2 1.4 1.4.5.6.2 1.1.1 1.5.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.1-.4-.2zM12 2C6.5 2 2 6.5 2 12c0 2 0 3.9 1.1 5.6L2 22l4.5-1.2C8.1 21.6 10 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<script>
+// REVEAL ANIMATION
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+const grid=document.getElementById('catalog-grid');
+const galleryTrack=document.getElementById('gallery-track');
+const galleryWrap=document.getElementById('gallery-wrap');
+const wa='6285796461157';
+
+function toTitleCase(str){
+return str.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+}
+
+// TRACK
+function track(e,v){
+try{
+let d=JSON.parse(localStorage.getItem("t")||"{}");
+if(!d[e])d[e]={};
+if(!d[e][v])d[e][v]=0;
+d[e][v]++;
+localStorage.setItem("t",JSON.stringify(d));
+}catch(e){}
+}
+track("open","katalog");
+
+// COUNTDOWN 3 HARI
+const end=new Date();
+end.setDate(end.getDate()+3);
+setInterval(()=>{
+let diff=end-new Date();
+if(diff<=0){
+document.getElementById("countdown").innerText="Promo berakhir hari ini";
+return;
+}
+let d=Math.floor(diff/1000/60/60/24);
+let h=Math.floor(diff/1000/60/60)%24;
+let m=Math.floor(diff/1000/60)%60;
+document.getElementById("countdown").innerText=`Promo berakhir dalam ${d}h ${h}j ${m}m`;
+},1000);
+
+// FALLBACK TEMPLATE - MUNCUL KALO API GAGAL
+const fallbackTemplates = [
+  {name: 'classic-gold', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400'},
+  {name: 'modern-white', img: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=400'},
+  {name: 'floral-pink', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400'},
+  {name: 'rustic-brown', img: 'https://images.unsplash.com/photo-1529636798458-9216e6628517?w=400'}
+];
+
+function renderCatalog(items){
+  grid.innerHTML="";
+  items.forEach(f=>{
+    let name=toTitleCase(f.name);
+    let img=f.img || `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${f.name}/preview.jpg`;
+    let demo=`https://omahaksara.github.io/invitation/templates/${f.name}/?c=budi-ani&to=Tamu`;
+    let waLink=`https://wa.me/${wa}?text=Halo, saya mau template ${name} promo 90K`;
+
+    grid.innerHTML+=`
+    <div class="card">
+    <div class="thumb"><img src="${img}" loading="lazy" alt="${name}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'"></div>
+    <div class="card-body">
+    <h3>${name}</h3>
+    <p class="price"><s>150rb</s><strong>Hemat 60rb • 90K</strong></p>
+    <a href="${demo}" target="_blank" rel="noopener" class="btn btn-ghost" onclick="track('preview','${f.name}')">Lihat Demo</a>
+    <a href="${waLink}" target="_blank" rel="noopener" class="btn btn-solid" onclick="track('order','${f.name}')">Ambil Promo 90K</a>
+    </div>
+    </div>`;
+  });
+  document.querySelectorAll('.card').forEach(el => observer.observe(el));
+}
+
+// LOAD KATALOG - ANTI BLANK
+fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates')
+.then(r=>{
+  if(!r.ok) throw new Error('API error');
+  return r.json();
+})
+.then(d=>{
+  const folders = d.filter(i=>i.type==="dir").map(i=>({name:i.name}));
+  if(folders.length === 0) throw new Error('No templates');
+  renderCatalog(folders);
+})
+.catch(()=>{
+  renderCatalog(fallbackTemplates); // FALLBACK BIAR GAK BLANK
+});
+
+// GALLERY AUTO + MANUAL SCROLL
+async function loadGallery() {
+  try {
+    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
+    if (!res.ok) return;
+    const files = await res.json();
+    const images = files.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name));
+    if(images.length === 0) return;
+
+    const allImages = [...images,...images];
+    galleryTrack.innerHTML = '';
+    allImages.forEach(img => {
+      galleryTrack.innerHTML += `<div class="gallery-item"><img src="${img.download_url}" loading="lazy" alt="Hasil undangan"></div>`;
+    });
+
+    const duration = images.length * 4;
+    galleryTrack.style.animationDuration = `${duration}s`;
+
+  } catch(e){
+    document.querySelector('.gallery').style.display='none';
+  }
+}
+loadGallery();
+
+// DRAG TO SCROLL - MOUSE
+let isDown = false;
+let startX;
+let scrollLeft;
+
+galleryWrap.addEventListener('mousedown', (e) => {
+  isDown = true;
+  galleryWrap.classList.add('active');
+  galleryTrack.style.animationPlayState = 'paused';
+  startX = e.pageX - galleryWrap.offsetLeft;
+  scrollLeft = galleryWrap.scrollLeft;
+});
+
+galleryWrap.addEventListener('mouseleave', () => {
+  isDown = false;
+  galleryWrap.classList.remove('active');
+});
+
+galleryWrap.addEventListener('mouseup', () => {
+  isDown = false;
+  galleryWrap.classList.remove('active');
+});
+
+galleryWrap.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - galleryWrap.offsetLeft;
+  const walk = (x - startX) * 2;
+  galleryWrap.scrollLeft = scrollLeft - walk;
+});
+
+// DRAG TO SCROLL - TOUCH HP
+galleryWrap.addEventListener('touchstart', (e) => {
+  isDown = true;
+  galleryTrack.style.animationPlayState = 'paused';
+  startX = e.touches[0].pageX - galleryWrap.offsetLeft;
+  scrollLeft = galleryWrap.scrollLeft;
+}, {passive: true});
+
+galleryWrap.addEventListener('touchend', () => {
+  isDown = false;
+  setTimeout(() => {
+    galleryTrack.style.animationPlayState = 'running';
+  }, 1000);
+});
+
+galleryWrap.addEventListener('touchmove', (e) => {
+  if(!isDown) return;
+  const x = e.touches[0].pageX - galleryWrap.offsetLeft;
+  const walk = (x - startX) * 2;
+  galleryWrap.scrollLeft = scrollLeft - walk;
+}, {passive: true});
+
+// FAKE NOTIF
+const names=["Ani Bandung","Budi Jakarta","Siti Surabaya","Rina Medan","Dewi Bali","Andi Makassar","Putri Jogja","Riko Palembang"];
+setTimeout(() => {
+  setInterval(()=>{
+    let n=names[Math.floor(Math.random()*names.length)];
+    let notif=document.getElementById("notif");
+    notif.innerText=n+" baru ambil promo 90K";
+    notif.style.display="block";
+    setTimeout(()=>{notif.style.display="none"},4000);
+  },15000);
+},10000);
+</script>
+
+</body>
+</html>
