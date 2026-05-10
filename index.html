@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omah Aksara - Undangan Digital</title>
+<title>Omah Aksara</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -24,76 +24,40 @@ body{
 /* HERO */
 .hero{
   text-align:center;
-  padding:80px 20px;
+  padding:70px 20px 30px;
 }
 
 .logo{
   font-family:'Cormorant Garamond',serif;
-  font-size:26px;
-  letter-spacing:2px;
-  margin-bottom:10px;
-  position:relative;
-}
-
-.logo::after{
-  content:"";
-  display:block;
-  width:40px;
-  height:1px;
-  background:var(--primary);
-  margin:12px auto;
-  opacity:.5;
+  font-size:24px;
 }
 
 .hero h1{
   font-family:'Cormorant Garamond',serif;
-  font-size:36px;
-}
-
-.hero p{
-  margin:10px 0;
-  color:#6f6f6f;
+  font-size:32px;
 }
 
 .btn-main{
   background:var(--primary);
   color:#fff;
-  padding:14px 28px;
+  padding:12px 25px;
   border-radius:30px;
   text-decoration:none;
   display:inline-block;
-  margin-top:25px;
+  margin-top:20px;
 }
 
-/* ANIMATION */
-.hero h1, .hero p, .logo, .btn-main{
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp 1s ease forwards;
-}
-
-.hero p:nth-child(3){animation-delay:.3s}
-.hero p:nth-child(4){animation-delay:.6s}
-.btn-main{animation-delay:1s}
-
-@keyframes fadeUp{
-  to{opacity:1; transform:translateY(0);}
-}
-
-/* CATALOG */
-.catalog{
-  padding:40px 20px;
-}
-
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  padding:20px;
 }
 
 .card{
   background:#fff;
-  border-radius:16px;
+  border-radius:14px;
   overflow:hidden;
   text-align:center;
   padding-bottom:10px;
@@ -104,28 +68,18 @@ body{
 }
 
 .price{
-  margin:10px 0;
   font-size:14px;
-}
-
-/* FEATURES */
-.features{
-  padding:40px 20px;
-  text-align:center;
-}
-
-.features div{
-  margin:10px 0;
 }
 
 /* GALLERY */
 .gallery{
   overflow:hidden;
   white-space:nowrap;
+  padding:20px;
 }
 
 .gallery img{
-  width:200px;
+  width:180px;
   margin:5px;
   border-radius:12px;
   display:inline-block;
@@ -137,7 +91,13 @@ body{
   to{transform:translateX(-100%)}
 }
 
-/* STICKY WA */
+/* SECTION */
+.section{
+  padding:40px 20px;
+  text-align:center;
+}
+
+/* STICKY */
 .sticky{
   position:fixed;
   bottom:20px;
@@ -153,60 +113,68 @@ body{
 
 <body>
 
+<!-- POPUP -->
+<div id="popup" style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:999">
+  <div style="background:#fff;padding:25px;border-radius:16px;text-align:center">
+    <h3>🎉 Promo Hari Ini</h3>
+    <p>Undangan Digital cuma <b>95rb</b></p>
+    <a href="https://wa.me/6285796461157?text=Halo saya mau promo 95rb"
+       style="background:#9C7A54;color:#fff;padding:10px 20px;border-radius:20px;display:inline-block">
+       Ambil Promo
+    </a>
+    <br><br>
+    <span onclick="popup.style.display='none'" style="font-size:12px;color:#888">Tutup</span>
+  </div>
+</div>
+
 <!-- HERO -->
 <header class="hero">
   <div class="logo">Omah Aksara</div>
 
   <h1>Undangan Digital<br>Mulai <span style="color:var(--primary)">95rb</span></h1>
 
-  <p>Desain elegan • Bisa custom • Kirim tanpa batas</p>
-  <p style="color:var(--primary)">🔥 Promo terbatas minggu ini</p>
+  <p>Desain elegan • Kirim tanpa batas</p>
+  <p style="color:red">🔥 17 orang pesan hari ini</p>
 
-  <a href="https://wa.me/6285796461157?text=Halo Omah Aksara, saya mau pesan undangan digital promo 95rb"
-     class="btn-main">
-     Pesan Sekarang
-  </a>
+  <a href="https://wa.me/6285796461157?text=Halo saya mau pesan undangan digital promo 95rb"
+     class="btn-main">Pesan Sekarang</a>
 </header>
 
-<!-- CATALOG -->
-<section class="catalog">
-  <h2 style="text-align:center">Pilihan Template</h2>
+<!-- CATALOG (LANGSUNG KELIHATAN) -->
+<section class="grid">
 
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300x400">
-      <h4>Elegant 01</h4>
-      <p class="price">
-        <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
-        <b>95rb</b>
-      </p>
-      <a href="https://wa.me/6285796461157?text=Halo saya mau template Elegant 01 promo 95rb">Pesan</a>
-    </div>
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300x400">
-      <h4>Minimal 02</h4>
-      <p class="price">
-        <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
-        <b>95rb</b>
-      </p>
-      <a href="https://wa.me/6285796461157?text=Halo saya mau template Minimal 02 promo 95rb">Pesan</a>
-    </div>
-
+  <div class="card">
+    <img src="https://via.placeholder.com/300x400">
+    <h4>Elegant 01</h4>
+    <p class="price">
+      <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
+      <b>95rb</b>
+    </p>
+    <p style="color:red;font-size:12px">🔥 5x dipesan hari ini</p>
+    <a href="https://wa.me/6285796461157?text=Halo saya mau template Elegant 01 promo 95rb">Pesan</a>
   </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300x400">
+    <h4>Minimal 02</h4>
+    <p class="price">
+      <span style="text-decoration:line-through;color:#aaa">150rb</span><br>
+      <b>95rb</b>
+    </p>
+    <p style="color:red;font-size:12px">🔥 8x dipesan hari ini</p>
+    <a href="https://wa.me/6285796461157?text=Halo saya mau template Minimal 02 promo 95rb">Pesan</a>
+  </div>
+
 </section>
 
 <!-- FEATURES -->
-<section class="features">
+<section class="section">
   <h2>Fitur Lengkap</h2>
-  <div>✔ Musik</div>
-  <div>✔ Galeri Foto</div>
-  <div>✔ Peta Lokasi</div>
-  <div>✔ RSVP</div>
+  <p>✔ Musik • ✔ Galeri • ✔ Maps • ✔ RSVP</p>
+  <p>🎁 Bonus Revisi • 🎁 Bonus Cover Nama</p>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY (TETAP ADA) -->
 <section class="gallery">
   <img src="https://via.placeholder.com/200x300">
   <img src="https://via.placeholder.com/200x300">
@@ -214,23 +182,31 @@ body{
   <img src="https://via.placeholder.com/200x300">
 </section>
 
-<!-- CTA -->
-<section style="text-align:center;padding:40px">
-  <h2>Siap Buat Undangan Kamu?</h2>
-  <p>Langsung chat sekarang, proses cepat!</p>
-  <a href="https://wa.me/6285796461157?text=Halo saya mau pesan undangan digital promo 95rb"
-     class="btn-main">Chat Sekarang</a>
+<!-- TESTIMONI -->
+<section class="section">
+  <h2>Testimoni</h2>
 
-  <p style="font-size:13px;color:#888;margin-top:10px">
-    ⚠️ Promo bisa berakhir kapan saja
-  </p>
+  <p>⭐⭐⭐⭐⭐</p>
+  <p>"Bagus banget, cepat selesai!"</p>
+  <small>- Rina</small>
+
+  <p style="margin-top:20px">⭐⭐⭐⭐⭐</p>
+  <p>"Murah tapi mewah 😍"</p>
+  <small>- Andi</small>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <h2>Pesan Sekarang</h2>
+  <a href="https://wa.me/6285796461157?text=Halo saya mau pesan undangan digital promo 95rb"
+     class="btn-main">Chat WhatsApp</a>
+
+  <p style="font-size:12px;color:#888">⚠️ Promo bisa berakhir kapan saja</p>
 </section>
 
 <!-- STICKY -->
-<a href="https://wa.me/6285796461157?text=Halo saya mau promo undangan 95rb"
-   class="sticky">
-   Chat Promo 95rb
-</a>
+<a href="https://wa.me/6285796461157?text=Halo saya mau promo 95rb"
+   class="sticky">Chat Promo 95rb</a>
 
 </body>
 </html>
