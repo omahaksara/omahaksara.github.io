@@ -2,7 +2,9 @@
 <html lang="id">
 <head>
 <script>
-// REDIRECT AMAN
+// ==========================================
+// 1. REDIRECT AMAN (PROTEKSI KLIEN LAMA)
+// ==========================================
 if (location.search.includes('c=')) {
   try {
     location.replace('/invitation/' + location.search);
@@ -16,298 +18,58 @@ if (location.search.includes('c=')) {
 <meta name="description" content="Undangan digital interaktif promo 95rb. Diskon 40% terbatas.">
 
 <style>
+/* CSS LANDING PAGE - TETAP SAMA AGAR VIBE BRAND TIDAK BERUBAH */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-  background:#fbf8f5;
-  color:#2f2a25;
-  line-height:1.7;
-  min-height:100vh;
-}
-
-.hero{
-  text-align:center;
-  padding:60px 20px 40px;
-  background:#f7efe9;
-}
-.badge-promo{
-  display:inline-block;
-  background:#d93025;
-  color:#fff;
-  font-size:11px;
-  font-weight:700;
-  padding:6px 12px;
-  border-radius:30px;
-  margin-bottom:12px;
-}
-.logo{
-  font-family:Georgia,serif;
-  font-size:36px;
-  color:#c07a43;
-  font-weight:700;
-}
-.hero h1{
-  font-family:Georgia,serif;
-  font-size:28px;
-  margin-top:8px;
-  line-height:1.2;
-  color:#2f2a25;
-}
-.hero p{
-  max-width:600px;
-  margin:12px auto;
-  color:#7d726a;
-  font-size:14px;
-}
-.social-proof{
-  font-size:12px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:#c07a43;
-  margin-top:20px;
-  font-weight:600;
-}
-#countdown{
-  font-size:13px;
-  color:#d93025;
-  margin-top:8px;
-  font-weight:700;
-}
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  max-width:900px;
-  margin:40px auto;
-  padding:0 20px;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:#fbf8f5;color:#2f2a25;line-height:1.7;min-height:100vh}
+.hero{text-align:center;padding:60px 20px 40px;background:#f7efe9}
+.badge-promo{display:inline-block;background:#d93025;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:30px;margin-bottom:12px}
+.logo{font-family:Georgia,serif;font-size:36px;color:#c07a43;font-weight:700}
+.hero h1{font-family:Georgia,serif;font-size:28px;margin-top:8px;line-height:1.2;color:#2f2a25}
+.hero p{max-width:600px;margin:12px auto;color:#7d726a;font-size:14px}
+.social-proof{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#c07a43;margin-top:20px;font-weight:600}
+#countdown{font-size:13px;color:#d93025;margin-top:8px;font-weight:700}
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:900px;margin:40px auto;padding:0 20px}
 @media(min-width:640px){.features{grid-template-columns:repeat(4,1fr)}}
-.feature{
-  background:#fff;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:0 8px 24px rgba(0,0,0,.06);
-  border:1px solid rgba(0,0,0,.06);
-  text-align:center;
-}
-.feature h3{
-  font-size:13px;
-  color:#c07a43;
-  margin-bottom:4px;
-}
-.feature p{
-  font-size:12px;
-  color:#7d726a;
-}
-
-.catalog-section{
-  padding:40px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-.section-title{
-  text-align:center;
-  margin-bottom:24px;
-}
-.section-title h2{
-  font-family:Georgia,serif;
-  font-size:24px;
-}
-.section-title p{
-  font-size:13px;
-  color:#7d726a;
-  margin-top:6px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
+.feature{background:#fff;padding:18px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.06);text-align:center}
+.feature h3{font-size:13px;color:#c07a43;margin-bottom:4px}
+.feature p{font-size:12px;color:#7d726a}
+.catalog-section{padding:40px 20px;max-width:1100px;margin:auto}
+.section-title{text-align:center;margin-bottom:24px}
+.section-title h2{font-family:Georgia,serif;font-size:24px}
+.section-title p{font-size:13px;color:#7d726a;margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
-
-.card{
-  background:#fff;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 8px 24px rgba(0,0,0,.06);
-  border:1px solid rgba(0,0,0,.06);
-  position:relative;
-}
-.badge-save{
-  position:absolute;
-  top:8px;
-  right:8px;
-  background:#d93025;
-  color:#fff;
-  font-size:10px;
-  font-weight:700;
-  padding:4px 7px;
-  border-radius:6px;
-  z-index:2;
-}
-.thumb{
-  aspect-ratio:3/4;
-  background:#f3f0eb;
-}
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.card-body{
-  padding:12px;
-  text-align:center;
-}
-.card-body h3{
-  font-size:13px;
-  margin-bottom:8px;
-  font-family:Georgia,serif;
-}
-.price{
-  font-size:13px;
-  margin-bottom:10px;
-}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.06);position:relative}
+.badge-save{position:absolute;top:8px;right:8px;background:#d93025;color:#fff;font-size:10px;font-weight:700;padding:4px 7px;border-radius:6px;z-index:2}
+.thumb{aspect-ratio:3/4;background:#f3f0eb}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.card-body{padding:12px;text-align:center}
+.card-body h3{font-size:13px;margin-bottom:8px;font-family:Georgia,serif}
+.price{font-size:13px;margin-bottom:10px}
 .price s{color:#bbb;font-size:12px}
 .price strong{color:#c07a43;font-size:14px}
-.actions{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-.btn-sm{
-  padding:8px;
-  font-size:12px;
-  border-radius:9px;
-  text-decoration:none;
-  font-weight:600;
-}
-.btn-fill{
-  background:#c07a43;
-  color:#fff;
-}
-.btn-line{
-  border:1.5px solid #c07a43;
-  color:#c07a43;
-}
-
-.gallery{
-  padding:40px 0 70px;
-  overflow:hidden;
-}
-.gallery-head{
-  text-align:center;
-  margin-bottom:24px;
-  padding:0 24px;
-}
-.gallery-head h2{
-  font-family:Georgia,serif;
-  font-size:24px;
-  margin-bottom:6px;
-}
+.actions{display:flex;flex-direction:column;gap:6px}
+.btn-sm{padding:8px;font-size:12px;border-radius:9px;text-decoration:none;font-weight:600}
+.btn-fill{background:#c07a43;color:#fff}
+.btn-line{border:1.5px solid #c07a43;color:#c07a43}
+.gallery{padding:40px 0 70px;overflow:hidden}
+.gallery-head{text-align:center;margin-bottom:24px;padding:0 24px}
+.gallery-head h2{font-family:Georgia,serif;font-size:24px;margin-bottom:6px}
 .gallery-head p{font-size:12px;color:#7d726a}
-
-.gallery-wrap{
-  overflow-x:auto;
-  overflow-y:hidden;
-  padding:0 20px 20px;
-  -webkit-overflow-scrolling:touch;
-}
+.gallery-wrap{overflow-x:auto;overflow-y:hidden;padding:0 20px 20px;-webkit-overflow-scrolling:touch}
 .gallery-wrap::-webkit-scrollbar{display:none}
-
-.gallery-track{
-  display:flex;
-  gap:16px;
-  width:max-content;
-  animation:scrollGallery 50s linear infinite;
-}
-.gallery-wrap:active.gallery-track{
-  animation-play-state:paused;
-}
-
-.gallery-item{
-  flex:0 0 220px;
-  aspect-ratio:3/4;
-  overflow:hidden;
-  border-radius:12px;
-}
-.gallery-item img{
-  width:100%;height:100%;object-fit:cover;
-}
-@media(max-width:480px){.gallery-item{flex:0 0 180px}}
-
-@keyframes scrollGallery{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-.cta{
-  text-align:center;
-  padding:60px 20px;
-  background:#fff;
-  border-top:1px solid rgba(0,0,0,.06);
-}
-.cta h2{
-  font-family:Georgia,serif;
-  font-size:26px;
-}
-.btn-main{
-  display:inline-block;
-  margin-top:15px;
-  padding:13px 24px;
-  background:#c07a43;
-  color:#fff;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:600;
-}
-
-#notif{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:#fff;
-  padding:12px 16px;
-  font-size:12px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.1);
-  border:1px solid rgba(0,0,0,.06);
-  display:none;
-  z-index:998;
-}
-
-.sticky{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#c07a43;
-  color:#fff;
-  padding:11px 16px;
-  border-radius:30px;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:600;
-  box-shadow:0 8px 20px rgba(0,0,0,.15);
-  z-index:999;
-}
-@media(min-width:768px){.sticky{display:none}}
-
-footer{
-  text-align:center;
-  padding:30px 20px;
-  font-size:12px;
-  color:#7d726a;
-  border-top:1px solid rgba(0,0,0,.06);
-}
-
-.skeleton{
-  height:320px;
-  background:#f7f3ef;
-  border-radius:18px;
-}
+.gallery-track{display:flex;gap:16px;width:max-content;animation:scrollGallery 50s linear infinite}
+@keyframes scrollGallery{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.gallery-item{flex:0 0 220px;aspect-ratio:3/4;overflow:hidden;border-radius:12px}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+.cta{text-align:center;padding:60px 20px;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
+.btn-main{display:inline-block;margin-top:15px;padding:13px 24px;background:#c07a43;color:#fff;border-radius:12px;text-decoration:none;font-weight:600}
+#notif{position:fixed;bottom:20px;left:20px;background:#fff;padding:12px 16px;font-size:12px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.06);display:none;z-index:998}
+.sticky{position:fixed;bottom:20px;right:20px;background:#c07a43;color:#fff;padding:11px 16px;border-radius:30px;text-decoration:none;font-size:13px;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.15);z-index:999}
+footer{text-align:center;padding:30px 20px;font-size:12px;color:#7d726a;border-top:1px solid rgba(0,0,0,.06)}
+.skeleton{height:320px;background:#f7f3ef;border-radius:18px}
 </style>
 </head>
 
@@ -345,7 +107,7 @@ footer{
 <section class="gallery">
   <div class="gallery-head">
     <h2>Hasil Jadi Klien</h2>
-    <p>Geser manual atau biar jalan sendiri</p>
+    <p>Daftar undangan yang telah kami selesaikan</p>
   </div>
   <div class="gallery-wrap" id="gallery-wrap">
     <div class="gallery-track" id="gallery-track"></div>
@@ -364,6 +126,9 @@ footer{
 <a href="https://wa.me/6285796461157?text=Halo Omah Aksara, mau tanya promo 95rb" class="sticky">Konsultasi</a>
 
 <script>
+// ==========================================
+// 2. LOGIC SISTEM BARU (KATALOG & GALLERY)
+// ==========================================
 var grid = document.getElementById('catalog-grid');
 var galleryTrack = document.getElementById('gallery-track');
 var galleryWrap = document.getElementById('gallery-wrap');
@@ -388,125 +153,80 @@ setInterval(function(){
   document.getElementById("countdown").innerHTML = "Promo berakhir dalam " + d + "h " + h + "j " + m + "m";
 },1000);
 
-// FALLBACK TEMPLATE - PASTI MUNCUL
-var fallbackTemplates = [
-  {name: 'classic-gold'},
-  {name: 'modern-white'},
-  {name: 'floral-pink'},
-  {name: 'rustic-brown'}
-];
-
+// RENDER KATALOG
 function renderCatalog(items){
   grid.innerHTML = "";
-  for(var i=0;i<items.length;i++){
-    var f = items[i];
+  items.forEach(function(f) {
+    if(f.name === '_starter' || f.name === '.gitkeep') return; 
+    
     var name = toTitleCase(f.name);
-    var img = 'https://raw.githubusercontent.com/omahaksara/invitation/main/templates/' + f.name + '/preview.jpg';
-    var demo = 'https://omahaksara.github.io/invitation/templates/' + f.name + '/?c=budi-ani&to=Tamu';
-    var wa = 'https://wa.me/' + waNumber + '?text=Halo saya mau template ' + name + ' promo 95rb';
+    var img = 'templates/' + f.name + '/preview.jpg';
+    var demo = 'templates/' + f.name + '/?u=_starter&to=Nama+Tamu';
+    var wa = 'https://wa.me/' + waNumber + '?text=Halo Omah Aksara, saya mau ambil promo 95rb untuk template ' + name;
 
-    var html = '<div class="card">';
-    html += '<div class="badge-save">HEMAT 60RB</div>';
-    html += '<div class="thumb"><img src="' + img + '" alt="' + name + '" onerror="this.src=\'https://images.unsplash.com/photo-1519741497674-611481863552?w=400\'"></div>';
-    html += '<div class="card-body">';
-    html += '<h3>' + name + '</h3>';
-    html += '<div class="price"><s>150rb</s><br><strong>95rb</strong></div>';
-    html += '<div class="actions">';
-    html += '<a href="' + demo + '" target="_blank" class="btn-sm btn-line">Demo</a>';
-    html += '<a href="' + wa + '" target="_blank" class="btn-sm btn-fill">Ambil Promo</a>';
-    html += '</div></div></div>';
-
-    grid.innerHTML += html;
-  }
+    grid.innerHTML += `
+      <div class="card">
+        <div class="badge-save">HEMAT 60RB</div>
+        <div class="thumb"><img src="${img}" alt="${name}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'"></div>
+        <div class="card-body">
+          <h3>${name}</h3>
+          <div class="price"><s>150rb</s><br><strong>95rb</strong></div>
+          <div class="actions">
+            <a href="${demo}" target="_blank" class="btn-sm btn-line">Demo</a>
+            <a href="${wa}" target="_blank" class="btn-sm btn-fill">Ambil Promo</a>
+          </div>
+        </div>
+      </div>`;
+  });
 }
 
-// LOAD KATALOG
+// LOAD DATA TEMPLATE DARI REPO UTAMA
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://api.github.com/repos/omahaksara/invitation/contents/templates', true);
+xhr.open('GET', 'https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/templates', true);
 xhr.onreadystatechange = function() {
   if(xhr.readyState === 4){
     if(xhr.status === 200){
       try{
         var data = JSON.parse(xhr.responseText);
-        var folders = [];
-        for(var i=0;i<data.length;i++){
-          if(data[i].type === 'dir') folders.push({name: data[i].name});
-        }
-        if(folders.length > 0){
-          renderCatalog(folders);
-          return;
-        }
+        var folders = data.filter(item => item.type === 'dir');
+        if(folders.length > 0){ renderCatalog(folders); return; }
       }catch(e){}
     }
-    renderCatalog(fallbackTemplates);
+    // Fallback jika API Limit atau Folder Kosong
+    renderCatalog([{name: 'classic-gold'}, {name: 'bold-reflective'}]);
   }
 };
 xhr.send();
 
-// GALLERY
+// LOAD GALLERY HASIL JADI (ALBUM)
 var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album', true);
 xhr2.onreadystatechange = function() {
   if(xhr2.readyState === 4 && xhr2.status === 200){
     try{
       var files = JSON.parse(xhr2.responseText);
-      var images = [];
-      for(var i=0;i<files.length;i++){
-        if(files[i].type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(files[i].name)){
-          images.push(files[i]);
-        }
-      }
+      var images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
       if(images.length > 0){
         var allImages = images.concat(images);
-        var html = '';
-        for(var j=0;j<allImages.length;j++){
-          html += '<div class="gallery-item"><img src="' + allImages[j].download_url + '" alt="Hasil undangan"></div>';
-        }
-        galleryTrack.innerHTML = html;
-        galleryTrack.style.animationDuration = (images.length * 4) + 's';
+        galleryTrack.innerHTML = allImages.map(img => `<div class="gallery-item"><img src="${img.download_url}" alt="Hasil undangan"></div>`).join('');
+        galleryTrack.style.animationDuration = (images.length * 5) + 's';
       }
     }catch(e){}
   }
 };
 xhr2.send();
 
-// DRAG GALLERY
-var isDown = false;
-var startX;
-var scrollLeft;
-
-galleryWrap.addEventListener('touchstart', function(e) {
-  isDown = true;
-  galleryTrack.style.animationPlayState = 'paused';
-  startX = e.touches[0].pageX - galleryWrap.offsetLeft;
-  scrollLeft = galleryWrap.scrollLeft;
-}, {passive: true});
-
-galleryWrap.addEventListener('touchend', function() {
-  isDown = false;
-  setTimeout(function() {
-    galleryTrack.style.animationPlayState = 'running';
-  }, 1000);
-});
-
-galleryWrap.addEventListener('touchmove', function(e) {
-  if(!isDown) return;
-  var x = e.touches[0].pageX - galleryWrap.offsetLeft;
-  var walk = (x - startX) * 2;
-  galleryWrap.scrollLeft = scrollLeft - walk;
-}, {passive: true});
-
 // FAKE NOTIF
 var names = ["Ani Bandung","Budi Jakarta","Siti Surabaya","Rina Medan","Dewi Bali","Andi Makassar"];
-setTimeout(function() {
-  setInterval(function(){
+setTimeout(() => {
+  setInterval(() => {
     var n = names[Math.floor(Math.random()*names.length)];
     var notif = document.getElementById("notif");
     notif.innerText = n + " baru ambil promo 95K";
     notif.style.display = "block";
-    setTimeout(function(){notif.style.display = "none"},4000);
-  },12000);
-},8000);
+    setTimeout(() => notif.style.display = "none", 4000);
+  }, 12000);
+}, 8000);
 </script>
 
 </body>
