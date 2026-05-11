@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "slug": "budi-ani",
+    "template": "kenz-pinterest",
+    "status": "published",
+    "created": "2026-05-11",
+    "vibe": "reflective-warm",
+    "primaryColor": "#c07a43"
+  },
+  "settings": {
+    "islami": true,
+    "religion": "islam",
+    "showRsvp": true,
+    "showGift": true,
+    "showLoveStory": true
+  },
+  "couple": {
+    "groom": {
+      "name": "Budianto, S.Pd.",
+      "nickname": "Budi",
+      "parents": {
+        "father": "Ngatno Sudrajat",
+        "mother": "Mariati"
+      },
+      "image": "foto-pria.jpg",
+      "instagram": "ridwan_ondow",
+      "instagramUrl": "https://www.instagram.com/ridwan_ondow/",
+      "phone": "6285796461157",
+      "bio": "Putra tercinta dari Keluarga Bapak Ngatno Sudrajat & Ibu Mariati"
+    },
+    "bride": {
+      "name": "Meilani",
+      "nickname": "Ani",
+      "parents": {
+        "father": "Sudirman",
+        "mother": "Smelia"
+      },
+      "image": "foto-wanita.jpg",
+      "instagram": "ondow",
+      "lynkUrl": "https://lynk.id/ondow",
+      "bio": "Putri tercinta dari Keluarga Bapak Sudirman & Ibu Smelia"
+    }
+  },
+  "quote": {
+    "arab": "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْواجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
+    "text": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tentram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.",
+    "source": "QS. Ar-Rum: 21",
+    "reflection": "Sebuah perjalanan yang bermuara pada satu titik tenang, di mana dua doa akhirnya bertemu."
+  },
+  "events": [
+    {
+      "id": "akad",
+      "title": "Akad Nikah",
+      "date": "2026-09-06",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "timezone": "WIB",
+      "venue": "Gedung Ondow Design",
+      "address": "Tinombala Dusun III, Kec. Tomini",
+      "googleMaps": "https://maps.app.goo.gl/example1",
+      "note": "Hanya untuk keluarga inti dan kerabat dekat."
+    },
+    {
+      "id": "resepsi",
+      "title": "Walimatul 'Ursy",
+      "date": "2026-09-06",
+      "startTime": "11:00",
+      "endTime": "Selesai",
+      "timezone": "WIB",
+      "venue": "Gedung Ondow Design",
+      "address": "Tinombala Dusun III, Kec. Tomini",
+      "googleMaps": "https://maps.app.goo.gl/example1",
+      "note": "Kehadiran Bapak/Ibu/Saudara/i adalah kehormatan bagi kami."
+    }
+  ],
+  "gallery": {
+    "heroImage": "foto-sampul.jpg",
+    "videoYoutubeId": "tDw51Am2nLI",
+    "album": [
+      "foto1.jpg",
+      "foto2.jpg",
+      "foto3.jpg",
+      "foto4.jpg"
+    ]
+  },
+  "digitalGift": [
+    {
+      "provider": "BRI",
+      "accountNumber": "1234567890",
+      "accountHolder": "Meilani",
+      "qrImage": "qr-bri.png"
+    },
+    {
+      "provider": "Mandiri",
+      "accountNumber": "0987654321",
+      "accountHolder": "Budianto",
+      "qrImage": "qr-mandiri.png"
+    }
+  ],
+  "logistics": {
+    "dressCode": "Batik Coklat / Earth Tone",
+    "contactWaNumber": "6285796461157",
+    "guestMessage": "Tanpa mengurangi rasa hormat, mohon doa restu agar pernikahan kami senantiasa dalam keberkahan Allah SWT.",
+    "music": "music/musik.mp3",
+    "countdownTo": "2026-09-06T09:00:00"
+  },
+  "loveStory": [
+    {
+      "date": "Juni 2021",
+      "title": "Sapaan Pertama",
+      "description": "Berawal dari sebuah tanggapan kecil di story, siapa sangka percakapan itu membawa kami pada babak baru yang lebih serius."
+    },
+    {
+      "date": "14 April 2024",
+      "title": "Khitbah",
+      "description": "Sebuah komitmen besar untuk saling menjaga, melangkah bersama dalam ridho-Nya."
+    },
+    {
+      "date": "06 September 2026",
+      "title": "Menuju Halal",
+      "description": "Bismillah, hari di mana dua doa menjadi satu dalam ikatan suci pernikahan."
+    }
+  ]
+}
