@@ -30,69 +30,79 @@
         .cover-overlay { background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); }
         .hidden { display: none!important; }
         .reveal { opacity: 0; transform: translateY(30px); }
+        /* Smooth transition for opening */
+        #cover { transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1); }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="cover" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center text-white bg-black">
+    <div id="cover" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center text-white bg-[#1a1a1a]">
         <img id="cover-image" class="absolute inset-0 w-full h-full object-cover opacity-60" src="" crossorigin="anonymous">
         <div class="absolute inset-0 cover-overlay"></div>
         <div class="relative z-10 p-8">
             <p id="cover-bismillah" class="font-serif text-2xl mb-6 italic hidden">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
-            <p id="cover-event-name" class="text-xs tracking-[0.3em] uppercase">The Wedding Of</p>
+            <p class="text-[10px] tracking-[0.4em] uppercase opacity-80">The Wedding Of</p>
             <h1 id="cover-names" class="font-script text-6xl md:text-7xl my-6 text-gold"></h1>
-            <p class="text-sm mt-10 font-light">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <p id="cover-guest" class="text-xl font-semibold mt-1"></p>
-            <button id="open-invitation" class="btn-theme rounded-full px-10 py-3 mt-8 text-sm uppercase tracking-wider shadow-xl transition-all">
+            <p class="text-xs mt-10 font-light opacity-80 italic">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+            <p id="cover-guest" class="text-xl font-medium mt-2 tracking-wide"></p>
+            <button id="open-invitation" class="btn-theme rounded-full px-12 py-3 mt-10 text-[10px] uppercase tracking-[0.2em] shadow-2xl transition-all duration-500 hover:scale-105">
                 <i class="fa-regular fa-envelope-open mr-2"></i> Buka Undangan
             </button>
         </div>
     </div>
 
-    <div id="app" class="max-w-md mx-auto min-h-screen opacity-0 bg-[#FAF7F2]">
-        <section class="relative h-[80vh] flex flex-col items-center justify-end text-center text-white">
+    <div id="app" class="max-w-md mx-auto min-h-screen opacity-0 bg-[#FAF7F2] shadow-2xl">
+        <section class="relative h-[90vh] flex flex-col items-center justify-end text-center text-white">
             <img id="hero-image" class="absolute inset-0 w-full h-full object-cover" src="" crossorigin="anonymous">
             <div class="absolute inset-0 cover-overlay"></div>
-            <div class="relative z-10 p-8 pb-16">
+            <div class="relative z-10 p-8 pb-20">
+                <p class="text-[10px] tracking-[0.5em] uppercase mb-4">We Are Getting Married</p>
                 <h1 id="hero-names" class="font-script text-6xl my-4 text-gold"></h1>
-                <p id="hero-date" class="text-base font-light tracking-widest"></p>
+                <p id="hero-date" class="text-xs font-light tracking-[0.3em] uppercase opacity-90"></p>
             </div>
         </section>
 
-        <div class="px-6 py-12 text-center">
-            <section id="quote-section" class="my-16 reveal hidden">
-                <i class="fa-solid fa-quote-left text-3xl text-theme opacity-30"></i>
-                <p id="quote-arab" class="font-serif text-xl text-theme leading-relaxed mt-4 mb-2 italic hidden" dir="rtl"></p>
-                <p id="quote-text" class="text-sm mt-4 font-light leading-relaxed italic"></p>
-                <p id="quote-source" class="text-xs font-semibold mt-3 text-theme uppercase tracking-tighter"></p>
+        <div class="px-8 py-16 text-center">
+            <section id="quote-section" class="my-20 reveal hidden">
+                <div class="flex justify-center mb-6">
+                    <div class="h-[1px] w-10 bg-theme/30 self-center"></div>
+                    <i class="fa-solid fa-heart text-theme/20 mx-4 text-xs"></i>
+                    <div class="h-[1px] w-10 bg-theme/30 self-center"></div>
+                </div>
+                <p id="quote-arab" class="font-serif text-2xl text-theme leading-relaxed mb-4 hidden" dir="rtl"></p>
+                <p id="quote-text" class="text-sm font-light leading-relaxed italic text-gray-600 px-4"></p>
+                <p id="quote-source" class="text-[10px] font-bold mt-4 text-theme uppercase tracking-widest"></p>
             </section>
 
-            <section id="couple" class="my-20">
-                <div id="groom-section" class="mb-12 reveal"></div>
-                <div class="font-script text-6xl my-8 text-gold reveal">&</div>
+            <section id="couple" class="my-28">
+                <div id="groom-section" class="mb-16 reveal"></div>
+                <div class="font-script text-6xl my-10 text-gold reveal opacity-30 italic">&</div>
                 <div id="bride-section" class="reveal"></div>
             </section>
 
-            <section id="love-story-section" class="my-20 reveal hidden">
-                <h3 class="font-serif text-3xl mb-10 text-theme">Our Journey</h3>
-                <div id="love-story" class="space-y-10 text-left border-l border-theme/20 ml-4"></div>
+            <section id="love-story-section" class="my-28 reveal hidden">
+                <h3 class="font-serif text-3xl mb-12 text-theme tracking-wide">Our Journey</h3>
+                <div id="love-story" class="space-y-12 text-left border-l border-theme/10 ml-2"></div>
             </section>
 
-            <section id="event-section" class="my-20 reveal hidden">
-                <h3 class="font-serif text-3xl mb-8 text-theme">Save The Date</h3>
-                <div id="event-details" class="space-y-6"></div>
+            <section id="event-section" class="my-28 reveal hidden">
+                <h3 class="font-serif text-3xl mb-10 text-theme tracking-wide">The Celebration</h3>
+                <div id="event-details" class="space-y-8"></div>
             </section>
 
-            <section id="gift-section" class="my-20 reveal hidden">
-                <h3 class="font-serif text-3xl mb-4 text-theme">Wedding Gift</h3>
-                <p class="text-xs mb-8 opacity-70">Doa restu Anda adalah hadiah terindah, namun jika ingin memberi tanda kasih:</p>
+            <section id="gift-section" class="my-28 reveal hidden">
+                <h3 class="font-serif text-3xl mb-6 text-theme tracking-wide">Wedding Gift</h3>
+                <p class="text-xs mb-10 font-light leading-relaxed text-gray-500">Doa restu Anda adalah karunia terindah bagi kami. Namun jika memberi adalah ungkapan kasih, dapat melalui:</p>
                 <div id="gift-details" class="space-y-4"></div>
             </section>
 
-            <footer class="text-center py-20 mt-12 bg-white/30 rounded-t-[3rem]">
-                <p class="font-serif text-xl text-theme">Kami yang berbahagia,</p>
-                <p id="footer-names" class="font-script text-5xl mt-4 text-gold"></p>
-                <p class="text-[10px] mt-16 opacity-30 tracking-[0.2em]">DIGITAL INVITATION BY OMAH AKSARA</p>
+            <footer class="text-center pt-20 pb-10 mt-20 border-t border-theme/5">
+                <p class="font-serif text-xl text-theme italic">Kami yang berbahagia,</p>
+                <p id="footer-names" class="font-script text-5xl mt-6 text-gold"></p>
+                <div class="mt-20 opacity-20 group">
+                    <p class="text-[9px] tracking-[0.4em] uppercase">Digital Invitation by</p>
+                    <p class="text-[11px] font-bold tracking-[0.2em] mt-1">OMAH AKSARA</p>
+                </div>
             </footer>
         </div>
     </div>
@@ -100,41 +110,45 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
         
-        // 1. Ambil Parameter URL (?u=slug&to=tamu)
+        // 1. Ambil Parameter URL
         const params = new URLSearchParams(window.location.search);
         const clientSlug = params.get('u') || '_starter'; 
         const guestName = params.get('to') || 'Tamu Undangan';
         
-        // 2. Jalur Folder Root (Keluar 2 tingkat ke /clients/)
+        // 2. Jalur Folder (Keluar dari templates/elegance-motion/ ke root)
         const basePath = `../../clients/${clientSlug}/`;
 
-        // 3. Fetch Data JSON
+        // 3. Main Fetch Execution
         fetch(`${basePath}config.json`)
         .then(res => {
-            if (!res.ok) throw new Error('Data tidak ditemukan');
+            if (!res.ok) throw new Error('Client config not found');
             return res.json();
         })
         .then(data => {
             const g = data.couple.groom;
             const b = data.couple.bride;
 
-            // Update UI Dasar
+            // UI Populating
             document.getElementById('cover-names').innerHTML = `${g.nickname} & ${b.nickname}`;
             document.getElementById('hero-names').innerHTML = `${g.nickname} & ${b.nickname}`;
             document.getElementById('footer-names').innerHTML = `${g.nickname} & ${b.nickname}`;
             document.getElementById('cover-guest').textContent = guestName.replace(/\+/g, ' ');
+            
+            if(data.events && data.events[0]) {
+                document.getElementById('hero-date').textContent = data.events[0].date;
+            }
 
             if(data.settings?.islami) document.getElementById('cover-bismillah').classList.remove('hidden');
 
-            // Images
+            // Set Assets
             document.getElementById('cover-image').src = basePath + data.gallery.heroImage;
             document.getElementById('hero-image').src = basePath + data.gallery.heroImage;
 
-            // Quote
-            if(data.quote) {
+            // Quote Logic
+            if(data.quote && data.quote.text) {
                 document.getElementById('quote-section').classList.remove('hidden');
-                document.getElementById('quote-text').innerText = `"${data.quote.text}"`;
-                document.getElementById('quote-source').innerText = data.quote.source;
+                document.getElementById('quote-text').innerText = data.quote.text;
+                document.getElementById('quote-source').innerText = data.quote.source || '';
                 if(data.quote.arab) {
                     const qA = document.getElementById('quote-arab');
                     qA.classList.remove('hidden');
@@ -142,98 +156,106 @@
                 }
             }
 
-            // Couple render
+            // Person Render Function
             const renderP = (p, id, lbl) => {
-                document.getElementById(id).innerHTML = `
-                    <div class="relative inline-block">
-                        <img src="${basePath + p.image}" class="w-48 h-48 mx-auto rounded-full object-cover border-8 border-white shadow-2xl">
-                    </div>
-                    <h2 class="font-script text-5xl mt-6 text-gold">${p.name}</h2>
-                    <p class="text-xs mt-3 font-light tracking-wide uppercase opacity-70">${lbl} DARI</p>
-                    <p class="text-sm font-semibold mt-1 text-theme">Bpk. ${p.parents.father} & Ibu ${p.parents.mother}</p>
-                `;
+                const el = document.getElementById(id);
+                if(el) {
+                    el.innerHTML = `
+                        <div class="relative inline-block reveal">
+                            <div class="absolute -inset-2 border border-gold/20 rounded-full animate-pulse"></div>
+                            <img src="${basePath + p.image}" class="w-44 h-44 mx-auto rounded-full object-cover border-4 border-white shadow-2xl relative z-10">
+                        </div>
+                        <h2 class="font-script text-5xl mt-8 text-gold reveal">${p.name}</h2>
+                        <p class="text-[10px] mt-4 font-bold tracking-[0.3em] uppercase text-theme opacity-60 reveal">${lbl} DARI</p>
+                        <p class="text-sm font-medium mt-2 text-gray-700 reveal">Bpk. ${p.parents.father} & Ibu ${p.parents.mother}</p>
+                    `;
+                }
             }
             renderP(g, 'groom-section', 'Putra');
             renderP(b, 'bride-section', 'Putri');
 
-            // Love Story
-            if(data.loveStory) {
-                const lsSec = document.getElementById('love-story-section');
-                lsSec.classList.remove('hidden');
+            // Journey Render
+            if(data.loveStory && data.loveStory.length > 0) {
+                document.getElementById('love-story-section').classList.remove('hidden');
                 data.loveStory.forEach(s => {
                     document.getElementById('love-story').innerHTML += `
-                        <div class="relative pl-8 reveal">
-                            <div class="absolute left-[-5px] top-1 w-2 h-2 bg-theme rounded-full"></div>
-                            <p class="text-[10px] font-bold text-accent tracking-widest uppercase">${s.date}</p>
-                            <p class="font-serif text-xl text-theme mt-1">${s.title}</p>
-                            <p class="text-sm font-light mt-2 leading-relaxed opacity-80">${s.description}</p>
+                        <div class="relative pl-10 reveal">
+                            <div class="absolute left-[-6px] top-1.5 w-3 h-3 bg-gold rounded-full border-4 border-[#FAF7F2] shadow-sm"></div>
+                            <p class="text-[10px] font-black text-accent tracking-[0.2em] uppercase mb-1">${s.date}</p>
+                            <p class="font-serif text-xl text-theme">${s.title}</p>
+                            <p class="text-sm font-light mt-3 leading-relaxed text-gray-600">${s.description}</p>
                         </div>
                     `;
                 });
             }
 
-            // Events
+            // Events Render
             if(data.events) {
                 document.getElementById('event-section').classList.remove('hidden');
                 data.events.forEach(e => {
                     document.getElementById('event-details').innerHTML += `
-                        <div class="bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-sm reveal border border-white">
-                            <h4 class="font-serif text-2xl text-theme uppercase tracking-wider">${e.title}</h4>
-                            <div class="h-px w-12 bg-gold mx-auto my-4"></div>
-                            <p class="text-sm font-bold text-theme">${e.date}</p>
-                            <p class="text-xs mt-1 opacity-70">${e.startTime} - ${e.endTime} ${e.timezone}</p>
-                            <p class="text-xs mt-4 italic font-light">${e.address}</p>
-                            <a href="${e.googleMaps}" target="_blank" class="inline-block mt-4 text-[10px] uppercase tracking-widest text-accent border-b border-accent">Buka Peta</a>
+                        <div class="bg-white p-10 rounded-[2rem] shadow-sm reveal border border-gold/5 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-gold/20 transition-all duration-500 group-hover:bg-gold"></div>
+                            <h4 class="font-serif text-2xl text-theme tracking-wider uppercase mb-4">${e.title}</h4>
+                            <p class="text-sm font-bold text-gray-800 tracking-widest">${e.date}</p>
+                            <p class="text-xs mt-2 text-gray-500">${e.startTime} - ${e.endTime} ${e.timezone}</p>
+                            <p class="text-xs mt-6 font-light leading-relaxed text-gray-400 px-4">${e.address}</p>
+                            <a href="${e.googleMaps}" target="_blank" class="inline-block mt-8 text-[9px] font-bold uppercase tracking-[0.3em] text-accent border-b border-accent/30 pb-1 hover:border-accent transition-all">Open Map</a>
                         </div>
                     `;
                 });
             }
 
-            // Gift
+            // Gift Render
             if(data.digitalGift) {
                 document.getElementById('gift-section').classList.remove('hidden');
                 data.digitalGift.forEach(gift => {
                     document.getElementById('gift-details').innerHTML += `
-                        <div class="bg-white p-6 rounded-2xl shadow-sm reveal">
-                            <p class="text-[10px] font-bold text-theme tracking-widest uppercase mb-1">${gift.provider}</p>
-                            <p class="text-xl font-serif tracking-widest my-2">${gift.accountNumber}</p>
-                            <p class="text-xs font-light opacity-60">a.n ${gift.accountHolder}</p>
+                        <div class="bg-white/50 backdrop-blur-sm p-8 rounded-2xl border border-white reveal shadow-sm hover:shadow-md transition-shadow">
+                            <p class="text-[10px] font-bold text-theme tracking-[0.3em] uppercase mb-2">${gift.provider}</p>
+                            <p class="text-xl font-serif tracking-[0.2em] my-3 text-gray-800">${gift.accountNumber}</p>
+                            <p class="text-xs font-light text-gray-500 italic">a.n ${gift.accountHolder}</p>
                         </div>
                     `;
                 });
             }
 
-            // LOGIC BUKA UNDANGAN
-            document.getElementById('open-invitation').onclick = () => {
-                // 1. Geser Cover ke Atas
-                gsap.to("#cover", { y: "-100%", duration: 1.5, ease: "power4.inOut", onComplete: () => {
-                    document.getElementById('cover').style.display = 'none';
-                }});
+            // INTERACTION LOGIC
+            document.getElementById('open-invitation').onclick = function() {
+                // Cover Animation
+                document.getElementById('cover').style.transform = "translateY(-100%)";
+                
+                // Show Main App
+                gsap.to("#app", { opacity: 1, duration: 1, delay: 0.5 });
 
-                // 2. Munculkan App
-                gsap.to("#app", { opacity: 1, duration: 1 });
-
-                // 3. Putar Musik
+                // Play Music
                 if(data.logistics?.music) {
                     const audio = new Audio(basePath + data.logistics.music);
                     audio.loop = true;
-                    audio.play().catch(e => console.log("Musik butuh interaksi"));
+                    audio.play().catch(() => console.log("Music interaction required"));
                 }
 
-                // 4. Trigger Animasi Scroll
-                gsap.utils.toArray('.reveal').forEach(el => {
-                    gsap.to(el, { opacity: 1, y: 0, duration: 1.2, scrollTrigger: { trigger: el, start: "top 90%" } });
-                });
+                // Scroll Animations Trigger
+                setTimeout(() => {
+                    gsap.utils.toArray('.reveal').forEach(el => {
+                        gsap.to(el, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 95%" } });
+                    });
+                }, 600);
             };
+
         })
         .catch(err => {
             console.error(err);
-            document.body.innerHTML = `<div class="h-screen flex items-center justify-center text-center p-10 font-serif">
-                <div>
-                    <h2 class="text-2xl text-theme">Omah Aksara</h2>
-                    <p class="text-xs mt-4 opacity-50 uppercase tracking-widest">Gagal memuat data undangan.<br>Pastikan parameter <b>?u=nama-klien</b> sudah benar.</p>
-                </div>
-            </div>`;
+            document.body.innerHTML = `
+                <div class="h-screen flex items-center justify-center text-center p-12 bg-[#FAF7F2]">
+                    <div class="reveal opacity-100 transform-none">
+                        <h2 class="font-serif text-2xl text-theme">Omah Aksara</h2>
+                        <div class="h-[1px] w-12 bg-gold mx-auto my-6"></div>
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 leading-loose">
+                            Maaf, undangan gagal dimuat.<br>Pastikan tautan <b>?u=slug</b> sudah sesuai.
+                        </p>
+                    </div>
+                </div>`;
         });
     </script>
 </body>
