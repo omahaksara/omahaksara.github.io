@@ -108,155 +108,146 @@
     </div>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // 1. Ambil Parameter URL
+    const params = new URLSearchParams(window.location.search);
+    const clientSlug = params.get('u') || '_starter'; 
+    const guestName = params.get('to') || 'Tamu Undangan';
+    
+    // 2. LOGIC JALUR ABSOLUT (Mengunci alamat agar tidak tersesat di GitHub)
+    const repoName = window.location.pathname.split('/')[1]; // Mengambil 'omahaksara.github.io' atau subpath
+    const host = window.location.origin;
+    
+    // Alamat lengkap ke folder client
+    const basePath = `${host}/${window.location.pathname.split('/templates/')[0]}/clients/${clientSlug}/`.replace(/\/+/g, '/').replace(':/', '://');
+
+    console.log("Mencoba memuat data dari:", basePath);
+
+    // 3. Main Fetch Execution
+    fetch(`${basePath}config.json`)
+    .then(res => {
+        if (!res.ok) throw new Error('Client config not found');
+        return res.json();
+    })
+    .then(data => {
+        const g = data.couple.groom;
+        const b = data.couple.bride;
+
+        // UI Populating
+        document.getElementById('cover-names').innerHTML = `${g.nickname} & ${b.nickname}`;
+        document.getElementById('hero-names').innerHTML = `${g.nickname} & ${b.nickname}`;
+        document.getElementById('footer-names').innerHTML = `${g.nickname} & ${b.nickname}`;
+        document.getElementById('cover-guest').textContent = guestName.replace(/\+/g, ' ');
         
-        // 1. Ambil Parameter URL
-        const params = new URLSearchParams(window.location.search);
-        const clientSlug = params.get('u') || '_starter'; 
-        const guestName = params.get('to') || 'Tamu Undangan';
-        
-        // 2. Jalur Folder (Keluar dari templates/elegance-motion/ ke root)
-        const basePath = `../../clients/${clientSlug}/`;
+        if(data.events && data.events[0]) {
+            document.getElementById('hero-date').textContent = data.events[0].date;
+        }
 
-        // 3. Main Fetch Execution
-        fetch(`${basePath}config.json`)
-        .then(res => {
-            if (!res.ok) throw new Error('Client config not found');
-            return res.json();
-        })
-        .then(data => {
-            const g = data.couple.groom;
-            const b = data.couple.bride;
+        if(data.settings?.islami) document.getElementById('cover-bismillah').classList.remove('hidden');
 
-            // UI Populating
-            document.getElementById('cover-names').innerHTML = `${g.nickname} & ${b.nickname}`;
-            document.getElementById('hero-names').innerHTML = `${g.nickname} & ${b.nickname}`;
-            document.getElementById('footer-names').innerHTML = `${g.nickname} & ${b.nickname}`;
-            document.getElementById('cover-guest').textContent = guestName.replace(/\+/g, ' ');
-            
-            if(data.events && data.events[0]) {
-                document.getElementById('hero-date').textContent = data.events[0].date;
-            }
+        // Set Assets (Gunakan Path Lengkap)
+        document.getElementById('cover-image').src = basePath + data.gallery.heroImage;
+        document.getElementById('hero-image').src = basePath + data.gallery.heroImage;
 
-            if(data.settings?.islami) document.getElementById('cover-bismillah').classList.remove('hidden');
-
-            // Set Assets
-            document.getElementById('cover-image').src = basePath + data.gallery.heroImage;
-            document.getElementById('hero-image').src = basePath + data.gallery.heroImage;
-
-            // Quote Logic
-            if(data.quote && data.quote.text) {
-                document.getElementById('quote-section').classList.remove('hidden');
-                document.getElementById('quote-text').innerText = data.quote.text;
-                document.getElementById('quote-source').innerText = data.quote.source || '';
-                if(data.quote.arab) {
-                    const qA = document.getElementById('quote-arab');
-                    qA.classList.remove('hidden');
-                    qA.innerText = data.quote.arab;
-                }
-            }
-
-            // Person Render Function
-            const renderP = (p, id, lbl) => {
-                const el = document.getElementById(id);
-                if(el) {
-                    el.innerHTML = `
-                        <div class="relative inline-block reveal">
-                            <div class="absolute -inset-2 border border-gold/20 rounded-full animate-pulse"></div>
-                            <img src="${basePath + p.image}" class="w-44 h-44 mx-auto rounded-full object-cover border-4 border-white shadow-2xl relative z-10">
-                        </div>
-                        <h2 class="font-script text-5xl mt-8 text-gold reveal">${p.name}</h2>
-                        <p class="text-[10px] mt-4 font-bold tracking-[0.3em] uppercase text-theme opacity-60 reveal">${lbl} DARI</p>
-                        <p class="text-sm font-medium mt-2 text-gray-700 reveal">Bpk. ${p.parents.father} & Ibu ${p.parents.mother}</p>
-                    `;
-                }
-            }
-            renderP(g, 'groom-section', 'Putra');
-            renderP(b, 'bride-section', 'Putri');
-
-            // Journey Render
-            if(data.loveStory && data.loveStory.length > 0) {
-                document.getElementById('love-story-section').classList.remove('hidden');
-                data.loveStory.forEach(s => {
-                    document.getElementById('love-story').innerHTML += `
-                        <div class="relative pl-10 reveal">
-                            <div class="absolute left-[-6px] top-1.5 w-3 h-3 bg-gold rounded-full border-4 border-[#FAF7F2] shadow-sm"></div>
-                            <p class="text-[10px] font-black text-accent tracking-[0.2em] uppercase mb-1">${s.date}</p>
-                            <p class="font-serif text-xl text-theme">${s.title}</p>
-                            <p class="text-sm font-light mt-3 leading-relaxed text-gray-600">${s.description}</p>
-                        </div>
-                    `;
-                });
-            }
-
-            // Events Render
-            if(data.events) {
-                document.getElementById('event-section').classList.remove('hidden');
-                data.events.forEach(e => {
-                    document.getElementById('event-details').innerHTML += `
-                        <div class="bg-white p-10 rounded-[2rem] shadow-sm reveal border border-gold/5 relative overflow-hidden group">
-                            <div class="absolute top-0 left-0 w-1 h-full bg-gold/20 transition-all duration-500 group-hover:bg-gold"></div>
-                            <h4 class="font-serif text-2xl text-theme tracking-wider uppercase mb-4">${e.title}</h4>
-                            <p class="text-sm font-bold text-gray-800 tracking-widest">${e.date}</p>
-                            <p class="text-xs mt-2 text-gray-500">${e.startTime} - ${e.endTime} ${e.timezone}</p>
-                            <p class="text-xs mt-6 font-light leading-relaxed text-gray-400 px-4">${e.address}</p>
-                            <a href="${e.googleMaps}" target="_blank" class="inline-block mt-8 text-[9px] font-bold uppercase tracking-[0.3em] text-accent border-b border-accent/30 pb-1 hover:border-accent transition-all">Open Map</a>
-                        </div>
-                    `;
-                });
-            }
-
-            // Gift Render
-            if(data.digitalGift) {
-                document.getElementById('gift-section').classList.remove('hidden');
-                data.digitalGift.forEach(gift => {
-                    document.getElementById('gift-details').innerHTML += `
-                        <div class="bg-white/50 backdrop-blur-sm p-8 rounded-2xl border border-white reveal shadow-sm hover:shadow-md transition-shadow">
-                            <p class="text-[10px] font-bold text-theme tracking-[0.3em] uppercase mb-2">${gift.provider}</p>
-                            <p class="text-xl font-serif tracking-[0.2em] my-3 text-gray-800">${gift.accountNumber}</p>
-                            <p class="text-xs font-light text-gray-500 italic">a.n ${gift.accountHolder}</p>
-                        </div>
-                    `;
-                });
-            }
-
-            // INTERACTION LOGIC
-            document.getElementById('open-invitation').onclick = function() {
-                // Cover Animation
-                document.getElementById('cover').style.transform = "translateY(-100%)";
-                
-                // Show Main App
-                gsap.to("#app", { opacity: 1, duration: 1, delay: 0.5 });
-
-                // Play Music
-                if(data.logistics?.music) {
-                    const audio = new Audio(basePath + data.logistics.music);
-                    audio.loop = true;
-                    audio.play().catch(() => console.log("Music interaction required"));
-                }
-
-                // Scroll Animations Trigger
-                setTimeout(() => {
-                    gsap.utils.toArray('.reveal').forEach(el => {
-                        gsap.to(el, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 95%" } });
-                    });
-                }, 600);
-            };
-
-        })
-        .catch(err => {
-            console.error(err);
-            document.body.innerHTML = `
-                <div class="h-screen flex items-center justify-center text-center p-12 bg-[#FAF7F2]">
-                    <div class="reveal opacity-100 transform-none">
-                        <h2 class="font-serif text-2xl text-theme">Omah Aksara</h2>
-                        <div class="h-[1px] w-12 bg-gold mx-auto my-6"></div>
-                        <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 leading-loose">
-                            Maaf, undangan gagal dimuat.<br>Pastikan tautan <b>?u=slug</b> sudah sesuai.
-                        </p>
+        // Person Render Function
+        const renderP = (p, id, lbl) => {
+            const el = document.getElementById(id);
+            if(el) {
+                el.innerHTML = `
+                    <div class="relative inline-block reveal">
+                        <div class="absolute -inset-2 border border-gold/20 rounded-full animate-pulse"></div>
+                        <img src="${basePath + p.image}" class="w-44 h-44 mx-auto rounded-full object-cover border-4 border-white shadow-2xl relative z-10">
                     </div>
-                </div>`;
-        });
-    </script>
-</body>
-</html>
+                    <h2 class="font-script text-5xl mt-8 text-gold reveal">${p.name}</h2>
+                    <p class="text-[10px] mt-4 font-bold tracking-[0.3em] uppercase text-theme opacity-60 reveal">${lbl} DARI</p>
+                    <p class="text-sm font-medium mt-2 text-gray-700 reveal">Bpk. ${p.parents.father} & Ibu ${p.parents.mother}</p>
+                `;
+            }
+        }
+        renderP(g, 'groom-section', 'Putra');
+        renderP(b, 'bride-section', 'Putri');
+
+        // Quote Logic
+        if(data.quote && data.quote.text) {
+            document.getElementById('quote-section').classList.remove('hidden');
+            document.getElementById('quote-text').innerText = data.quote.text;
+            document.getElementById('quote-source').innerText = data.quote.source || '';
+            if(data.quote.arab) {
+                const qA = document.getElementById('quote-arab');
+                qA.classList.remove('hidden');
+                qA.innerText = data.quote.arab;
+            }
+        }
+
+        // Journey Render
+        if(data.loveStory && data.loveStory.length > 0) {
+            document.getElementById('love-story-section').classList.remove('hidden');
+            document.getElementById('love-story').innerHTML = ''; // Clear starter
+            data.loveStory.forEach(s => {
+                document.getElementById('love-story').innerHTML += `
+                    <div class="relative pl-10 reveal">
+                        <div class="absolute left-[-6px] top-1.5 w-3 h-3 bg-gold rounded-full border-4 border-[#FAF7F2] shadow-sm"></div>
+                        <p class="text-[10px] font-black text-accent tracking-[0.2em] uppercase mb-1">${s.date}</p>
+                        <p class="font-serif text-xl text-theme">${s.title}</p>
+                        <p class="text-sm font-light mt-3 leading-relaxed text-gray-600">${s.description}</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Events Render
+        if(data.events) {
+            document.getElementById('event-section').classList.remove('hidden');
+            document.getElementById('event-details').innerHTML = ''; // Clear starter
+            data.events.forEach(e => {
+                document.getElementById('event-details').innerHTML += `
+                    <div class="bg-white p-10 rounded-[2rem] shadow-sm reveal border border-gold/5 relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-gold/20 transition-all duration-500 group-hover:bg-gold"></div>
+                        <h4 class="font-serif text-2xl text-theme tracking-wider uppercase mb-4">${e.title}</h4>
+                        <p class="text-sm font-bold text-gray-800 tracking-widest">${e.date}</p>
+                        <p class="text-xs mt-2 text-gray-500">${e.startTime} - ${e.endTime} ${e.timezone}</p>
+                        <p class="text-xs mt-6 font-light leading-relaxed text-gray-400 px-4">${e.address}</p>
+                        <a href="${e.googleMaps}" target="_blank" class="inline-block mt-8 text-[9px] font-bold uppercase tracking-[0.3em] text-accent border-b border-accent/30 pb-1 hover:border-accent transition-all">Open Map</a>
+                    </div>
+                `;
+            });
+        }
+
+        // Gift Render
+        if(data.digitalGift) {
+            document.getElementById('gift-section').classList.remove('hidden');
+            document.getElementById('gift-details').innerHTML = ''; // Clear starter
+            data.digitalGift.forEach(gift => {
+                document.getElementById('gift-details').innerHTML += `
+                    <div class="bg-white/50 backdrop-blur-sm p-8 rounded-2xl border border-white reveal shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-[10px] font-bold text-theme tracking-[0.3em] uppercase mb-2">${gift.provider}</p>
+                        <p class="text-xl font-serif tracking-[0.2em] my-3 text-gray-800">${gift.accountNumber}</p>
+                        <p class="text-xs font-light text-gray-500 italic">a.n ${gift.accountHolder}</p>
+                    </div>
+                `;
+            });
+        }
+
+        // INTERACTION LOGIC
+        document.getElementById('open-invitation').onclick = function() {
+            document.getElementById('cover').style.transform = "translateY(-100%)";
+            gsap.to("#app", { opacity: 1, duration: 1, delay: 0.5 });
+            if(data.logistics?.music) {
+                const audio = new Audio(basePath + data.logistics.music);
+                audio.loop = true;
+                audio.play().catch(() => console.log("Music interaction required"));
+            }
+            setTimeout(() => {
+                gsap.utils.toArray('.reveal').forEach(el => {
+                    gsap.to(el, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 95%" } });
+                });
+            }, 600);
+        };
+
+    })
+    .catch(err => {
+        console.error(err);
+        document.body.innerHTML = `<div class="h-screen flex items-center justify-center text-center p-12 bg-[#FAF7F2]"><div><h2 class="font-serif text-2xl text-theme">Omah Aksara</h2><p class="text-[10px] uppercase mt-4">Gagal memuat undangan klien: ${clientSlug}</p></div></div>`;
+    });
+</script>
