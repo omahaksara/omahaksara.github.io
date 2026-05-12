@@ -2,163 +2,130 @@
 <html lang="id">
 <head>
 <script>
-/* ================= REDIRECT LOGIC ================= */
-// Jika ada link omahaksara.github.io/?c=budi-ani, otomatis ke folder client di repo invitation
+// REDIRECT FIX - Langsung ke alamat absolut agar tidak dobel link
 const params = new URLSearchParams(window.location.search);
 if (params.has('c')) {
-  const client = params.get('c');
-  window.location.replace(`https://omahaksara.github.io/invitation/public/clients/${client}/${window.location.search}`);
+  window.location.replace('https://omahaksara.github.io/invitation/templates/floral-pink/' + window.location.search + '&to=Tamu');
 }
 </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Omah Aksara | Katalog Undangan Digital</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Omah Aksara</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#FAF9F7; --primary:#9C7A54; --text:#2E2A27; --muted:#8A8178; --line:#E8E3DC; --white:#fff;
-}
+:root{ --bg:#FAF9F7; --primary:#9C7A54; --text:#2E2A27; --muted:#8A8178; --line:#E8E3DC; --white:#fff; }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
 
-/* HERO */
-.hero{text-align:center;padding:80px 24px 40px;max-width:700px;margin:auto}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:42px;margin-bottom:10px}
-.hero p{color:var(--muted);font-size:15px}
+.hero{text-align:center;padding:100px 24px 60px;max-width:680px;margin:auto}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,48px)}
+.catalog{padding:40px 24px;max-width:1200px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 
-/* LIVE VISITOR */
-.live-box{
-display:inline-flex;align-items:center;gap:8px;background:var(--white);
-padding:6px 14px;border-radius:100px;font-size:12px;margin-top:20px;
-box-shadow:0 4px 15px rgba(0,0,0,.05);border:1px solid var(--line);
-}
-.dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 1.5s infinite}
-@keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}100%{transform:scale(1);opacity:1}}
-
-/* GRID */
-.catalog{padding:20px 24px 80px;max-width:1100px;margin:auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
-
-/* CARD */
-.card{background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--line);transition:.4s}
-.card:hover{transform:translateY(-8px);box-shadow:0 15px 35px rgba(0,0,0,.1)}
-.thumb{aspect-ratio:4/5;background:var(--line);overflow:hidden}
+.card{background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line);transition:.3s}
+.card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,.1)}
+.thumb{aspect-ratio:4/5;overflow:hidden;background:#eee}
 .thumb img{width:100%;height:100%;object-fit:cover}
-.card-body{padding:20px;text-align:center}
-.card-body h3{font-family:'Cormorant Garamond',serif;font-size:19px;margin-bottom:8px}
-.price{font-size:13px;margin-bottom:15px}
-.price s{color:#aaa;margin-right:5px}
-.price strong{color:var(--primary);font-size:15px}
+.card-body{text-align:center;padding:20px}
 
-/* BUTTON */
-.btn{display:block;padding:10px;text-decoration:none;font-size:13px;border-radius:6px;font-weight:500;transition:.3s;margin-bottom:8px}
+.btn{display:block;padding:12px;font-size:13px;text-decoration:none;margin-top:8px;border-radius:8px;font-weight:500}
 .btn-ghost{border:1px solid var(--line);color:var(--text)}
-.btn-ghost:hover{background:var(--bg)}
 .btn-solid{background:var(--text);color:#fff}
-.btn-solid:hover{background:var(--primary)}
 
-/* FAKE NOTIF */
-#fake-notif{
-position:fixed;bottom:20px;left:20px;background:rgba(255,255,255,.95);
-padding:12px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);
-border:1px solid var(--line);font-size:12px;z-index:9999;
-display:none;animation:slideUp .5s ease;
-}
-@keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
+.gallery-track{display:flex;gap:15px;padding:20px;width:max-content;animation:scroll 40s linear infinite}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.gallery-item{width:200px;height:280px;border-radius:8px;overflow:hidden}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
 
-.promo-badge{background:#e11d48;color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;margin-left:5px}
+#notif{position:fixed;bottom:20px;left:20px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,.1);display:none;z-index:999;font-size:12px}
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<section class="hero">
   <h1>Omah Aksara</h1>
-  <p>Abadikan momen berharga dengan undangan digital elegan.</p>
-  <div class="live-box">
-    <span class="dot"></span>
-    <span><b id="v-count">24</b> orang sedang melihat katalog</span>
-  </div>
-</div>
-
-<section class="catalog">
-  <div class="grid" id="catalog-grid">
-    </div>
+  <p style="color:var(--primary);font-size:14px;margin-top:10px">Promo Terbatas: Undangan Digital Eksklusif 90K</p>
 </section>
 
-<div id="fake-notif"></div>
+<section class="catalog">
+  <div id="catalog-grid" class="grid"></div>
+</section>
+
+<section class="gallery">
+  <div style="text-align:center;margin-bottom:20px"><h2>Hasil Jadi Klien</h2></div>
+  <div style="overflow:hidden">
+    <div class="gallery-track" id="gallery-track"></div>
+  </div>
+</section>
+
+<div id="notif"></div>
 
 <script>
-const grid = document.getElementById('catalog-grid');
-const vCount = document.getElementById('v-count');
-const waNumber = "6285796461157";
+const wa = "6285796461157";
 
-/* 1. LOAD KATALOG DARI REPO INVITATION */
-async function loadTemplates() {
+// 1. RENDER KATALOG - FIX LINK DOBEL
+async function loadKatalog() {
   try {
     const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
     const data = await res.json();
     const folders = data.filter(i => i.type === "dir");
-    render(folders);
-  } catch (e) {
-    grid.innerHTML = "<p>Gagal memuat katalog...</p>";
-  }
+    
+    const grid = document.getElementById('catalog-grid');
+    grid.innerHTML = "";
+    
+    folders.forEach(f => {
+      const name = f.name.replace(/-/g, ' ').toUpperCase();
+      const img = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${f.name}/preview.jpg`;
+      
+      // ALAMAT ABSOLUT - AGAR TIDAK DOBEL
+      const linkDemo = `https://omahaksara.github.io/invitation/templates/${f.name}/?c=budi-ani&to=Nama+Tamu`;
+      const linkWA = `https://wa.me/${wa}?text=Halo, saya mau template ${name} promo 90K`;
+
+      grid.innerHTML += `
+        <div class="card">
+          <div class="thumb"><img src="${img}" onerror="this.src='https://placehold.co/400x500?text=Preview'"></div>
+          <div class="card-body">
+            <h3 style="font-size:16px">${name}</h3>
+            <p style="font-size:13px;margin:10px 0"><s>150rb</s> <strong style="color:var(--primary)">90K</strong></p>
+            <a href="${linkDemo}" target="_blank" class="btn btn-ghost">Lihat Demo</a>
+            <a href="${linkWA}" target="_blank" class="btn btn-solid">Ambil Promo 90K</a>
+          </div>
+        </div>`;
+    });
+  } catch(e) { console.error(e); }
 }
 
-function render(folders) {
-  grid.innerHTML = "";
-  folders.forEach(f => {
-    const name = f.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    const img = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${f.name}/preview.jpg`;
-    // Demo diarahkan ke budi-ani sebagai sampel
-    const demo = `https://omahaksara.github.io/invitation/public/clients/budi-ani/?c=budi-ani&to=Tamu+Undangan`;
-    const waLink = `https://wa.me/${waNumber}?text=Halo Omah Aksara, saya mau pesan template *${name}* yang promo 90K. Masih bisa diskon lagi admin?`;
-
-    grid.innerHTML += `
-      <div class="card">
-        <div class="thumb"><img src="${img}" onerror="this.src='https://placehold.co/400x500?text=${name}'"></div>
-        <div class="card-body">
-          <h3>${name}</h3>
-          <p class="price"><s>150rb</s> <strong>90K</strong> <span class="promo-badge">PROMO</span></p>
-          <a href="${demo}" target="_blank" class="btn btn-ghost">Lihat Demo</a>
-          <a href="${waLink}" target="_blank" class="btn btn-solid">Ambil Promo</a>
-        </div>
-      </div>
-    `;
-  });
+// 2. LOAD ALBUM - FIX FOTO HILANG
+async function loadAlbum() {
+  try {
+    // Ambil dari repo INVITATION tempat fotonya berada
+    const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/album');
+    const files = await res.json();
+    const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
+    
+    const track = document.getElementById('gallery-track');
+    // Duplikasi untuk animasi jalan terus
+    [...images, ...images].forEach(img => {
+      track.innerHTML += `<div class="gallery-item"><img src="${img.download_url}"></div>`;
+    });
+  } catch(e) { console.error("Album gagal: ", e); }
 }
 
-loadTemplates();
-
-/* 2. LIVE VISITOR COUNTER (FAKE) */
-let count = 18;
+// 3. FAKE NOTIF
+const names = ["Andi","Siti","Rina","Budi","Dewi","Fajar"];
 setInterval(() => {
-  count += Math.floor(Math.random() * 3) - 1;
-  if(count < 10) count = 12;
-  vCount.innerText = count;
-}, 4000);
-
-/* 3. FAKE CHECKOUT NOTIFICATION */
-const names = ["Andi S.","Rina M.","Budi A.","Siti W.","Dewi P.","Fajar K.","Putri L.","Rizky O."];
-const actions = ["baru saja order","sedang konsultasi","mengambil promo 90K","checkout template"];
-
-function showNotif() {
-  const notif = document.getElementById('fake-notif');
-  const name = names[Math.floor(Math.random() * names.length)];
-  const action = actions[Math.floor(Math.random() * actions.length)];
-  
-  notif.innerHTML = `<b>${name}</b> ${action}`;
+  const n = names[Math.floor(Math.random()*names.length)];
+  const notif = document.getElementById('notif');
+  notif.innerText = n + " baru saja checkout promo 90K";
   notif.style.display = "block";
-  
-  setTimeout(() => {
-    notif.style.display = "none";
-  }, 4000);
-}
+  setTimeout(() => notif.style.display = "none", 4000);
+}, 12000);
 
-// Munculkan notif setiap 10-20 detik
-setInterval(showNotif, Math.random() * 10000 + 10000);
+loadKatalog();
+loadAlbum();
 </script>
 
 </body>
