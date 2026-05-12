@@ -1,443 +1,262 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Omah Aksara - Template Undangan Elegan</title>
 
-<!-- REDIRECT AMAN -->
+<!-- ================= REDIRECT AMAN ================= -->
 <script>
-  if (location.search.includes('c=')) {
-    (async () => {
-      try {
-        const res = await fetch('/invitation' + location.search, { method: 'HEAD' });
-        if (res.ok) location.replace('/invitation' + location.search);
-      } catch(e) { console.warn('Redirect check failed:', e); }
-    })();
-  }
+if (location.search.includes('c=')) {
+  const url = '/invitation/' + location.search;
+  fetch(url,{method:'HEAD'}).then(r=>{
+    if(r.ok) location.replace(url);
+  }).catch(()=>{});
+}
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  :root {
-    --bg: #FAF9F7;
-    --bg-soft: #F3F0EB;
-    --primary: #9C7A54;
-    --primary-dark: #7d6143;
-    --text: #2E2A27;
-    --muted: #8A8178;
-    --line: #E8E3DC;
-    --white: #fff;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,.04);
-    --shadow-md: 0 10px 30px rgba(0,0,0,.08);
-    --radius: 12px;
-    --transition: .4s cubic-bezier(.2,.8,.2,1);
-  }
 
-    * { margin: 0; padding: 0; box-sizing: border-box }
-  
-  html { scroll-behavior: smooth }
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+/* ================= BASE ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:#f9fafb;
+color:#111;
+}
 
-  img { display: block; max-width: 100% }
-  button { font: inherit; cursor: pointer; border: 0; background: none }
+/* ================= CONTAINER ================= */
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
 
-  /* REVEAL ANIMATION */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .8s var(--transition), transform .8s var(--transition);
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
+/* ================= HERO ================= */
+.hero{
+text-align:center;
+padding:60px 20px 30px;
+}
 
-  /* LAYOUT */
-  .container {
-    width: min(1100px, 92%);
-    margin-inline: auto;
-  }
-  
-  .section { padding: 60px 0 }
-  .section-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 600;
-    line-height: 1.2;
-  }
-  .section-subtitle {
-    color: var(--muted);
-    margin-top: 12px;
-    font-size: 16px;
-  }
+.hero h1{
+font-size:26px;
+font-weight:600;
+}
 
-  /* HERO */
-  .hero {
-    text-align: center;
-    padding: 120px 24px 80px;
-    background: var(--bg-soft);
-  }
+.hero p{
+font-size:14px;
+color:#666;
+margin-top:6px;
+}
 
-  /* GRID & CARD */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 28px;
-  }
+/* ================= CTA ================= */
+.cta{
+margin-top:15px;
+display:inline-block;
+background:#111;
+color:#fff;
+padding:12px 18px;
+border-radius:8px;
+font-size:14px;
+text-decoration:none;
+}
 
-  .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--transition), box-shadow var(--transition);
-  }
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .card__thumb {
-    aspect-ratio: 4/5;
-    background: var(--bg-soft);
-    overflow: hidden;
-  }
-  .card__thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .6s var(--transition);
-  }
-  .card:hover .card__thumb img { transform: scale(1.05) }
-  
-  .card__body { padding: 20px }
-  .card__title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 600;
-    text-transform: capitalize;
-    text-align: center;
-  }
-  
-  .card__actions {
-    display: grid;
-    gap: 10px;
-    margin-top: 16px;
-  }
+/* ================= FILTER ================= */
+.filter{
+display:flex;
+gap:10px;
+margin-top:30px;
+flex-wrap:wrap;
+}
 
-  /* BUTTONS */
-  .btn {
-    display: inline-block;
-    padding: 12px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 500;
-    font-size: 14px;
-    transition: all .25s ease;
-  }
-  .btn--solid {
-    background: var(--text);
-    color: var(--white);
-  }
-  .btn--solid:hover { background: #000 }
-  .btn--ghost {
-    border: 1px solid var(--line);
-    color: var(--text);
-  }
-  .btn--ghost:hover {
-    border-color: var(--text);
-    background: var(--bg-soft);
-  }
+.filter button{
+border:none;
+padding:8px 14px;
+border-radius:20px;
+background:#eee;
+cursor:pointer;
+font-size:12px;
+}
 
-  /* TOAST NOTIFICATION */
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: var(--white);
-    padding: 14px 16px;
-    font-size: 13px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--line);
-    transform: translateX(-120%);
-    opacity: 0;
-    transition: all .5s var(--transition);
-    z-index: 999;
-    max-width: 280px;
-  }
-  .toast.is-show {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.filter button.active{
+background:#111;
+color:#fff;
+}
 
-  /* VISITOR BADGE */
-  .visitor-badge {
-    position: fixed;
-    bottom: 80px;
-    left: 20px;
-    background: var(--white);
-    padding: 10px 14px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--line);
-    z-index: 998;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .visitor-badge__dot {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1 }
-    50% { opacity: .5 }
-  }
+/* ================= GRID ================= */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-top:20px;
+}
 
-  /* MODAL */
-  .modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.6);
-    display: grid;
-    place-items: center;
-    padding: 20px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .3s ease;
-    z-index: 1000;
-  }
-  .modal.is-open {
-    opacity: 1;
-    visibility: visible;
-  }
-  .modal__content {
-    background: var(--white);
-    border-radius: var(--radius);
-    width: min(500px, 100%);
-    padding: 24px;
-    transform: scale(.95);
-    transition: transform .3s ease;
-  }
-  .modal.is-open .modal__content { transform: scale(1) }
-  .modal__close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 8px;
-    line-height: 1;
-  }
+/* ================= CARD ================= */
+.card{
+background:#fff;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.05);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+}
+
+.card .info{
+padding:10px;
+font-size:13px;
+}
+
+.card .btn{
+display:block;
+text-align:center;
+background:#111;
+color:#fff;
+padding:8px;
+margin:10px;
+border-radius:6px;
+font-size:12px;
+text-decoration:none;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+text-align:center;
+font-size:12px;
+color:#888;
+margin:40px 0;
+}
+
 </style>
 </head>
 
 <body>
 
-<header class="hero reveal">
-  <div class="container">
-    <h1 class="section-title">Omah Aksara</h1>
-    <p class="section-subtitle">Kumpulan template undangan digital elegan, siap pakai dalam hitungan menit</p>
-  </div>
-</header>
+<div class="container">
 
-<main>
-  <section class="section reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Pilih Desain Favoritmu</h2>
-        <p class="section-subtitle">Semua template sudah responsive & support musik</p>
-      </div>
-      <div class="grid" id="catalog-grid"></div>
-    </div>
-  </section>
-</main>
-
-<!-- UI COMPONENTS -->
-<div class="toast" id="toast"></div>
-
-<div class="visitor-badge" id="visitor-badge">
-  <span class="visitor-badge__dot"></span>
-  <span><b id="visitor-count">0</b> orang melihat</span>
+<!-- ================= HERO ================= -->
+<div class="hero">
+<h1>Undangan Digital</h1>
+<p>Simple, modern, langsung kirim</p>
+<a href="https://wa.me/628xxxxxxxxxx" class="cta">Pesan via WhatsApp</a>
 </div>
 
-<!-- DEMO MODAL -->
-<div class="modal" id="demo-modal">
-  <div class="modal__content">
-    <button class="modal__close" id="modal-close">✕</button>
-    <h3 style="font-family:'Cormorant Garamond';font-size:24px;margin-bottom:8px">Preview Template</h3>
-    <p class="section-subtitle" id="modal-text" style="text-align:left;margin:0 0 20px"></p>
-    <a href="#" class="btn btn--solid" style="width:100%">Lihat Demo Lengkap</a>
-  </div>
+<!-- ================= FILTER ================= -->
+<div class="filter">
+<button onclick="setFilter('all')" class="active">Semua</button>
+<button onclick="setFilter('premium')">Premium</button>
+<button onclick="setFilter('simple')">Simple</button>
+</div>
+
+<!-- ================= GRID ================= -->
+<div class="grid" id="grid"></div>
+
+<!-- ================= FOOTER ================= -->
+<div class="footer">
+© 2026 Undangan Digital
+</div>
+
+</div>
+
+<!-- ================= SOCIAL PROOF ================= -->
+<div id="toast" style="position:fixed;bottom:20px;left:20px;background:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);font-size:13px;opacity:0;transform:translateY(20px);transition:.4s;z-index:999;"></div>
+
+<div id="visitorBox" style="position:fixed;bottom:80px;left:20px;background:#fff;padding:8px 14px;border-radius:100px;font-size:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);z-index:998;display:flex;gap:6px;align-items:center;">
+<span style="width:8px;height:8px;background:#22c55e;border-radius:50%"></span>
+<span><b id="visitorCount">0</b> orang melihat</span>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // ===============================
-  // CONFIG & DATA
-  // ===============================
-  const CONFIG = {
-    visitorBase: 40,
-    notifDelay: 4000,
-    notifInterval: { min: 5000, max: 12000 },
-    toastDuration: 3500,
-  };
 
-  const CATALOG_DATA = [
-    { id: 'classic', name: 'Classic', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop' },
-    { id: 'modern', name: 'Modern', img: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&auto=format&fit=crop' },
-    { id: 'floral', name: 'Floral', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&auto=format&fit=crop' },
-    { id: 'minimal', name: 'Minimal', img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&auto=format&fit=crop' },
-  ];
+/* ================= DATA TEMPLATE ================= */
+/* 👉 GANTI INI KE API GITHUB KAMU NANTI */
+const DATA = [
+{nama:"Elegant 01",kategori:"premium",img:"https://picsum.photos/400/600?1",link:"#"},
+{nama:"Modern 02",kategori:"premium",img:"https://picsum.photos/400/600?2",link:"#"},
+{nama:"Simple 03",kategori:"simple",img:"https://picsum.photos/400/600?3",link:"#"},
+{nama:"Minimal 04",kategori:"simple",img:"https://picsum.photos/400/600?4",link:"#"}
+];
 
-  const NAMES = {
-    first: ["Ahmad","Rizky","Dimas","Ayu","Putri","Nabila","Fajar","Yoga","Bayu","Dewi","Eka","Gita"],
-    last: ["Saputra","Wijaya","Pratama","Utami","Sari","Ramadhan","Hidayat","Kusuma"]
-  };
-  
-  const ACTIVITIES = ["sedang melihat katalog", "baru saja ambil promo", "tertarik template ini", "checkout template"];
+let currentFilter="all";
 
-  // ===============================
-  // MODULE: Reveal on Scroll
-  // ===============================
-  const initReveal = () => {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-  };
+/* ================= RENDER ================= */
+function render(){
+const grid=document.getElementById("grid");
+grid.innerHTML="";
 
-  // ===============================
-  // MODULE: Catalog
-  // ===============================
-  const initCatalog = () => {
-    const grid = document.getElementById("catalog-grid");
-    grid.innerHTML = CATALOG_DATA.map(item => `
-      <article class="card">
-        <div class="card__thumb">
-          <img src="${item.img}" alt="Template ${item.name}" loading="lazy">
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">${item.name}</h3>
-          <div class="card__actions">
-            <button class="btn btn--ghost js-demo-btn" data-name="${item.name}">Lihat Demo</button>
-            <a href="https://wa.me/6281234567890?text=Halo, saya mau order template ${item.name}" target="_blank" class="btn btn--solid">Order via WA</a>
-          </div>
-        </div>
-      </article>
-    `).join('');
-  };
-
-  // ===============================
-  // MODULE: Social Proof
-  // ===============================
-  const initSocialProof = () => {
-    const toastEl = document.getElementById("toast");
-    const visitorEl = document.getElementById("visitor-count");
-    let toastTimeout;
-
-    const getRandomName = () => {
-      const first = NAMES.first[Math.floor(Math.random() * NAMES.first.length)];
-      const last = NAMES.last[Math.floor(Math.random() * NAMES.last.length)];
-      return `${first} ${last}`;
-    };
-
-    const showToast = (message) => {
-      clearTimeout(toastTimeout);
-      toastEl.textContent = message;
-      toastEl.classList.add("is-show");
-      toastTimeout = setTimeout(() => {
-        toastEl.classList.remove("is-show");
-      }, CONFIG.toastDuration);
-    };
-    
-    // Visitor Counter
-    let visitorCount = parseInt(localStorage.getItem("visitorCount")) || Math.floor(Math.random() * 20) + CONFIG.visitorBase;
-    const updateVisitor = () => {
-      visitorCount += Math.floor(Math.random() * 2) + 1;
-      visitorEl.textContent = visitorCount;
-      localStorage.setItem("visitorCount", visitorCount);
-    };
-    visitorEl.textContent = visitorCount;
-
-    // Notif Loop
-    const triggerNotif = () => {
-      const name = getRandomName();
-      const activity = ACTIVITIES[Math.floor(Math.random() * ACTIVITIES.length)];
-      showToast(`${name} ${activity}`);
-      if (Math.random() > 0.4) updateVisitor();
-      
-      const nextInterval = Math.random() * (CONFIG.notifInterval.max - CONFIG.notifInterval.min) + CONFIG.notifInterval.min;
-      setTimeout(triggerNotif, nextInterval);
-    };
-
-    setTimeout(() => {
-      showToast(`${getRandomName()} sedang melihat katalog`);
-      setTimeout(triggerNotif, CONFIG.notifInterval.min);
-    }, CONFIG.notifDelay);
-  };
-
-  // ===============================
-  // MODULE: Modal
-  // ===============================
-  const initModal = () => {
-    const modal = document.getElementById("demo-modal");
-    const modalText = document.getElementById("modal-text");
-    const closeBtn = document.getElementById("modal-close");
-
-    const openModal = (templateName) => {
-      modalText.textContent = `Ini adalah preview untuk template "${templateName}". Fitur lengkap bisa dilihat di demo live.`;
-      modal.classList.add("is-open");
-    };
-    const closeModal = () => modal.classList.remove("is-open");
-
-    document.getElementById("catalog-grid").addEventListener("click", e => {
-      if (e.target.matches(".js-demo-btn")) {
-        openModal(e.target.dataset.name);
-      }
-    });
-
-    closeBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", e => {
-      if (e.target === modal) closeModal();
-    });
-  };
-
-  // ===============================
-  // INIT ALL
-  // ===============================
-  initReveal();
-  initCatalog();
-  initSocialProof();
-  initModal();
+DATA.filter(d=>currentFilter==="all"||d.kategori===currentFilter)
+.forEach(d=>{
+grid.innerHTML+=`
+<div class="card">
+<img src="${d.img}">
+<div class="info">${d.nama}</div>
+<a href="${d.link}" class="btn">Lihat</a>
+</div>`;
 });
+}
+
+render();
+
+/* ================= FILTER ================= */
+function setFilter(f){
+currentFilter=f;
+document.querySelectorAll(".filter button").forEach(b=>b.classList.remove("active"));
+event.target.classList.add("active");
+render();
+}
+
+/* ================= SOCIAL PROOF ================= */
+const FIRST=["Ahmad","Rizky","Ayu","Putri","Nabila","Fajar"];
+const LAST=["Saputra","Wijaya","Utami","Sari"];
+
+const ACTIONS=["baru order","sedang lihat","checkout"];
+
+function getName(){
+return FIRST[Math.random()*FIRST.length|0]+" "+LAST[Math.random()*LAST.length|0];
+}
+
+const toast=document.getElementById("toast");
+
+function showToast(t){
+toast.innerText=t;
+toast.style.opacity="1";
+toast.style.transform="translateY(0)";
+setTimeout(()=>{
+toast.style.opacity="0";
+toast.style.transform="translateY(20px)";
+},3000);
+}
+
+let visitor=parseInt(localStorage.getItem("visitor"))||20;
+
+function updateVisitor(){
+visitor+=Math.random()*2|0;
+document.getElementById("visitorCount").innerText=visitor;
+localStorage.setItem("visitor",visitor);
+}
+
+document.getElementById("visitorCount").innerText=visitor;
+
+function loopNotif(){
+showToast(getName()+" "+ACTIONS[Math.random()*ACTIONS.length|0]);
+if(Math.random()>0.5) updateVisitor();
+setTimeout(loopNotif,Math.random()*6000+4000);
+}
+
+setTimeout(()=>{
+showToast(getName()+" sedang melihat katalog");
+loopNotif();
+},3000);
+
 </script>
 
 </body>
