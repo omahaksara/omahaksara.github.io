@@ -90,6 +90,26 @@ font-weight: 700;
 color: var(--text);
 }
 
+.music-controls-wrapper {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+/* Style untuk Dropdown Pilihan Musik */
+#music-select {
+padding: 6px 12px;
+border-radius: 999px;
+border: 1px solid var(--line);
+font-size: 11px;
+background: var(--bg);
+color: var(--text);
+max-width: 120px;
+outline: none;
+cursor: pointer;
+font-family: 'Inter', sans-serif;
+}
+
 .music-btn {
 background: var(--bg);
 border: 1px solid var(--line);
@@ -367,13 +387,12 @@ border: 1px solid var(--line);
 color: var(--text);
 }
 
-/* PERUBAHAN BESAR: SWIPEABLE GALLERY (BISA DIGESER TANGAN) */
+/* MOODBOARD: SWIPEABLE GALLERY (BISA DIGESER TANGAN) */
 .gallery{
 overflow-x: auto;
 position:relative;
 padding:10px 16px;
 cursor: grab;
-/* Menghilangkan scrollbar bawaan browser agar tetap rapi */
 -webkit-overflow-scrolling: touch;
 scrollbar-width: none; 
 }
@@ -390,11 +409,11 @@ display:flex;
 gap:12px;
 width: max-content;
 user-select: none;
-pointer-events: none; /* Mencegah gambar mengacaukan aksi geser pointer native */
+pointer-events: none;
 }
 
 .gallery-track * {
-pointer-events: auto; /* Mengembalikan interaksi klik ke elemen anak */
+pointer-events: auto;
 }
 
 .gallery-item{
@@ -412,7 +431,7 @@ background:#f3ede4;
 width:100%;
 height:100%;
 object-fit:cover;
-pointer-events: none; /* Supaya drag bawaan gambar bawaan browser mati */
+pointer-events: none;
 }
 
 .gallery-overlay {
@@ -526,16 +545,18 @@ font-weight: 600;
 
 <body>
 
-<audio id="bg-music" loop>
-  <!-- Anda bisa mengganti URL di bawah ini ke file lokal/folder proyek Anda nantinya -->
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<audio id="bg-music" loop></audio>
 
 <div class="top-bar">
   <div class="brand-name">Omah Aksara</div>
-  <button class="music-btn" id="music-toggle" onclick="toggleMusic()">
-    <span>🎵</span> <span id="music-status">Mute</span>
-  </button>
+  <div class="music-controls-wrapper">
+    <select id="music-select" onchange="changeMusic(this.value)">
+      <option value="">Memuat musik...</option>
+    </select>
+    <button class="music-btn" id="music-toggle" onclick="toggleMusic()">
+      <span>🎵</span> <span id="music-status">Mute</span>
+    </button>
+  </div>
 </div>
 
 <section class="hero">
@@ -615,7 +636,6 @@ font-weight: 600;
       <p>Geser Foto</p>
     </div>
   </div>
-  <!-- Ditambahkan ID ke kontainer pembungkus utama -->
   <div class="gallery" id="swipe-gallery">
     <div id="gallery-track" class="gallery-track"></div>
   </div>
@@ -638,17 +658,58 @@ font-weight: 600;
 <script>
 const wa = "6285796461157";
 
-/* FITUR AUTO-PLAY MUSIK SAAT LAYAR DIKLIK / DISENTUH */
 const audio = document.getElementById('bg-music');
 const musicStatus = document.getElementById('music-status');
+const musicSelect = document.getElementById('music-select');
 let musicStarted = false;
 
+/* FITUR BARU: SINKRONISASI OTOMATIS DAFTAR LAGU DARI GITHUB */
+async function loadDaftarLagu() {
+  try {
+    // Membaca isi folder 'lagu' langsung via API GitHub
+    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/lagu');
+    const files = await res.json();
+    
+    // Filter hanya file berformat musik audio (.mp3, .wav, dsb)
+    const audioFiles = files.filter(f => /\.(mp3|wav|ogg|m4a)$/i.test(f.name));
+    
+    if(audioFiles.length > 0) {
+      musicSelect.innerHTML = ''; // Kosongkan placeholder tulisan memuat
+      
+      audioFiles.forEach((file, index) => {
+        // Membersihkan nama file panjang bawaan tiktokio untuk dijadikan judul di opsi menu
+        let cleanName = file.name
+          .replace(/tiktokio\.com\d*_/i, '') // Menghapus teks generator tiktokio di awal
+          .replace(/\.(mp3|wav|ogg|m4a)$/i, '') // Menghapus ekstensi file di akhir
+          .replace(/[_-]/g, ' ') // Mengubah tanda strip/garis bawah menjadi spasi
+          .substring(0, 18); // Membatasi panjang teks agar dropdown tetap rapi di layar HP
+        
+        // Buat pilihan baru dalam dropdown. Simpan URL file asli pada bagian value
+        const option = document.createElement('option');
+        option.value = file.download_url;
+        option.text = `🎵 ${cleanName || 'Opsi Musik ' + (index + 1)}`;
+        musicSelect.appendChild(option);
+      });
+      
+      // Mengeset lagu default pertama kali dari urutan teratas repositori Anda
+      audio.src = audioFiles[0].download_url;
+      audio.load();
+    } else {
+      musicSelect.innerHTML = '<option>Tidak ada musik</option>';
+    }
+  } catch (err) {
+    console.error("Gagal memuat otomatis folder lagu dari GitHub:", err);
+    musicSelect.innerHTML = '<option>Gagal memuat</option>';
+  }
+}
+
+// Fungsi otomatis putar saat pengguna menyentuh layar pertama kali
 function startMusicOnInteraction() {
-  if (!musicStarted) {
+  if (!musicStarted && audio.src) {
     audio.play().then(() => {
       musicStatus.innerText = "Play";
       musicStarted = true;
-    }).catch(err => console.log("Audio play blocked"));
+    }).catch(err => console.log("Autoplay ditahan oleh keamanan browser"));
     document.removeEventListener('click', startMusicOnInteraction);
     document.removeEventListener('touchstart', startMusicOnInteraction);
   }
@@ -656,6 +717,7 @@ function startMusicOnInteraction() {
 document.addEventListener('click', startMusicOnInteraction);
 document.addEventListener('touchstart', startMusicOnInteraction);
 
+// Tombol Play / Pause manual
 function toggleMusic() {
   if (audio.paused) {
     audio.play();
@@ -666,10 +728,15 @@ function toggleMusic() {
   }
 }
 
-/* REDIRECT TAMU JIKA ADA PARAMETER */
-const params = new URLSearchParams(window.location.search);
-if(params.has('c')){
-window.location.replace('https://omahaksara.github.io/invitation/templates/floral-pink/' + window.location.search + '&to=Tamu');
+// Mengganti musik secara instan ketika pilihan dropdown diubah oleh user
+function changeMusic(downloadUrl) {
+  if(!downloadUrl) return;
+  audio.src = downloadUrl;
+  audio.load();
+  audio.play().then(() => {
+    musicStatus.innerText = "Play";
+    musicStarted = true;
+  }).catch(err => console.error("Gagal memutar trek baru:", err));
 }
 
 /* FETCH KATALOG TEMPLATE DARI REPO INVITATION */
@@ -727,7 +794,6 @@ const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
 const track = document.getElementById('gallery-track');
 
 if(images.length > 0) {
-// Menampilkan daftar foto asli saja tanpa looping duplikasi agar geserannya presisi/berujung
 images.forEach(img=>{
 const randomQuote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
 track.innerHTML += `
@@ -738,52 +804,43 @@ track.innerHTML += `
 </div>
 </div>`;
 });
-// Inisialisasi fungsi geser jari sesudah konten berhasil masuk ke DOM
 initSwipeGallery();
 }
 }catch(err){ console.error(err); }
 }
 
-/* ENGINE DRAG & SWIPE TANGAN MANUAL UNTUK ALUBM FOTO */
+/* ENGINE DRAG & SWIPE MANUAL ALBUM FOTO */
 function initSwipeGallery() {
   const slider = document.getElementById('swipe-gallery');
   let isDown = false;
   let startX;
   let scrollLeft;
 
-  // Deteksi Mouse PC / Laptop
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
     startX = e.pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
   });
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-  });
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-  });
+  slider.addEventListener('mouseleave', () => { isDown = false; });
+  slider.addEventListener('mouseup', () => { isDown = false; });
   slider.addEventListener('mousemove', (e) => {
     if(!isDown) return;
     e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // Mengatur sensitivitas gesekan kursor
+    const walk = (x - startX) * 1.5;
     slider.scrollLeft = scrollLeft - walk;
   });
 
-  // Deteksi Sentuhan Jari Layar HP (Touch Screen)
   slider.addEventListener('touchstart', (e) => {
     isDown = true;
     startX = e.touches[0].pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
   });
-  slider.addEventListener('touchend', () => {
-    isDown = false;
-  });
+  slider.addEventListener('touchend', () => { isDown = false; });
   slider.addEventListener('touchmove', (e) => {
     if(!isDown) return;
     const x = e.touches[0].pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // Mengatur sensitivitas gesekan jari
+    const walk = (x - startX) * 1.5;
     slider.scrollLeft = scrollLeft - walk;
   });
 }
@@ -817,6 +874,7 @@ if (time > 0) time--;
 /* RUN ALL */
 loadKatalog();
 loadAlbum();
+loadDaftarLagu(); // Fungsi sinkronisasi folder musik dijalankan otomatis
 startCountdown();
 </script>
 
