@@ -168,7 +168,7 @@ opacity: 0.9;
 100% { transform: translateX(0); }
 }
 
-/* SHOPEE MENU GRID CAREGORY */
+/* SHOPEE MENU GRID CATEGORY */
 .shopee-menu {
 display: grid;
 grid-template-columns: repeat(5, 1fr);
@@ -362,20 +362,39 @@ padding:8px;
 font-size:11px;
 border-radius:6px;
 text-align: center;
+text-decoration: none;
+border: 1px solid var(--line);
+color: var(--text);
 }
 
-/* TRACK GALERI ALBUM (MOODBOARD) */
+/* PERUBAHAN BESAR: SWIPEABLE GALLERY (BISA DIGESER TANGAN) */
 .gallery{
-overflow:hidden;
+overflow-x: auto;
 position:relative;
-padding:10px 0;
+padding:10px 16px;
+cursor: grab;
+/* Menghilangkan scrollbar bawaan browser agar tetap rapi */
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none; 
+}
+.gallery::-webkit-scrollbar {
+display: none;
+}
+
+.gallery:active {
+cursor: grabbing;
 }
 
 .gallery-track{
 display:flex;
 gap:12px;
-width:max-content;
-animation:scroll 35s linear infinite;
+width: max-content;
+user-select: none;
+pointer-events: none; /* Mencegah gambar mengacaukan aksi geser pointer native */
+}
+
+.gallery-track * {
+pointer-events: auto; /* Mengembalikan interaksi klik ke elemen anak */
 }
 
 .gallery-item{
@@ -393,6 +412,7 @@ background:#f3ede4;
 width:100%;
 height:100%;
 object-fit:cover;
+pointer-events: none; /* Supaya drag bawaan gambar bawaan browser mati */
 }
 
 .gallery-overlay {
@@ -418,11 +438,6 @@ font-family:'Cormorant Garamond',serif;
 font-size:13px;
 font-style:italic;
 line-height:1.3;
-}
-
-@keyframes scroll{
-from{ transform:translateX(0); }
-to{ transform:translateX(-50%); }
 }
 
 /* FOOTER */
@@ -512,6 +527,7 @@ font-weight: 600;
 <body>
 
 <audio id="bg-music" loop>
+  <!-- Anda bisa mengganti URL di bawah ini ke file lokal/folder proyek Anda nantinya -->
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
@@ -530,7 +546,7 @@ font-weight: 600;
         <div class="slide">
           <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Promo 1">
           <div class="slide-overlay">
-            <h2>Diskon Gede-Gedan!</h2>
+            <h2>Diskon Gede-Gedean!</h2>
             <p>Undangan Digital Cinematic Spesial Bulan Ini.</p>
           </div>
         </div>
@@ -596,10 +612,11 @@ font-weight: 600;
   <div class="container">
     <div class="section-head">
       <h2>Inspirasi & Kartun Couple</h2>
-      <p>Ketuk Foto</p>
+      <p>Geser Foto</p>
     </div>
   </div>
-  <div class="gallery">
+  <!-- Ditambahkan ID ke kontainer pembungkus utama -->
+  <div class="gallery" id="swipe-gallery">
     <div id="gallery-track" class="gallery-track"></div>
   </div>
 </section>
@@ -632,7 +649,6 @@ function startMusicOnInteraction() {
       musicStatus.innerText = "Play";
       musicStarted = true;
     }).catch(err => console.log("Audio play blocked"));
-    // Hapus event listener agar tidak terus mengeksekusi fungsi ini
     document.removeEventListener('click', startMusicOnInteraction);
     document.removeEventListener('touchstart', startMusicOnInteraction);
   }
@@ -711,7 +727,8 @@ const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
 const track = document.getElementById('gallery-track');
 
 if(images.length > 0) {
-[...images,...images,...images].forEach(img=>{
+// Menampilkan daftar foto asli saja tanpa looping duplikasi agar geserannya presisi/berujung
+images.forEach(img=>{
 const randomQuote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
 track.innerHTML += `
 <div class="gallery-item">
@@ -721,8 +738,54 @@ track.innerHTML += `
 </div>
 </div>`;
 });
+// Inisialisasi fungsi geser jari sesudah konten berhasil masuk ke DOM
+initSwipeGallery();
 }
 }catch(err){ console.error(err); }
+}
+
+/* ENGINE DRAG & SWIPE TANGAN MANUAL UNTUK ALUBM FOTO */
+function initSwipeGallery() {
+  const slider = document.getElementById('swipe-gallery');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // Deteksi Mouse PC / Laptop
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+  });
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+  });
+  slider.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5; // Mengatur sensitivitas gesekan kursor
+    slider.scrollLeft = scrollLeft - walk;
+  });
+
+  // Deteksi Sentuhan Jari Layar HP (Touch Screen)
+  slider.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('touchend', () => {
+    isDown = false;
+  });
+  slider.addEventListener('touchmove', (e) => {
+    if(!isDown) return;
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5; // Mengatur sensitivitas gesekan jari
+    slider.scrollLeft = scrollLeft - walk;
+  });
 }
 
 /* POPUP TRANSAKSI (SOCIAL PROOF) */
