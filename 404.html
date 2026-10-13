@@ -24,49 +24,53 @@
 <script>
 let rawUrl = window.location.href;
 let sp = new URLSearchParams(window.location.search);
-let client = sp.get('c');
 let toParam = sp.get('to');
 
+// Ekstraksi parameter &to= jika formatnya unik
 if(!toParam && rawUrl.includes('&to=')){
-  toParam = rawUrl.split('&to=')[1].split('&')[0].split('#')[0];
-  toParam = decodeURIComponent(toParam.replace(/\+/g,' '));
+    toParam = rawUrl.split('&to=')[1].split('&')[0].split('#')[0];
+    toParam = decodeURIComponent(toParam.replace(/\+/g,' '));
 }
 if(!toParam && rawUrl.includes('?to=')){
-  let m = rawUrl.split('to=')[1];
-  if(m){ toParam = decodeURIComponent(m.split('&')[0].split('#')[0].replace(/\+/g,' ')); }
+    let m = rawUrl.split('to=')[1];
+    if(m){ toParam = decodeURIComponent(m.split('&')[0].split('#')[0].replace(/\+/g,' ')); }
 }
 
-if(!client){
-  const parts = window.location.pathname.split('/').filter(Boolean);
-  const maybe = parts[0]==='invitation' && parts.length>=2? parts[1] : parts[0];
-  if(maybe && !['templates','public','invitation', 'lagu', 'album'].includes(maybe)){
-    client = maybe.split('&')[0].split('?')[0].split('#')[0];
-  }
+// Ambil slug klien dari path URL (misal: /budi-ani -> budi-ani)
+const pathParts = window.location.pathname.split('/').filter(Boolean);
+let client = pathParts[0];
+
+// Filter jika path merupakan file/folder sistem shortener
+if (['album', 'lagu', 'index.html', '404.html'].includes(client)) {
+    client = null;
 }
 
-const baseUrl = window.location.hostname.includes('github.io') 
-    ? 'https://omahaksara.github.io' 
-    : window.location.origin;
+const baseUrl = 'https://omahaksara.github.io/invitation';
 
 if (!client) {
-    window.location.href = `${baseUrl}/index.html`;
+    window.location.href = `${baseUrl}/`;
 } else {
     client = client.split('&')[0].split('?')[0];
-    fetch(`${baseUrl}/public/clients/${client}/data.json`)
+    
+    // Cek data.json langsung ke repositori invitation yang baru
+    fetch(`https://omahaksara.github.io/invitation/clients/${client}/data.json`)
     .then(res => {
         if (!res.ok) throw new Error('Data tidak ditemukan');
         return res.json();
     })
     .then(data => {
+        // Ambil nama panggilan mempelai dari skema baru
         const g = data.couple?.groom?.nickname || '';
         const b = data.couple?.bride?.nickname || '';
-        document.getElementById('names').textContent = `${g} & ${b}`;
-        const template = data.meta?.template || 'modern-pink';
+        if(g && b) {
+            document.getElementById('names').textContent = `${g} & ${b}`;
+        }
         
+        // Redirect mulus ke SPA utama invitation dengan membawa parameter tamu
         setTimeout(() => {
             const toQuery = toParam ? `&to=${encodeURIComponent(toParam)}` : '';
-            window.location.href = `${baseUrl}/templates/${template}/index.html?c=${client}${toQuery}`;
-        }, 600);
+            window.location.href = `${baseUrl}/?c=${client}${toQuery}`;
+        }, 500);
      })
     .catch(() => {
         document.getElementById('names').textContent = 'Undangan Tidak Ditemukan';
