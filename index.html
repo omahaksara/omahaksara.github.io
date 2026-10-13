@@ -1,548 +1,141 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Omah Aksara — Digital Invitation Studio</title>
-
-<meta name="description" content="Undangan digital cinematic, elegan, modern, dan premium untuk wedding, aqiqah, ulang tahun, dan acara spesial lainnya."/>
-
+<meta name="description" content="Undangan digital cinematic, elegan, modern, dan premium untuk wedding, aqiqah, ulang tahun, dan acara spesial lainnya.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
-
-:root{
---bg:#fbfaf8;
---primary:#8b6b4a;
---primary-dark:#6f5235;
---secondary:#d8c3a5;
---text:#221f1c;
---muted:#6e665e;
---line:#eeeae4;
---white:#ffffff;
---shopee-orange:#ee4d2d;
---shadow:0 10px 30px rgba(139,107,74,0.05);
---shadow-lg:0 20px 45px rgba(0,0,0,0.06);
+:root {
+  --bg: #fbfaf8;
+  --primary: #8b6b4a;
+  --primary-dark: #6f5235;
+  --secondary: #d8c3a5;
+  --text: #221f1c;
+  --muted: #6e665e;
+  --line: #eeeae4;
+  --white: #ffffff;
+  --shopee-orange: #ee4d2d;
+  --shadow: 0 10px 30px rgba(139,107,74,0.05);
+  --shadow-lg: 0 20px 45px rgba(0,0,0,0.06);
 }
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.5; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/noise.png');
+  opacity: .02; pointer-events: none; z-index: 999;
 }
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: .01em; }
+.container { max-width: 1100px; margin: auto; padding: 0 16px; }
 
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-line-height:1.5;
-}
-
-body::before{
-content:'';
-position:fixed;
-inset:0;
-background-image:url('https://www.transparenttextures.com/patterns/noise.png');
-opacity:.02;
-pointer-events:none;
-z-index:999;
-}
-
-h1,h2,h3{
-font-family:'Cormorant Garamond',serif;
-font-weight:600;
-letter-spacing:.01em;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:0 16px;
-}
-
-/* HEADER & MUSIC CONTROL */
 .top-bar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 14px 16px;
-background: var(--white);
-border-bottom: 1px solid var(--line);
-position: sticky;
-top: 0;
-z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; background: var(--white); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 1000;
 }
-
-.brand-name {
-font-family: 'Cormorant Garamond', serif;
-font-size: 22px;
-font-weight: 700;
-color: var(--text);
-}
-
-.music-controls-wrapper {
-display: flex;
-align-items: center;
-gap: 8px;
-}
-
-/* Style untuk Dropdown Pilihan Musik */
+.brand-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--text); }
+.music-controls-wrapper { display: flex; align-items: center; gap: 8px; }
 #music-select {
-padding: 6px 12px;
-border-radius: 999px;
-border: 1px solid var(--line);
-font-size: 11px;
-background: var(--bg);
-color: var(--text);
-max-width: 120px;
-outline: none;
-cursor: pointer;
-font-family: 'Inter', sans-serif;
+  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line);
+  font-size: 11px; background: var(--bg); color: var(--text); max-width: 120px; outline: none; cursor: pointer;
 }
-
 .music-btn {
-background: var(--bg);
-border: 1px solid var(--line);
-padding: 6px 12px;
-border-radius: 999px;
-font-size: 11px;
-display: flex;
-align-items: center;
-gap: 6px;
-cursor: pointer;
-font-weight: 500;
+  background: var(--bg); border: 1px solid var(--line); padding: 6px 12px;
+  border-radius: 999px; font-size: 11px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500;
 }
 
-/* HERO SHOPEE STYLE */
-.hero{
-padding:12px 0;
-background: var(--white);
-}
-
-/* BANNER SLIDER */
-.promo-slider {
-width: 100%;
-aspect-ratio: 16/7;
-overflow: hidden;
-border-radius: 12px;
-position: relative;
-box-shadow: var(--shadow);
-background: var(--line);
-}
-
-.slider-wrapper {
-display: flex;
-width: 300%;
-height: 100%;
-animation: slideAnimation 12s infinite ease-in-out;
-}
-
-.slide {
-width: 100%;
-height: 100%;
-position: relative;
-}
-
-.slide img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-
+.hero { padding: 12px 0; background: var(--white); }
+.promo-slider { width: 100%; aspect-ratio: 16/7; overflow: hidden; border-radius: 12px; position: relative; box-shadow: var(--shadow); background: var(--line); }
+.slider-wrapper { display: flex; width: 300%; height: 100%; animation: slideAnimation 12s infinite ease-in-out; }
+.slide { width: 100%; height: 100%; position: relative; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
 .slide-overlay {
-position: absolute;
-inset: 0;
-background: linear-gradient(to right, rgba(0,0,0,0.6), transparent);
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 20px;
-color: var(--white);
+  position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.6), transparent);
+  display: flex; flex-direction: column; justify-content: center; padding: 20px; color: var(--white);
 }
-
-.slide-overlay h2 {
-font-size: clamp(18px, 5vw, 32px);
-line-height: 1.2;
-margin-bottom: 4px;
-}
-
-.slide-overlay p {
-font-size: 11px;
-opacity: 0.9;
-}
-
+.slide-overlay h2 { font-size: clamp(18px, 5vw, 32px); line-height: 1.2; margin-bottom: 4px; }
+.slide-overlay p { font-size: 11px; opacity: 0.9; }
 @keyframes slideAnimation {
-0%, 25% { transform: translateX(0); }
-33%, 58% { transform: translateX(-33.33%); }
-66%, 91% { transform: translateX(-66.66%); }
-100% { transform: translateX(0); }
+  0%, 25% { transform: translateX(0); }
+  33%, 58% { transform: translateX(-33.33%); }
+  66%, 91% { transform: translateX(-66.66%); }
+  100% { transform: translateX(0); }
 }
 
-/* SHOPEE MENU GRID CATEGORY */
-.shopee-menu {
-display: grid;
-grid-template-columns: repeat(5, 1fr);
-gap: 8px;
-padding: 20px 0 10px 0;
-text-align: center;
-}
-
-.menu-item {
-text-decoration: none;
-color: var(--text);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 6px;
-}
-
+.shopee-menu { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 20px 0 10px 0; text-align: center; }
+.menu-item { text-decoration: none; color: var(--text); display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .menu-icon {
-width: 48px;
-height: 48px;
-background: #fdf6ed;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 20px;
-box-shadow: 0 4px 10px rgba(139,107,74,0.1);
-border: 1px solid rgba(139,107,74,0.1);
-transition: transform 0.2s;
+  width: 48px; height: 48px; background: #fdf6ed; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+  box-shadow: 0 4px 10px rgba(139,107,74,0.1); border: 1px solid rgba(139,107,74,0.1); transition: transform 0.2s;
 }
+.menu-item:hover .menu-icon { transform: translateY(-3px); background: var(--secondary); }
+.menu-item span { font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--muted); }
 
-.menu-item:hover .menu-icon {
-transform: translateY(-3px);
-background: var(--secondary);
-}
-
-.menu-item span {
-font-size: 11px;
-font-weight: 500;
-white-space: nowrap;
-color: var(--muted);
-}
-
-/* FLASH SALE TIMER BAR */
 .flash-sale-bar {
-background: #fff5f3;
-border: 1px solid #ffded6;
-border-radius: 10px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 10px 14px;
-margin: 10px 0 20px 0;
+  background: #fff5f3; border: 1px solid #ffded6; border-radius: 10px;
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; margin: 10px 0 20px 0;
 }
+.flash-title { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--shopee-orange); }
+.timer-count { font-weight: 600; color: var(--white); background: #221f1c; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
 
-.flash-title {
-display: flex;
-align-items: center;
-gap: 6px;
-font-size: 13px;
-font-weight: 600;
-color: var(--shopee-orange);
-}
+.section { padding: 40px 0; }
+.section-head { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline; border-left: 4px solid var(--primary); padding-left: 10px; }
+.section-head h2 { font-size: 18px; font-weight: 600; font-family: 'Inter', sans-serif; }
+.section-head p { color: var(--primary); font-size: 12px; font-weight: 600; }
 
-.timer-count {
-font-weight: 600;
-color: var(--white);
-background: #221f1c;
-padding: 2px 6px;
-border-radius: 4px;
-font-size: 12px;
-font-variant-numeric: tabular-nums;
-letter-spacing: 0.5px;
-}
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.card { background: var(--white); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.thumb { aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f0ebe3; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.badge { position: absolute; top: 8px; left: 8px; background: var(--shopee-orange); color: var(--white); padding: 2px 6px; border-radius: 4px; font-size: 8px; font-weight: 600; text-transform: uppercase; }
+.card-body { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; }
+.card-title { font-size: 14px; margin-bottom: 4px; font-weight: 500; font-family: 'Inter', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+.old { font-size: 10px; color: var(--muted); text-decoration: line-through; }
+.new { font-size: 16px; color: var(--shopee-orange); font-weight: 600; }
+.card-buttons { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: auto; }
+.card-buttons .btn { padding: 8px; font-size: 11px; border-radius: 6px; text-align: center; text-decoration: none; border: 1px solid var(--line); color: var(--text); }
 
-/* SECTIONS */
-.section{
-padding: 40px 0;
-}
-
-.section-head{
-margin-bottom: 20px;
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-border-left: 4px solid var(--primary);
-padding-left: 10px;
-}
-
-.section-head h2{
-font-size: 18px;
-font-weight: 600;
-font-family: 'Inter', sans-serif;
-}
-
-.section-head p{
-color: var(--primary);
-font-size: 12px;
-font-weight: 600;
-text-decoration: none;
-}
-
-/* KATALOG GRID (Shopee 2 Kolom Kompak) */
-.grid{
-display:grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 12px;
-}
-
-.card{
-background:var(--white);
-border:1px solid var(--line);
-border-radius:12px;
-overflow:hidden;
-box-shadow:var(--shadow);
-display: flex;
-flex-direction: column;
-}
-
-.thumb{
-aspect-ratio:1/1;
-overflow:hidden;
-position:relative;
-background:#f0ebe3;
-}
-
-.thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.badge{
-position:absolute;
-top:8px;
-left:8px;
-background: var(--shopee-orange);
-color: var(--white);
-padding:2px 6px;
-border-radius:4px;
-font-size:8px;
-font-weight: 600;
-text-transform:uppercase;
-}
-
-.card-body{
-padding:10px;
-display: flex;
-flex-direction: column;
-flex-grow: 1;
-}
-
-.card-title{
-font-size:14px;
-margin-bottom:4px;
-font-weight:500;
-font-family: 'Inter', sans-serif;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-}
-
-.price{
-display:flex;
-align-items:baseline;
-gap:6px;
-margin-bottom:10px;
-}
-
-.old{
-font-size:10px;
-color:var(--muted);
-text-decoration:line-through;
-}
-
-.new{
-font-size:16px;
-color:var(--shopee-orange);
-font-weight:600;
-}
-
-.card-buttons{
-display: grid;
-grid-template-columns: 1fr;
-gap: 6px;
-margin-top: auto;
-}
-
-.card-buttons .btn{
-padding:8px;
-font-size:11px;
-border-radius:6px;
-text-align: center;
-text-decoration: none;
-border: 1px solid var(--line);
-color: var(--text);
-}
-
-/* MOODBOARD: SWIPEABLE GALLERY */
-.gallery{
-overflow-x: auto;
-position:relative;
-padding:10px 16px;
-cursor: grab;
--webkit-overflow-scrolling: touch;
-scrollbar-width: none; 
-}
-.gallery::-webkit-scrollbar {
-display: none;
-}
-
-.gallery:active {
-cursor: grabbing;
-}
-
-.gallery-track{
-display:flex;
-gap:12px;
-width: max-content;
-user-select: none;
-pointer-events: none;
-}
-
-.gallery-track * {
-pointer-events: auto;
-}
-
-.gallery-item{
-width:140px;
-height:190px;
-overflow:hidden;
-border-radius:10px;
-flex-shrink:0;
-box-shadow:var(--shadow);
-position:relative;
-background:#f3ede4;
-}
-
-.gallery-item img{
-width:100%;
-height:100%;
-object-fit:cover;
-pointer-events: none;
-}
-
+.gallery { overflow-x: auto; position: relative; padding: 10px 16px; cursor: grab; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.gallery::-webkit-scrollbar { display: none; }
+.gallery-track { display: flex; gap: 12px; width: max-content; user-select: none; }
+.gallery-item { width: 140px; height: 190px; overflow: hidden; border-radius: 10px; flex-shrink: 0; box-shadow: var(--shadow); position: relative; background: #f3ede4; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .gallery-overlay {
-position:absolute;
-inset:0;
-background:rgba(34, 31, 28, 0.85);
-display:flex;
-align-items:center;
-justify-content:center;
-padding:10px;
-text-align:center;
-opacity:0;
-transition:opacity 0.3s ease;
+  position: absolute; inset: 0; background: rgba(34, 31, 28, 0.85);
+  display: flex; align-items: center; justify-content: center; padding: 10px; text-align: center; opacity: 0; transition: opacity 0.3s ease;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay p { color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; line-height: 1.3; }
+
+.footer { padding: 40px 16px 100px 16px; text-align: center; border-top: 1px solid var(--line); background: var(--white); }
+.footer h2 { font-size: 24px; margin-bottom: 6px; }
+.footer p { color: var(--muted); font-size: 12px; }
+
+#notif {
+  position: fixed; bottom: 80px; left: 12px; background: rgba(255, 255, 255, 0.98);
+  padding: 10px 14px; border-radius: 10px; box-shadow: var(--shadow-lg); display: none; z-index: 999; font-size: 11px; border: 1px solid var(--line); max-width: 260px;
 }
 
-.gallery-item:hover .gallery-overlay {
-opacity:1;
-}
-
-.gallery-overlay p {
-color:var(--white);
-font-family:'Cormorant Garamond',serif;
-font-size:13px;
-font-style:italic;
-line-height:1.3;
-}
-
-/* FOOTER */
-.footer{
-padding:40px 16px 100px 16px;
-text-align:center;
-border-top:1px solid var(--line);
-background:var(--white);
-}
-
-.footer h2{
-font-size:24px;
-margin-bottom:6px;
-}
-
-.footer p{
-color:var(--muted);
-font-size:12px;
-}
-
-/* REALTIME POPUP NOTIFICATION */
-#notif{
-position:fixed;
-bottom:80px;
-left:12px;
-background:rgba(255, 255, 255, 0.98);
-padding:10px 14px;
-border-radius:10px;
-box-shadow:var(--shadow-lg);
-display:none;
-z-index:999;
-font-size:11px;
-border:1px solid var(--line);
-max-width:260px;
-animation:fadeUp .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes fadeUp{
-from{ transform:translateY(20px); opacity:0; }
-to{ transform:translateY(0); opacity:1; }
-}
-
-/* STICKY BOTTOM BAR */
 .floating-actions {
-position: fixed;
-bottom: 0;
-left: 0;
-right: 0;
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(10px);
-padding: 10px 16px;
-box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-display: flex;
-justify-content: space-between;
-align-items: center;
-z-index: 998;
-border-top: 1px solid var(--line);
+  position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px); padding: 10px 16px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+  display: flex; justify-content: space-between; align-items: center; z-index: 998; border-top: 1px solid var(--line);
 }
-
-.floating-wa{
-width:40px;
-height:40px;
-border-radius:8px;
-background:#25D366;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-.floating-wa svg{ width:20px; fill:white; }
-
+.floating-wa { width: 40px; height: 40px; border-radius: 8px; background: #25D366; display: flex; align-items: center; justify-content: center; }
+.floating-wa svg { width: 20px; fill: white; }
 .sticky-co-btn {
-flex-grow: 1;
-margin-left: 10px;
-background: var(--shopee-orange);
-color: white;
-text-decoration: none;
-text-align: center;
-padding: 11px;
-border-radius: 8px;
-font-size: 13px;
-font-weight: 600;
+  flex-grow: 1; margin-left: 10px; background: var(--shopee-orange); color: white;
+  text-decoration: none; text-align: center; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 600;
 }
-
 </style>
 </head>
-
 <body>
 
 <audio id="bg-music" loop></audio>
@@ -561,7 +154,6 @@ font-weight: 600;
 
 <section class="hero">
   <div class="container">
-    
     <div class="promo-slider">
       <div class="slider-wrapper">
         <div class="slide">
@@ -589,33 +181,17 @@ font-weight: 600;
     </div>
 
     <div class="shopee-menu">
-      <a href="#catalog" class="menu-item">
-        <div class="menu-icon">🌸</div>
-        <span>Floral</span>
-      </a>
-      <a href="#catalog" class="menu-item">
-        <div class="menu-icon">✨</div>
-        <span>Modern</span>
-      </a>
-      <a href="#catalog" class="menu-item">
-        <div class="menu-icon">🕌</div>
-        <span>Islami</span>
-      </a>
-      <a href="#catalog" class="menu-item">
-        <div class="menu-icon">💰</div>
-        <span>Paket Hemat</span>
-      </a>
-      <a href="https://wa.me/6285796461157" target="_blank" class="menu-item">
-        <div class="menu-icon">📦</div>
-        <span>Cek Order</span>
-      </a>
+      <a href="#catalog" class="menu-item"><div class="menu-icon">🌸</div><span>Floral</span></a>
+      <a href="#catalog" class="menu-item"><div class="menu-icon">✨</div><span>Modern</span></a>
+      <a href="#catalog" class="menu-item"><div class="menu-icon">🕌</div><span>Islami</span></a>
+      <a href="#catalog" class="menu-item"><div class="menu-icon">💰</div><span>Paket Hemat</span></a>
+      <a href="https://wa.me/6285796461157" target="_blank" class="menu-item"><div class="menu-icon">📦</div><span>Cek Order</span></a>
     </div>
 
     <div class="flash-sale-bar">
       <div class="flash-title">⚡ FLASH SALE HARI INI</div>
       <div class="timer-count" id="countdown">02:00:00</div>
     </div>
-
   </div>
 </section>
 
@@ -647,4 +223,207 @@ font-weight: 600;
 </footer>
 
 <div class="floating-actions">
-  <a class="floating-wa" href="
+  <a class="floating-wa" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20tertarik%20tanya%20undangan" target="_blank">
+    <svg viewBox="0 0 32 32"><path d="M19.11 17.2c-.27-.14-1.58-.78-1.82-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.16.18-.31.2-.58.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.13-.13.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.14-.6-1.45-.82-1.98-.22-.53-.45-.46-.6-.47-.16-.01-.34-.01-.53-.01s-.47.07-.71.34c-.24.27-.93.91-.93 2.21s.96 2.56 1.1 2.74c.13.18 1.88 2.87 4.55 4.02.64.28 1.14.45 1.53.58.64.2 1.22.17 1.68.1.51-.08 1.58-.64 1.8-1.25.22-.6.22-1.12.16-1.25-.07-.13-.24-.2-.51-.34z"/></svg>
+  </a>
+  <a href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ambil%20Promo%20Diskon%20Hari%20Ini!" class="sticky-co-btn">Beli Sekarang / Ambil Promo ➔</a>
+</div>
+
+<div id="notif"></div>
+
+<script>
+const wa = "6285796461157";
+const audio = document.getElementById('bg-music');
+const musicStatus = document.getElementById('music-status');
+const musicSelect = document.getElementById('music-select');
+let musicStarted = false;
+
+async function loadDaftarLagu() {
+  try {
+    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/lagu');
+    const files = await res.json();
+    const audioFiles = files.filter(f => /\.(mp3|wav|ogg|m4a)$/i.test(f.name));
+    
+    if(audioFiles.length > 0) {
+      musicSelect.innerHTML = '';
+      audioFiles.forEach((file, index) => {
+        let cleanName = file.name
+          .replace(/tiktokio\.com\d*_/i, '')
+          .replace(/\.(mp3|wav|ogg|m4a)$/i, '')
+          .replace(/[_-]/g, ' ')
+          .substring(0, 18);
+        
+        const option = document.createElement('option');
+        option.value = file.download_url;
+        option.text = `🎵 ${cleanName || 'Opsi Musik ' + (index + 1)}`;
+        musicSelect.appendChild(option);
+      });
+      audio.src = audioFiles[0].download_url;
+      audio.load();
+    } else {
+      musicSelect.innerHTML = '<option>Tidak ada musik</option>';
+    }
+  } catch (err) {
+    console.error("Gagal memuat lagu:", err);
+    musicSelect.innerHTML = '<option>Gagal memuat</option>';
+  }
+}
+
+function startMusicOnInteraction() {
+  if (!musicStarted && audio.src) {
+    audio.play().then(() => {
+      musicStatus.innerText = "Play";
+      musicStarted = true;
+    }).catch(err => console.log("Autoplay ditahan"));
+    document.removeEventListener('click', startMusicOnInteraction);
+    document.removeEventListener('touchstart', startMusicOnInteraction);
+  }
+}
+document.addEventListener('click', startMusicOnInteraction);
+document.addEventListener('touchstart', startMusicOnInteraction);
+
+function toggleMusic() {
+  if (audio.paused) {
+    audio.play();
+    musicStatus.innerText = "Play";
+  } else {
+    audio.pause();
+    musicStatus.innerText = "Mute";
+  }
+}
+
+function changeMusic(downloadUrl) {
+  if(!downloadUrl) return;
+  audio.src = downloadUrl;
+  audio.load();
+  audio.play().then(() => {
+    musicStatus.innerText = "Play";
+    musicStarted = true;
+  }).catch(err => console.error(err));
+}
+
+async function loadKatalog(){
+  try {
+    const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
+    const data = await res.json();
+    const folders = data.filter(i => i.type === "dir");
+    const grid = document.getElementById('catalog-grid');
+    grid.innerHTML = '';
+
+    folders.forEach(f => {
+      const title = f.name.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+      const preview = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${f.name}/preview.jpg`;
+      const demo = `https://omahaksara.github.io/invitation/?c=budi-ani&to=Nama+Tamu`;
+      const waLink = `https://wa.me/${wa}?text=Halo%20Omah%20Aksara,%20saya%20tertarik%20Order%20Tema%20${title}`;
+
+      grid.innerHTML += `
+      <div class="card">
+        <div class="thumb">
+          <div class="badge">Diskon 40%</div>
+          <img src="${preview}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80'">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">${title}</h3>
+          <div class="price">
+            <span class="old">150K</span>
+            <span class="new">90K</span>
+          </div>
+          <div class="card-buttons">
+            <a href="${demo}" target="_blank" class="btn btn-outline">Demo</a>
+            <a href="${waLink}" target="_blank" class="btn btn-solid" style="background:var(--shopee-orange); color:white;">Pesan</a>
+          </div>
+        </div>
+      </div>`;
+    });
+  } catch(err) { console.error(err); }
+}
+
+const loveQuotes = [
+  "Menemukanmu adalah takdir terbaik dalam hidupku.",
+  "Dua hati, satu detak, satu komitmen selamanya.",
+  "Cinta sejati tidak memiliki batas akhir.",
+  "Membangun masa depan indah bersama dirimu.",
+  "Tempat terfavorit di dunia adalah di sisimu."
+];
+
+async function loadAlbum(){
+  try {
+    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
+    const files = await res.json();
+    const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
+    const track = document.getElementById('gallery-track');
+
+    if(images.length > 0) {
+      images.forEach(img => {
+        const randomQuote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
+        track.innerHTML += `
+        <div class="gallery-item">
+          <img src="${img.download_url}" loading="lazy">
+          <div class="gallery-overlay">
+            <p>" ${randomQuote} "</p>
+          </div>
+        </div>`;
+      });
+      initSwipeGallery();
+    }
+  } catch(err) { console.error(err); }
+}
+
+function initSwipeGallery() {
+  const slider = document.getElementById('swipe-gallery');
+  let isDown = false, startX, scrollLeft;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('mouseleave', () => { isDown = false; });
+  slider.addEventListener('mouseup', () => { isDown = false; });
+  slider.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    slider.scrollLeft = scrollLeft - ((x - startX) * 1.5);
+  });
+
+  slider.addEventListener('touchstart', (e) => {
+    isDown = true; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('touchend', () => { isDown = false; });
+  slider.addEventListener('touchmove', (e) => {
+    if(!isDown) return;
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    slider.scrollLeft = scrollLeft - ((x - startX) * 1.5);
+  });
+}
+
+const names = ["Rian & Sela", "Dika & Amel", "Fahmi & Gita", "Putra & Nia", "Bintang & Ayu"];
+const templates = ["Royal Vintage", "Elegant Gold", "Modern Editorial", "Classic White"];
+
+setInterval(() => {
+  const n = names[Math.floor(Math.random()*names.length)];
+  const t = templates[Math.floor(Math.random()*templates.length)];
+  const notif = document.getElementById('notif');
+  notif.innerHTML = `🔥 <b>${n}</b> baru saja klaim diskon tema <b>${t}</b>`;
+  notif.style.display = 'block';
+  setTimeout(() => { notif.style.display = 'none'; }, 4000);
+}, 10000);
+
+function startCountdown() {
+  let time = 3600 * 2 + 14 * 60 + 52; 
+  const timerEl = document.getElementById('countdown');
+  setInterval(() => {
+    let hours = Math.floor(time / 3600);
+    let minutes = Math.floor((time % 3600) / 60);
+    let seconds = time % 60;
+    timerEl.innerText = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    if (time > 0) time--;
+  }, 1000);
+}
+
+loadKatalog();
+loadAlbum();
+loadDaftarLagu();
+startCountdown();
+</script>
+</body>
+</html>
