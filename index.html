@@ -319,11 +319,13 @@ async function loadKatalog(){
     const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
     if (!res.ok) throw new Error('Katalog tema belum dapat dimuat.');
     const data = await res.json();
-    const folders = data.filter(item => item.type === "dir");
+    // Customer-facing catalog only lists verified theme folders.
+    const approvedThemes = ["karsa", "royal", "sirein", "aksara-signature"];
+    const folders = data.filter(item => item.type === "dir" && approvedThemes.includes(item.name));
     const names = {
       "aksara-signature": "Aksara Signature",
       "karsa": "Karsa",
-      "royal-vintage": "Royal Vintage",
+      "royal": "Royal Vintage",
       "sirein": "Sirein"
     };
     folders.forEach(folder => {
@@ -332,7 +334,7 @@ async function loadKatalog(){
       const previews = {
         "aksara-signature": "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80",
         "karsa": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500&q=80",
-        "royal-vintage": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80",
+        "royal": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80",
         "sirein": "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=500&q=80"
       };
       const preview = previews[theme] || "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80";
@@ -351,9 +353,8 @@ async function loadKatalog(){
       const body = document.createElement('div'); body.className = 'card-body';
       const heading = document.createElement('h3'); heading.className = 'card-title'; heading.textContent = title;
       const price = document.createElement('div'); price.className = 'price';
-      const oldPrice = document.createElement('span'); oldPrice.className = 'old'; oldPrice.textContent = '150K';
-      const newPrice = document.createElement('span'); newPrice.className = 'new'; newPrice.textContent = '90K';
-      price.append(oldPrice,newPrice);
+      const newPrice = document.createElement('span'); newPrice.className = 'new'; newPrice.textContent = 'Rp90.000';
+      price.append(newPrice);
       const buttons = document.createElement('div'); buttons.className = 'card-buttons';
       const demo = document.createElement('a'); demo.href = demoUrl(); demo.target = '_blank'; demo.rel = 'noopener noreferrer'; demo.className = 'btn btn-outline'; demo.textContent = 'Demo';
       demo.addEventListener('click', event => {
