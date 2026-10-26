@@ -320,12 +320,12 @@ async function loadKatalog(){
     if (!res.ok) throw new Error('Katalog tema belum dapat dimuat.');
     const data = await res.json();
     // Customer-facing catalog only lists verified theme folders.
-    const approvedThemes = ["karsa", "royal", "sirein", "aksara-signature"];
+    const approvedThemes = ["karsa", "royal-vintage", "sirein", "aksara-signature"];
     const folders = data.filter(item => item.type === "dir" && approvedThemes.includes(item.name));
     const names = {
       "aksara-signature": "Aksara Signature",
       "karsa": "Karsa",
-      "royal": "Royal Vintage",
+      "royal-vintage": "Royal Vintage",
       "sirein": "Sirein"
     };
     folders.forEach(folder => {
@@ -334,7 +334,7 @@ async function loadKatalog(){
       const previews = {
         "aksara-signature": "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80",
         "karsa": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500&q=80",
-        "royal": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80",
+        "royal-vintage": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80",
         "sirein": "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=500&q=80"
       };
       const preview = previews[theme] || "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80";
