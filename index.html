@@ -329,7 +329,13 @@ async function loadKatalog(){
     folders.forEach(folder => {
       const theme = folder.name;
       const title = names[theme] || theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-      const preview = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${theme}/preview.jpg`;
+      const previews = {
+        "aksara-signature": "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80",
+        "karsa": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500&q=80",
+        "royal-vintage": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80",
+        "sirein": "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=500&q=80"
+      };
+      const preview = previews[theme] || "https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80";
       const demoUrl = () => {
         const field = document.getElementById('preview-guest-name');
         const guest = (field && field.value.trim()) || 'Tamu Undangan';
