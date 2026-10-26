@@ -89,6 +89,10 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .section-head h2 { font-size: 18px; font-weight: 600; font-family: 'Inter', sans-serif; }
 .section-head p { color: var(--primary); font-size: 12px; font-weight: 600; }
 
+.demo-name-control { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 0 0 18px; box-shadow: var(--shadow); }
+.demo-name-control label { display:block; font-size:13px; font-weight:600; margin-bottom:8px; }
+.demo-name-control input { width:100%; padding:12px; border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--text); background:#fffdf9; }
+.demo-name-control p { margin:8px 0 0; color:var(--muted); font-size:11px; line-height:1.6; }
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .card { background: var(--white); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
 .thumb { aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f0ebe3; }
@@ -201,6 +205,11 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
       <h2>Rekomendasi Template</h2>
       <p>Lihat Semua</p>
     </div>
+    <div class="demo-name-control">
+      <label for="preview-guest-name">Coba personalisasi nama tamu</label>
+      <input id="preview-guest-name" type="text" maxlength="80" placeholder="Contoh: Ridwan dan Keluarga" value="Nama Tamu">
+      <p>Masukkan nama, lalu tekan <strong>Demo</strong> pada tema yang ingin kamu lihat.</p>
+    </div>
     <div id="catalog-grid" class="grid"></div>
   </div>
 </section>
@@ -303,41 +312,56 @@ function changeMusic(downloadUrl) {
 }
 
 async function loadKatalog(){
+  const grid = document.getElementById('catalog-grid');
+  if (!grid) return;
+  grid.replaceChildren();
   try {
     const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
+    if (!res.ok) throw new Error('Katalog tema belum dapat dimuat.');
     const data = await res.json();
-    const folders = data.filter(i => i.type === "dir");
-    const grid = document.getElementById('catalog-grid');
-    grid.innerHTML = '';
-
-    folders.forEach(f => {
-      const title = f.name.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-      const preview = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${f.name}/preview.jpg`;
-      const demo = `https://omahaksara.github.io/invitation/?c=budi-ani&to=Nama+Tamu`;
-      const waLink = `https://wa.me/${wa}?text=Halo%20Omah%20Aksara,%20saya%20tertarik%20Order%20Tema%20${title}`;
-
-      grid.innerHTML += `
-      <div class="card">
-        <div class="thumb">
-          <div class="badge">Diskon 40%</div>
-          <img src="${preview}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80'">
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">${title}</h3>
-          <div class="price">
-            <span class="old">150K</span>
-            <span class="new">90K</span>
-          </div>
-          <div class="card-buttons">
-            <a href="${demo}" target="_blank" class="btn btn-outline">Demo</a>
-            <a href="${waLink}" target="_blank" class="btn btn-solid" style="background:var(--shopee-orange); color:white;">Pesan</a>
-          </div>
-        </div>
-      </div>`;
+    const folders = data.filter(item => item.type === "dir");
+    const names = {
+      "aksara-signature": "Aksara Signature",
+      "karsa": "Karsa",
+      "royal-vintage": "Royal Vintage",
+      "sirein": "Sirein"
+    };
+    folders.forEach(folder => {
+      const theme = folder.name;
+      const title = names[theme] || theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+      const preview = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${theme}/preview.jpg`;
+      const demoUrl = () => {
+        const field = document.getElementById('preview-guest-name');
+        const guest = (field && field.value.trim()) || 'Tamu Undangan';
+        return `https://omahaksara.github.io/invitation/?c=demo-katalog&theme=${encodeURIComponent(theme)}&to=${encodeURIComponent(guest)}`;
+      };
+      const waLink = `https://wa.me/${wa}?text=${encodeURIComponent('Halo Omah Aksara, saya tertarik dengan tema ' + title)}`;
+      const card = document.createElement('div'); card.className = 'card';
+      const thumb = document.createElement('div'); thumb.className = 'thumb';
+      const badge = document.createElement('div'); badge.className = 'badge'; badge.textContent = 'Lihat Demo';
+      const image = document.createElement('img'); image.src = preview; image.alt = 'Pratinjau tema ' + title; image.loading = 'lazy';
+      image.onerror = () => { image.onerror = null; image.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80'; };
+      thumb.append(badge,image);
+      const body = document.createElement('div'); body.className = 'card-body';
+      const heading = document.createElement('h3'); heading.className = 'card-title'; heading.textContent = title;
+      const price = document.createElement('div'); price.className = 'price';
+      const oldPrice = document.createElement('span'); oldPrice.className = 'old'; oldPrice.textContent = '150K';
+      const newPrice = document.createElement('span'); newPrice.className = 'new'; newPrice.textContent = '90K';
+      price.append(oldPrice,newPrice);
+      const buttons = document.createElement('div'); buttons.className = 'card-buttons';
+      const demo = document.createElement('a'); demo.href = demoUrl(); demo.target = '_blank'; demo.rel = 'noopener noreferrer'; demo.className = 'btn btn-outline'; demo.textContent = 'Demo';
+      demo.addEventListener('click', event => {
+        event.preventDefault();
+        window.open(demoUrl(), '_blank', 'noopener');
+      });
+      const order = document.createElement('a'); order.href = waLink; order.target = '_blank'; order.rel = 'noopener noreferrer'; order.className = 'btn btn-solid'; order.style.cssText = 'background:var(--shopee-orange);color:white;'; order.textContent = 'Pesan';
+      buttons.append(demo,order); body.append(heading,price,buttons); card.append(thumb,body); grid.append(card);
     });
-  } catch(err) { console.error(err); }
+  } catch (error) {
+    console.error(error);
+    grid.textContent = 'Katalog tema belum dapat dimuat. Silakan muat ulang halaman.';
+  }
 }
-
 const loveQuotes = [
   "Menemukanmu adalah takdir terbaik dalam hidupku.",
   "Dua hati, satu detak, satu komitmen selamanya.",
