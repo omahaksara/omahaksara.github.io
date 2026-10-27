@@ -305,79 +305,66 @@ function changeMusic(downloadUrl) {
 async function loadKatalog(){
   const grid = document.getElementById('catalog-grid');
   if (!grid) return;
-  const fallbackThemes = ['karsa', 'royal-vintage', 'sirein', 'aksara-signature', 'botanical-garden', 'velvet-romance'];
-
+  // Keep the catalogue aligned with the single source of truth in the invitation engine.
+  const fallbackThemes = ['aksara-nocturne', 'aksara-signature', 'aurelia-noir', 'botanical-garden', 'elegance', 'karsa', 'lumiere-bloom', 'romantic-floral', 'royal-vintage', 'sirein', 'velvet-romance'];
+  let themes = fallbackThemes;
   try {
-    const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
-    if (!res.ok) throw new Error('GitHub API katalog tidak tersedia');
-    const data = await res.json();
-    const repoThemes = Array.isArray(data) ? data.filter(item => item.type === 'dir').map(item => item.name) : [];
-    const themes = [...new Set([...repoThemes, ...fallbackThemes])];
-    grid.replaceChildren();
-
-    themes.forEach(theme => {
-      const title = theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-      const preview = `https://raw.githubusercontent.com/omahaksara/invitation/main/templates/${theme}/preview.jpg`;
-      // Demo data explicitly enables safe theme switching; every card opens its own theme.
-      const demo = `https://omahaksara.github.io/invitation/?c=demo-katalog&theme=${encodeURIComponent(theme)}&to=Nama+Tamu`;
-      const waLink = `https://wa.me/${wa}?text=Halo%20Omah%20Aksara,%20saya%20tertarik%20Order%20Tema%20${encodeURIComponent(title)}`;
-
-      const card = document.createElement('div');
-      card.className = 'card';
-      const thumb = document.createElement('div');
-      thumb.className = 'thumb';
-      const badge = document.createElement('div');
-      badge.className = 'badge';
-      badge.textContent = 'Diskon 40%';
-      const img = document.createElement('img');
-      img.src = preview;
-      img.loading = 'lazy';
-      img.alt = 'Pratinjau tema ' + title;
-      img.onerror = () => { img.onerror = null; img.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80'; };
-      thumb.append(badge, img);
-
-      const body = document.createElement('div');
-      body.className = 'card-body';
-      const heading = document.createElement('h3');
-      heading.className = 'card-title';
-      heading.textContent = title;
-      const price = document.createElement('div');
-      price.className = 'price';
-      price.innerHTML = '<span class="old">150K</span><span class="new">90K</span>';
-      const buttons = document.createElement('div');
-      buttons.className = 'card-buttons';
-      const demoButton = document.createElement('a');
-      demoButton.href = demo;
-      demoButton.target = '_blank';
-      demoButton.rel = 'noopener noreferrer';
-      demoButton.className = 'btn btn-outline';
-      demoButton.textContent = 'Demo';
-      const orderButton = document.createElement('a');
-      orderButton.href = waLink;
-      orderButton.target = '_blank';
-      orderButton.rel = 'noopener noreferrer';
-      orderButton.className = 'btn btn-solid';
-      orderButton.style.cssText = 'background:var(--shopee-orange); color:white;';
-      orderButton.textContent = 'Pesan';
-      buttons.append(demoButton, orderButton);
-      body.append(heading, price, buttons);
-      card.append(thumb, body);
-      grid.append(card);
-    });
-  } catch(err) {
-    console.error('Katalog GitHub gagal dimuat; memakai daftar tema cadangan.', err);
-    grid.replaceChildren();
-    fallbackThemes.forEach(theme => {
-      const title = theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-      const demo = `https://omahaksara.github.io/invitation/?c=demo-katalog&theme=${encodeURIComponent(theme)}&to=Nama+Tamu`;
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `<div class="thumb"><img alt="Pratinjau tema ${title}" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80"></div><div class="card-body"><h3 class="card-title">${title}</h3><div class="card-buttons"><a href="${demo}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Demo</a></div></div>`;
-      grid.append(card);
-    });
+    const res = await fetch('https://raw.githubusercontent.com/omahaksara/invitation/main/templates/registry.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Registry tema tidak tersedia');
+    const registry = await res.json();
+    const active = Array.isArray(registry.themes) ? registry.themes.filter(item => item && item.status === 'active' && /^[a-z0-9][a-z0-9-]*$/.test(item.slug)).map(item => item.slug) : [];
+    if (active.length) themes = [...new Set(active)];
+  } catch (err) {
+    console.warn('Registry tema tidak dapat dimuat; memakai daftar tema cadangan.', err);
   }
+  grid.replaceChildren();
+  themes.forEach(theme => {
+    const title = theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+    const preview = 'https://raw.githubusercontent.com/omahaksara/invitation/main/templates/' + theme + '/preview.jpg';
+    const demo = 'https://omahaksara.github.io/invitation/?c=demo-katalog&theme=' + encodeURIComponent(theme) + '&to=Nama+Tamu';
+    const waLink = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Halo Omah Aksara, saya tertarik Order Tema ' + title);
+    const card = document.createElement('div');
+    card.className = 'card';
+    const thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    const badge = document.createElement('div');
+    badge.className = 'badge';
+    badge.textContent = 'Diskon 40%';
+    const img = document.createElement('img');
+    img.src = preview;
+    img.loading = 'lazy';
+    img.alt = 'Pratinjau tema ' + title;
+    img.onerror = () => { img.onerror = null; img.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80'; };
+    thumb.append(badge, img);
+    const body = document.createElement('div');
+    body.className = 'card-body';
+    const heading = document.createElement('h3');
+    heading.className = 'card-title';
+    heading.textContent = title;
+    const price = document.createElement('div');
+    price.className = 'price';
+    price.innerHTML = '<span class="old">150K</span><span class="new">90K</span>';
+    const buttons = document.createElement('div');
+    buttons.className = 'card-buttons';
+    const demoButton = document.createElement('a');
+    demoButton.href = demo;
+    demoButton.target = '_blank';
+    demoButton.rel = 'noopener noreferrer';
+    demoButton.className = 'btn btn-outline';
+    demoButton.textContent = 'Demo';
+    const orderButton = document.createElement('a');
+    orderButton.href = waLink;
+    orderButton.target = '_blank';
+    orderButton.rel = 'noopener noreferrer';
+    orderButton.className = 'btn btn-solid';
+    orderButton.style.cssText = 'background:var(--shopee-orange); color:white;';
+    orderButton.textContent = 'Pesan';
+    buttons.append(demoButton, orderButton);
+    body.append(heading, price, buttons);
+    card.append(thumb, body);
+    grid.append(card);
+  });
 }
-
 const loveQuotes = [
   "Menemukanmu adalah takdir terbaik dalam hidupku.",
   "Dua hati, satu detak, satu komitmen selamanya.",
