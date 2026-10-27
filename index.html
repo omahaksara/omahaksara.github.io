@@ -305,7 +305,7 @@ function changeMusic(downloadUrl) {
 async function loadKatalog(){
   const grid = document.getElementById('catalog-grid');
   if (!grid) return;
-  const fallbackThemes = ['karsa', 'royal-vintage', 'sirein', 'aksara-signature', 'botanical-garden'];
+  const fallbackThemes = ['karsa', 'royal-vintage', 'sirein', 'aksara-signature', 'botanical-garden', 'velvet-romance'];
 
   try {
     const res = await fetch('https://api.github.com/repos/omahaksara/invitation/contents/templates');
