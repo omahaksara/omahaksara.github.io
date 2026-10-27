@@ -89,6 +89,11 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .section-head h2 { font-size: 18px; font-weight: 600; font-family: 'Inter', sans-serif; }
 .section-head p { color: var(--primary); font-size: 12px; font-weight: 600; }
 
+.demo-name-control { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin: 0 0 18px; box-shadow: var(--shadow); }
+.demo-name-control label { display:block; font-size:12px; font-weight:600; margin-bottom:8px; }
+.demo-name-control input { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--text); background:#fffdf9; }
+.demo-name-control p { margin:7px 0 0; color:var(--muted); font-size:11px; line-height:1.6; }
+
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .card { background: var(--white); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
 .thumb { aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f0ebe3; }
@@ -200,6 +205,11 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
     <div class="section-head">
       <h2>Rekomendasi Template</h2>
       <p>Lihat Semua</p>
+    </div>
+    <div class="demo-name-control">
+      <label for="preview-guest-name">Personalisasi nama tamu untuk demo</label>
+      <input id="preview-guest-name" type="text" maxlength="80" autocomplete="off" placeholder="Contoh: Ridwan dan Keluarga" value="Nama Tamu">
+      <p>Isi nama di atas, lalu tekan Demo pada tema yang ingin dilihat. Nama hanya dipakai pada tautan pratinjau.</p>
     </div>
     <div id="catalog-grid" class="grid"></div>
   </div>
@@ -318,9 +328,21 @@ async function loadKatalog(){
     console.warn('Registry tema tidak dapat dimuat; memakai daftar tema cadangan.', err);
   }
   grid.replaceChildren();
+  const guestNameInput = document.getElementById('preview-guest-name');
+  if (guestNameInput && !guestNameInput.dataset.bound) {
+    guestNameInput.dataset.bound = 'true';
+    guestNameInput.addEventListener('input', () => {
+      const guestName = guestNameInput.value.trim() || 'Nama Tamu';
+      grid.querySelectorAll('.catalog-demo-link').forEach(link => {
+        link.href = 'https://omahaksara.github.io/invitation/?c=demo-katalog&theme=' +
+          encodeURIComponent(link.dataset.theme || '') + '&to=' + encodeURIComponent(guestName);
+      });
+    });
+  }
   themes.forEach(theme => {
     const title = theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-    const demo = 'https://omahaksara.github.io/invitation/?c=demo-katalog&theme=' + encodeURIComponent(theme) + '&to=Nama+Tamu';
+    const previewGuestName = (document.getElementById('preview-guest-name')?.value || '').trim() || 'Nama Tamu';
+    const demo = 'https://omahaksara.github.io/invitation/?c=demo-katalog&theme=' + encodeURIComponent(theme) + '&to=' + encodeURIComponent(previewGuestName);
     const waLink = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Halo Omah Aksara, saya tertarik Order Tema ' + title);
     const card = document.createElement('div');
     card.className = 'card';
@@ -351,7 +373,8 @@ async function loadKatalog(){
     demoButton.href = demo;
     demoButton.target = '_blank';
     demoButton.rel = 'noopener noreferrer';
-    demoButton.className = 'btn btn-outline';
+    demoButton.className = 'btn btn-outline catalog-demo-link';
+    demoButton.dataset.theme = theme;
     demoButton.textContent = 'Demo';
     const orderButton = document.createElement('a');
     orderButton.href = waLink;
