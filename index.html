@@ -94,18 +94,30 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .demo-name-control input { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--text); background:#fffdf9; }
 .demo-name-control p { margin:7px 0 0; color:var(--muted); font-size:11px; line-height:1.6; }
 
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.card { background: var(--white); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-.thumb { aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f0ebe3; }
-.thumb iframe { display:block; width:200%; height:200%; border:0; transform:scale(.5); transform-origin:top left; pointer-events:none; background:#f8f6f0; }
-.badge { position: absolute; top: 8px; left: 8px; background: var(--shopee-orange); color: var(--white); padding: 2px 6px; border-radius: 4px; font-size: 8px; font-weight: 600; text-transform: uppercase; }
-.card-body { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; }
-.card-title { font-size: 14px; margin-bottom: 4px; font-weight: 500; font-family: 'Inter', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
-.old { font-size: 10px; color: var(--muted); text-decoration: line-through; }
-.new { font-size: 16px; color: var(--shopee-orange); font-weight: 600; }
-.card-buttons { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: auto; }
-.card-buttons .btn { padding: 8px; font-size: 11px; border-radius: 6px; text-align: center; text-decoration: none; border: 1px solid var(--line); color: var(--text); }
+.catalog-intro{max-width:660px;color:var(--muted);font-size:13px;line-height:1.8;margin:-8px 0 20px}
+.catalog-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;margin:0 0 20px}
+.catalog-search{width:100%;min-width:0;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:#fffdf9;color:var(--text);font:inherit;font-size:13px;outline-offset:3px}
+.catalog-filters{display:flex;gap:7px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:thin}
+.filter-chip{border:1px solid var(--line);background:white;color:var(--muted);border-radius:999px;padding:9px 13px;font:inherit;font-size:11px;white-space:nowrap;cursor:pointer}
+.filter-chip[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#d9c8ac}
+.thumb{aspect-ratio:4/5;overflow:hidden;position:relative;background:#eee7dc}
+.thumb iframe{display:block;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#f8f6f0}
+.thumb:after{content:"";position:absolute;inset:0;border:1px solid #00000008;pointer-events:none}
+.badge{position:absolute;top:10px;left:10px;z-index:2;background:#fffdf0eF;color:#5d4a31;padding:6px 9px;border:1px solid #d8c3a5;border-radius:999px;font-size:9px;font-weight:600;letter-spacing:.04em}
+.card-body{padding:14px;display:flex;flex-direction:column;flex-grow:1}
+.card-title{font:500 clamp(17px,2vw,22px)/1.15 'Cormorant Garamond',serif;margin:0 0 6px;white-space:normal}
+.card-meta{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.price{display:none}
+.card-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.card-buttons .btn{padding:11px 8px;font-size:11px;border-radius:8px;text-align:center;text-decoration:none;border:1px solid var(--line);color:var(--text);font-weight:600;min-height:40px;display:flex;align-items:center;justify-content:center}
+.card-buttons .btn-solid{background:var(--text)!important;color:#fff!important;border-color:var(--text)}
+.catalog-empty{grid-column:1/-1;padding:38px 18px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.thumb{aspect-ratio:4/4.7}.card-body{padding:17px}.catalog-tools{grid-template-columns:minmax(220px,1fr)}}
+@media(max-width:560px){.catalog-tools{grid-template-columns:1fr;gap:8px}.catalog-filters{margin-right:-16px;padding-right:16px}.thumb{aspect-ratio:4/5}.card-body{padding:11px}.card-buttons{grid-template-columns:1fr}.card-buttons .btn{min-height:38px}.badge{top:8px;left:8px;font-size:8px;padding:5px 8px}}
+@media(prefers-reduced-motion:reduce){.card,.menu-icon{transition:none!important}.card:hover{transform:none}}
 
 .gallery { overflow-x: auto; position: relative; padding: 10px 16px; cursor: grab; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .gallery::-webkit-scrollbar { display: none; }
@@ -203,15 +215,26 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 <section class="section" id="catalog">
   <div class="container">
     <div class="section-head">
-      <h2>Rekomendasi Template</h2>
-      <p>Lihat Semua</p>
+      <h2>Pilih Gaya Undangan</h2>
+      <p id="catalog-count">Koleksi tema</p>
     </div>
+    <p class="catalog-intro">Setiap pasangan punya cerita berbeda. Jelajahi desain, buka demo lengkapnya, lalu pilih tampilan yang paling terasa seperti kalian.</p>
     <div class="demo-name-control">
-      <label for="preview-guest-name">Personalisasi nama tamu untuk demo</label>
+      <label for="preview-guest-name">Nama tamu untuk pratinjau</label>
       <input id="preview-guest-name" type="text" maxlength="80" autocomplete="off" placeholder="Contoh: Ridwan dan Keluarga" value="Nama Tamu">
-      <p>Isi nama di atas, lalu tekan Demo pada tema yang ingin dilihat. Nama hanya dipakai pada tautan pratinjau.</p>
+      <p>Nama ini hanya ditambahkan ke tautan demo, tidak disimpan sebagai data pelanggan.</p>
     </div>
-    <div id="catalog-grid" class="grid"></div>
+    <div class="catalog-tools">
+      <input id="catalog-search" class="catalog-search" type="search" placeholder="Cari nama tema…" aria-label="Cari tema undangan">
+      <div id="catalog-filters" class="catalog-filters" aria-label="Filter kategori tema">
+        <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">Semua tema</button>
+        <button type="button" class="filter-chip" data-filter="floral" aria-pressed="false">Floral</button>
+        <button type="button" class="filter-chip" data-filter="classic" aria-pressed="false">Klasik</button>
+        <button type="button" class="filter-chip" data-filter="modern" aria-pressed="false">Modern</button>
+        <button type="button" class="filter-chip" data-filter="dark" aria-pressed="false">Dark luxury</button>
+      </div>
+    </div>
+    <div id="catalog-grid" class="grid" aria-live="polite"></div>
   </div>
 </section>
 
@@ -313,81 +336,85 @@ function changeMusic(downloadUrl) {
 }
 
 async function loadKatalog(){
-  const grid = document.getElementById('catalog-grid');
-  if (!grid) return;
-  // Keep the catalogue aligned with the single source of truth in the invitation engine.
-  const fallbackThemes = ['aksara-nocturne', 'aksara-signature', 'aurelia-noir', 'botanical-garden', 'elegance', 'karsa', 'lumiere-bloom', 'romantic-floral', 'royal-vintage', 'sirein', 'velvet-romance'];
-  let themes = fallbackThemes;
-  try {
-    const res = await fetch('https://raw.githubusercontent.com/omahaksara/invitation/main/templates/registry.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('Registry tema tidak tersedia');
-    const registry = await res.json();
-    const active = Array.isArray(registry.themes) ? registry.themes.filter(item => item && item.status === 'active' && /^[a-z0-9][a-z0-9-]*$/.test(item.slug)).map(item => item.slug) : [];
-    if (active.length) themes = [...new Set(active)];
-  } catch (err) {
-    console.warn('Registry tema tidak dapat dimuat; memakai daftar tema cadangan.', err);
-  }
-  grid.replaceChildren();
-  const guestNameInput = document.getElementById('preview-guest-name');
-  if (guestNameInput && !guestNameInput.dataset.bound) {
-    guestNameInput.dataset.bound = 'true';
-    guestNameInput.addEventListener('input', () => {
-      const guestName = guestNameInput.value.trim() || 'Nama Tamu';
-      grid.querySelectorAll('.catalog-demo-link').forEach(link => {
-        link.href = 'https://omahaksara.github.io/invitation/?c=demo-katalog&theme=' +
-          encodeURIComponent(link.dataset.theme || '') + '&to=' + encodeURIComponent(guestName);
-      });
+  const grid=document.getElementById('catalog-grid');
+  if(!grid)return;
+  const fallback=[
+    {slug:'aksara-nocturne',name:'Aksara Nocturne',status:'active'},
+    {slug:'aksara-signature',name:'Aksara Signature',status:'active'},
+    {slug:'aurelia-noir',name:'Aurelia Noir',status:'active'},
+    {slug:'botanical-garden',name:'Botanical Garden',status:'active'},
+    {slug:'elegance',name:'Elegance',status:'active'},
+    {slug:'karsa',name:'Karsa',status:'active'},
+    {slug:'lumiere-bloom',name:'Lumière Bloom',status:'active'},
+    {slug:'romantic-floral',name:'Romantic Floral',status:'active'},
+    {slug:'royal-vintage',name:'Royal Vintage',status:'active'},
+    {slug:'sirein',name:'Sirein',status:'active'},
+    {slug:'velvet-romance',name:'Velvet Romance',status:'active'}
+  ];
+  let themes=fallback;
+  try{
+    const res=await fetch('https://raw.githubusercontent.com/omahaksara/invitation/main/templates/registry.json',{cache:'no-store'});
+    if(!res.ok)throw new Error('Registry tema tidak tersedia');
+    const registry=await res.json();
+    const active=Array.isArray(registry.themes)?registry.themes.filter(item=>item&&item.status==='active'&&/^[a-z0-9][a-z0-9-]*$/.test(item.slug)&&typeof item.name==='string').map(item=>({slug:item.slug,name:item.name,status:item.status})):[];
+    if(active.length)themes=[...new Map(active.map(item=>[item.slug,item])).values()];
+  }catch(err){console.warn('Registry tema tidak dapat dimuat; memakai daftar tema aktif cadangan.',err)}
+  const categories={
+    'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral',
+    'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','sirein':'classic',
+    'aksara-nocturne':'dark','aurelia-noir':'dark',
+    'elegance':'modern'
+  };
+  const categoryLabels={floral:'Floral & romantis',classic:'Klasik & timeless',modern:'Modern & elegan',dark:'Dark luxury'};
+  const guestInput=document.getElementById('preview-guest-name');
+  const search=document.getElementById('catalog-search');
+  const filterWrap=document.getElementById('catalog-filters');
+  const count=document.getElementById('catalog-count');
+  let selectedFilter='all', query='';
+  function updateDemoLinks(){
+    const guest=(guestInput?.value||'').trim()||'Nama Tamu';
+    grid.querySelectorAll('.catalog-demo-link').forEach(link=>{
+      link.href='https://omahaksara.github.io/invitation/?c=demo-katalog&theme='+encodeURIComponent(link.dataset.theme||'')+'&to='+encodeURIComponent(guest);
     });
   }
-  themes.forEach(theme => {
-    const title = theme.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-    const previewGuestName = (document.getElementById('preview-guest-name')?.value || '').trim() || 'Nama Tamu';
-    const demo = 'https://omahaksara.github.io/invitation/?c=demo-katalog&theme=' + encodeURIComponent(theme) + '&to=' + encodeURIComponent(previewGuestName);
-    const waLink = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Halo Omah Aksara, saya tertarik Order Tema ' + title);
-    const card = document.createElement('div');
-    card.className = 'card';
-    const thumb = document.createElement('div');
-    thumb.className = 'thumb';
-    const badge = document.createElement('div');
-    badge.className = 'badge';
-    badge.textContent = 'Diskon 40%';
-    const frame = document.createElement('iframe');
-    frame.src = demo;
-    frame.loading = 'lazy';
-    frame.title = 'Pratinjau tema ' + title;
-    frame.tabIndex = -1;
-    frame.setAttribute('aria-hidden', 'true');
-    frame.referrerPolicy = 'no-referrer';
-    thumb.append(badge, frame);
-    const body = document.createElement('div');
-    body.className = 'card-body';
-    const heading = document.createElement('h3');
-    heading.className = 'card-title';
-    heading.textContent = title;
-    const price = document.createElement('div');
-    price.className = 'price';
-    price.innerHTML = '<span class="old">150K</span><span class="new">90K</span>';
-    const buttons = document.createElement('div');
-    buttons.className = 'card-buttons';
-    const demoButton = document.createElement('a');
-    demoButton.href = demo;
-    demoButton.target = '_blank';
-    demoButton.rel = 'noopener noreferrer';
-    demoButton.className = 'btn btn-outline catalog-demo-link';
-    demoButton.dataset.theme = theme;
-    demoButton.textContent = 'Demo';
-    const orderButton = document.createElement('a');
-    orderButton.href = waLink;
-    orderButton.target = '_blank';
-    orderButton.rel = 'noopener noreferrer';
-    orderButton.className = 'btn btn-solid';
-    orderButton.style.cssText = 'background:var(--shopee-orange); color:white;';
-    orderButton.textContent = 'Pesan';
-    buttons.append(demoButton, orderButton);
-    body.append(heading, price, buttons);
-    card.append(thumb, body);
-    grid.append(card);
+  function render(){
+    const shown=themes.filter(theme=>{
+      const cat=categories[theme.slug]||'modern';
+      return (selectedFilter==='all'||cat===selectedFilter)&&((theme.name+' '+theme.slug).toLowerCase().includes(query));
+    });
+    grid.replaceChildren();
+    if(!shown.length){
+      const empty=document.createElement('div');empty.className='catalog-empty';empty.textContent='Tema tidak ditemukan. Coba kata kunci atau kategori lain.';grid.append(empty);
+    }
+    shown.forEach(theme=>{
+      const title=theme.name;
+      const previewGuest=(guestInput?.value||'').trim()||'Nama Tamu';
+      const demo='https://omahaksara.github.io/invitation/?c=demo-katalog&theme='+encodeURIComponent(theme.slug)+'&to='+encodeURIComponent(previewGuest);
+      const waLink='https://wa.me/'+wa+'?text='+encodeURIComponent('Halo Omah Aksara, saya tertarik melihat dan memesan tema '+title+'.');
+      const card=document.createElement('article');card.className='card';
+      const thumb=document.createElement('div');thumb.className='thumb';
+      const badge=document.createElement('div');badge.className='badge';badge.textContent=categoryLabels[categories[theme.slug]||'modern'];
+      const frame=document.createElement('iframe');frame.src=demo;frame.loading='lazy';frame.title='Pratinjau visual '+title;frame.tabIndex=-1;frame.setAttribute('aria-hidden','true');frame.referrerPolicy='no-referrer';frame.setAttribute('loading','lazy');
+      thumb.append(badge,frame);
+      const body=document.createElement('div');body.className='card-body';
+      const heading=document.createElement('h3');heading.className='card-title';heading.textContent=title;
+      const meta=document.createElement('div');meta.className='card-meta';meta.textContent='Undangan digital · '+theme.slug;
+      const buttons=document.createElement('div');buttons.className='card-buttons';
+      const demoButton=document.createElement('a');demoButton.href=demo;demoButton.target='_blank';demoButton.rel='noopener noreferrer';demoButton.className='btn btn-outline catalog-demo-link';demoButton.dataset.theme=theme.slug;demoButton.textContent='Lihat demo ↗';
+      const orderButton=document.createElement('a');orderButton.href=waLink;orderButton.target='_blank';orderButton.rel='noopener noreferrer';orderButton.className='btn btn-solid';orderButton.textContent='Tanya / pesan';
+      buttons.append(demoButton,orderButton);body.append(heading,meta,buttons);card.append(thumb,body);grid.append(card);
+    });
+    if(count)count.textContent=shown.length+' dari '+themes.length+' tema aktif';
+  }
+  guestInput?.addEventListener('input',updateDemoLinks);
+  search?.addEventListener('input',()=>{query=search.value.trim().toLocaleLowerCase('id');render()});
+  filterWrap?.addEventListener('click',event=>{
+    const button=event.target.closest('[data-filter]');if(!button)return;
+    selectedFilter=button.dataset.filter;
+    filterWrap.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    render();
   });
+  render();
 }
 const loveQuotes = [
   "Menemukanmu adalah takdir terbaik dalam hidupku.",
