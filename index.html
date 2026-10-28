@@ -117,7 +117,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .catalog-empty{grid-column:1/-1;padding:38px 18px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
 @media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.thumb{aspect-ratio:4/4.7}.card-body{padding:17px}.catalog-tools{grid-template-columns:minmax(220px,1fr)}}
 @media(max-width:560px){.catalog-tools{grid-template-columns:1fr;gap:8px}.catalog-filters{margin-right:-16px;padding-right:16px}.thumb{aspect-ratio:4/5}.card-body{padding:11px}.card-buttons{grid-template-columns:1fr}.card-buttons .btn{min-height:38px}.badge{top:8px;left:8px;font-size:8px;padding:5px 8px}}
-@media(prefers-reduced-motion:reduce){.card,.menu-icon{transition:none!important}.card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.card,.menu-icon,.preview-loading{transition:none!important}.preview-loading:before{animation:none!important}.card:hover{transform:none}}
 
 .gallery { overflow-x: auto; position: relative; padding: 10px 16px; cursor: grab; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .gallery::-webkit-scrollbar { display: none; }
