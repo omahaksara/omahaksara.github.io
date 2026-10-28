@@ -104,7 +104,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .card{background:var(--white);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#d9c8ac}
 .thumb{aspect-ratio:4/5;overflow:hidden;position:relative;background:#eee7dc}
-.thumb iframe{display:block;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#f8f6f0}
+.thumb iframe{display:block;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#f8f6f0}.preview-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;text-align:center;background:linear-gradient(135deg,#f5efe5,#e9dfd0);color:#78664f;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:opacity .25s ease;pointer-events:none;z-index:1}.thumb.is-loaded .preview-loading{opacity:0}.thumb.is-error .preview-loading{opacity:1;background:#f3e9dd;color:#6b0505}.preview-loading:before{content:"";width:8px;height:8px;border-radius:50%;border:1px solid currentColor;border-right-color:transparent;display:inline-block;margin-right:8px;animation:preview-spin .8s linear infinite}.thumb.is-loaded .preview-loading:before{display:none}.thumb.is-error .preview-loading:before{display:none}@keyframes preview-spin{to{transform:rotate(360deg)}}
 .thumb:after{content:"";position:absolute;inset:0;border:1px solid #00000008;pointer-events:none}
 .badge{position:absolute;top:10px;left:10px;z-index:2;background:#fffdf0eF;color:#5d4a31;padding:6px 9px;border:1px solid #d8c3a5;border-radius:999px;font-size:9px;font-weight:600;letter-spacing:.04em}
 .card-body{padding:14px;display:flex;flex-direction:column;flex-grow:1}
@@ -366,6 +366,19 @@ async function loadKatalog(){
     'elegance':'modern'
   };
   const categoryLabels={floral:'Floral & romantis',classic:'Klasik & timeless',modern:'Modern & elegan',dark:'Dark luxury'};
+  const themeDescriptions={
+    'aksara-nocturne':'Nuansa malam yang dramatis dan intim',
+    'aksara-signature':'Elegan, editorial, dan berkarakter',
+    'aurelia-noir':'Kemewahan gelap dengan aksen berkelas',
+    'botanical-garden':'Romantis dengan sentuhan taman alami',
+    'elegance':'Minimalis modern yang bersih dan anggun',
+    'karsa':'Hangat, klasik, dan sarat makna',
+    'lumiere-bloom':'Lembut, floral, dan bercahaya',
+    'romantic-floral':'Romansa bunga dengan nuansa lembut',
+    'royal-vintage':'Klasik megah dengan rasa vintage',
+    'sirein':'Sederhana, tenang, dan personal',
+    'velvet-romance':'Romantis mewah dengan suasana sinematik'
+  };
   const guestInput=document.getElementById('preview-guest-name');
   const search=document.getElementById('catalog-search');
   const filterWrap=document.getElementById('catalog-filters');
@@ -394,11 +407,14 @@ async function loadKatalog(){
       const card=document.createElement('article');card.className='card';
       const thumb=document.createElement('div');thumb.className='thumb';
       const badge=document.createElement('div');badge.className='badge';badge.textContent=categoryLabels[categories[theme.slug]||'modern'];
+      const loading=document.createElement('div');loading.className='preview-loading';loading.textContent='Memuat pratinjau';
       const frame=document.createElement('iframe');frame.src=demo;frame.loading='lazy';frame.title='Pratinjau visual '+title;frame.tabIndex=-1;frame.setAttribute('aria-hidden','true');frame.referrerPolicy='no-referrer';frame.setAttribute('loading','lazy');
-      thumb.append(badge,frame);
+      frame.addEventListener('load',()=>{thumb.classList.add('is-loaded');thumb.classList.remove('is-error');loading.textContent='Pratinjau siap'});
+      frame.addEventListener('error',()=>{thumb.classList.add('is-error');loading.textContent='Pratinjau belum tersedia'});
+      thumb.append(badge,frame,loading);
       const body=document.createElement('div');body.className='card-body';
       const heading=document.createElement('h3');heading.className='card-title';heading.textContent=title;
-      const meta=document.createElement('div');meta.className='card-meta';meta.textContent='Undangan digital · '+theme.slug;
+      const meta=document.createElement('div');meta.className='card-meta';meta.textContent=themeDescriptions[theme.slug]||'Desain undangan digital yang dapat dipersonalisasi';
       const buttons=document.createElement('div');buttons.className='card-buttons';
       const demoButton=document.createElement('a');demoButton.href=demo;demoButton.target='_blank';demoButton.rel='noopener noreferrer';demoButton.className='btn btn-outline catalog-demo-link';demoButton.dataset.theme=theme.slug;demoButton.textContent='Lihat demo ↗';
       const orderButton=document.createElement('a');orderButton.href=waLink;orderButton.target='_blank';orderButton.rel='noopener noreferrer';orderButton.className='btn btn-solid';orderButton.textContent='Tanya / pesan';
