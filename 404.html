@@ -22,60 +22,75 @@
         <div class="sub">menyiapkan halaman<span class="dots"></span></div>
     </div>
 <script>
-let rawUrl = window.location.href;
-let sp = new URLSearchParams(window.location.search);
-let toParam = sp.get('to');
+(() => {
+  "use strict";
+  const baseUrl = "https://omahaksara.github.io/invitation";
+  const parts = window.location.pathname.split("/").filter(Boolean).map(part => {
+    try { return decodeURIComponent(part); } catch (_) { return part; }
+  });
+  const params = new URLSearchParams(window.location.search);
+  const systemPaths = new Set(["album", "lagu", "index.html", "404.html"]);
+  const client = (parts[0] || "").split("&")[0].split("?")[0];
+  const pathTheme = parts.length >= 2 ? parts[1] : "";
+  const pathGuest = parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "";
+  const guest = (params.get("to") || pathGuest || "").trim();
+  const queryTheme = params.get("theme") || "";
+  const themePattern = /^[a-z0-9][a-z0-9-]*$/i;
+  const requestedTheme = themePattern.test(pathTheme) ? pathTheme : (themePattern.test(queryTheme) ? queryTheme : "");
+  const names = document.getElementById("names");
+  const setStatus = message => { if (names) names.textContent = message; };
 
-// Ekstraksi parameter &to= jika formatnya unik
-if(!toParam && rawUrl.includes('&to=')){
-    toParam = rawUrl.split('&to=')[1].split('&')[0].split('#')[0];
-    toParam = decodeURIComponent(toParam.replace(/\+/g,' '));
-}
-if(!toParam && rawUrl.includes('?to=')){
-    let m = rawUrl.split('to=')[1];
-    if(m){ toParam = decodeURIComponent(m.split('&')[0].split('#')[0].replace(/\+/g,' ')); }
-}
+  if (!client || systemPaths.has(client) || !/^[a-z0-9][a-z0-9-]*$/i.test(client)) {
+    window.location.replace(baseUrl + "/");
+    return;
+  }
 
-// Ambil slug klien dari path URL (misal: /budi-ani -> budi-ani)
-const pathParts = window.location.pathname.split('/').filter(Boolean);
-let client = pathParts[0];
-
-// Filter jika path merupakan file/folder sistem shortener
-if (['album', 'lagu', 'index.html', '404.html'].includes(client)) {
-    client = null;
-}
-
-const baseUrl = 'https://omahaksara.github.io/invitation';
-
-if (!client) {
-    window.location.href = `${baseUrl}/`;
-} else {
-    client = client.split('&')[0].split('?')[0];
-    
-    // Cek data.json langsung ke repositori invitation yang baru
-    fetch(`https://omahaksara.github.io/invitation/clients/${client}/data.json`)
-    .then(res => {
-        if (!res.ok) throw new Error('Data tidak ditemukan');
-        return res.json();
+  const dataUrl = new URL("clients/" + encodeURIComponent(client) + "/data.json", baseUrl + "/");
+  dataUrl.searchParams.set("_v", "20261028a");
+  fetch(dataUrl, { cache: "no-store" })
+    .then(response => {
+      if (!response.ok) throw new Error("Data undangan tidak ditemukan.");
+      return response.json();
     })
-    .then(data => {
-        // Ambil nama panggilan mempelai dari skema baru
-        const g = data.couple?.groom?.nickname || '';
-        const b = data.couple?.bride?.nickname || '';
-        if(g && b) {
-            document.getElementById('names').textContent = `${g} & ${b}`;
+    .then(async data => {
+      if ((data.slug && data.slug !== client) || data.status !== "published" || data.demoMode === true) {
+        throw new Error("Undangan tidak tersedia untuk dibagikan.");
+      }
+      const groom = data.couple && data.couple.groom && data.couple.groom.nickname || "";
+      const bride = data.couple && data.couple.bride && data.couple.bride.nickname || "";
+      if (groom && bride) setStatus(groom + " & " + bride);
+
+      // A short URL may override the default theme only with a registered active theme.
+      let theme = "";
+      if (requestedTheme) {
+        try {
+          const registryResponse = await fetch(baseUrl + "/templates/registry.json?_v=20261028a", { cache: "no-store" });
+          if (registryResponse.ok) {
+            const registry = await registryResponse.json();
+            const candidate = requestedTheme === "royal" ? "royal-vintage" : requestedTheme;
+            const active = Array.isArray(registry.themes)
+              && registry.themes.some(item => item && item.slug === candidate && item.status === "active");
+            if (active) theme = candidate;
+          }
+        } catch (_) {
+          // On registry/network trouble, use the invitation's configured theme.
         }
-        
-        // Redirect mulus ke SPA utama invitation dengan membawa parameter tamu
-        setTimeout(() => {
-            const toQuery = toParam ? `&to=${encodeURIComponent(toParam)}` : '';
-            window.location.href = `${baseUrl}/?c=${client}${toQuery}`;
-        }, 500);
-     })
-    .catch(() => {
-        document.getElementById('names').textContent = 'Undangan Tidak Ditemukan';
+      }
+      const configured = data.theme === "royal" ? "royal-vintage" : data.theme;
+      const finalTheme = theme || configured;
+      const target = new URL(baseUrl + "/");
+      target.searchParams.set("c", client);
+      if (finalTheme && themePattern.test(finalTheme)) target.searchParams.set("theme", finalTheme);
+      if (guest) target.searchParams.set("to", guest);
+      window.location.replace(target.toString());
+    })
+    .catch(error => {
+      console.error("Gagal membuka link pendek Omah Aksara:", error);
+      setStatus("Undangan Tidak Ditemukan");
+      const sub = document.querySelector(".wrap .sub:last-child");
+      if (sub) sub.textContent = "Periksa kembali tautan undangan";
     });
-}
+})();
 </script>
 </body>
 </html>
