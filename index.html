@@ -77,12 +77,6 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .menu-item:hover .menu-icon { transform: translateY(-3px); background: var(--secondary); }
 .menu-item span { font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--muted); }
 
-.flash-sale-bar {
-  background: #fff5f3; border: 1px solid #ffded6; border-radius: 10px;
-  display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; margin: 10px 0 20px 0;
-}
-.flash-title { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--shopee-orange); }
-.timer-count { font-weight: 600; color: var(--white); background: #221f1c; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
 
 .section { padding: 40px 0; }
 .section-head { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline; border-left: 4px solid var(--primary); padding-left: 10px; }
@@ -135,11 +129,6 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .footer h2 { font-size: 24px; margin-bottom: 6px; }
 .footer p { color: var(--muted); font-size: 12px; }
 
-#notif {
-  position: fixed; bottom: 80px; left: 12px; background: rgba(255, 255, 255, 0.98);
-  padding: 10px 14px; border-radius: 10px; box-shadow: var(--shadow-lg); display: none; z-index: 999; font-size: 11px; border: 1px solid var(--line); max-width: 260px;
-}
-
 .floating-actions {
   position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px); padding: 10px 16px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
@@ -176,22 +165,22 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
         <div class="slide">
           <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Promo 1">
           <div class="slide-overlay">
-            <h2>Diskon Gede-Gedean!</h2>
-            <p>Undangan Digital Cinematic Spesial Bulan Ini.</p>
+            <h2>Undangan Digital yang Berkesan</h2>
+            <p>Desain personal untuk hari istimewa yang ingin dikenang.</p>
           </div>
         </div>
         <div class="slide">
           <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80" alt="Promo 2">
           <div class="slide-overlay">
-            <h2>Tema Aesthetic Pinterest</h2>
-            <p>Tampilan premium modern disukai milenial.</p>
+            <h2>Pilih Gaya yang Mewakili Cerita</h2>
+            <p>Jelajahi koleksi tema dengan karakter visual yang berbeda.</p>
           </div>
         </div>
         <div class="slide">
           <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80" alt="Promo 3">
           <div class="slide-overlay">
-            <h2>Proses Kilat 24 Jam</h2>
-            <p>Order praktis langsung jadi via WhatsApp.</p>
+            <h2>Lihat Demo Sebelum Memesan</h2>
+            <p>Coba pratinjau undangan dan konsultasikan kebutuhan melalui WhatsApp.</p>
           </div>
         </div>
       </div>
@@ -205,10 +194,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
       <a href="https://wa.me/6285796461157" target="_blank" class="menu-item"><div class="menu-icon">📦</div><span>Cek Order</span></a>
     </div>
 
-    <div class="flash-sale-bar">
-      <div class="flash-title">⚡ FLASH SALE HARI INI</div>
-      <div class="timer-count" id="countdown">02:00:00</div>
-    </div>
+    <div class="catalog-intro" style="margin:12px 0 0;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px">✨ Semua tema dapat dicoba melalui demo. Harga dan ketersediaan paket dikonfirmasi langsung saat konsultasi.</div>
   </div>
 </section>
 
@@ -259,10 +245,8 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
   <a class="floating-wa" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20tertarik%20tanya%20undangan" target="_blank">
     <svg viewBox="0 0 32 32"><path d="M19.11 17.2c-.27-.14-1.58-.78-1.82-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.16.18-.31.2-.58.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.13-.13.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.14-.6-1.45-.82-1.98-.22-.53-.45-.46-.6-.47-.16-.01-.34-.01-.53-.01s-.47.07-.71.34c-.24.27-.93.91-.93 2.21s.96 2.56 1.1 2.74c.13.18 1.88 2.87 4.55 4.02.64.28 1.14.45 1.53.58.64.2 1.22.17 1.68.1.51-.08 1.58-.64 1.8-1.25.22-.6.22-1.12.16-1.25-.07-.13-.24-.2-.51-.34z"/></svg>
   </a>
-  <a href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ambil%20Promo%20Diskon%20Hari%20Ini!" class="sticky-co-btn">Beli Sekarang / Ambil Promo ➔</a>
+  <a href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ingin%20konsultasi%20undangan%20digital." class="sticky-co-btn">Konsultasi / Pesan via WhatsApp ➔</a>
 </div>
-
-<div id="notif"></div>
 
 <script>
 const wa = "6285796461157";
@@ -490,34 +474,10 @@ function initSwipeGallery() {
   });
 }
 
-const names = ["Rian & Sela", "Dika & Amel", "Fahmi & Gita", "Putra & Nia", "Bintang & Ayu"];
-const templates = ["Royal Vintage", "Elegant Gold", "Modern Editorial", "Classic White"];
-
-setInterval(() => {
-  const n = names[Math.floor(Math.random()*names.length)];
-  const t = templates[Math.floor(Math.random()*templates.length)];
-  const notif = document.getElementById('notif');
-  notif.innerHTML = `🔥 <b>${n}</b> baru saja klaim diskon tema <b>${t}</b>`;
-  notif.style.display = 'block';
-  setTimeout(() => { notif.style.display = 'none'; }, 4000);
-}, 10000);
-
-function startCountdown() {
-  let time = 3600 * 2 + 14 * 60 + 52; 
-  const timerEl = document.getElementById('countdown');
-  setInterval(() => {
-    let hours = Math.floor(time / 3600);
-    let minutes = Math.floor((time % 3600) / 60);
-    let seconds = time % 60;
-    timerEl.innerText = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    if (time > 0) time--;
-  }, 1000);
-}
-
 loadKatalog();
 loadAlbum();
 loadDaftarLagu();
-startCountdown();
+
 </script>
 </body>
 </html>
