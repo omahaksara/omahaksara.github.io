@@ -344,6 +344,9 @@ async function loadKatalog(){
     {slug:'aurelia-noir',name:'Aurelia Noir',status:'active'},
     {slug:'botanical-garden',name:'Botanical Garden',status:'active'},
     {slug:'calestial',name:'Calestial Royale',status:'active'},
+    {slug:'groom',name:'Groom — Serenade Taupe',status:'active'},
+    {slug:'kinze',name:'Kinze',status:'active'},
+    {slug:'serena-ivory',name:'Serena Ivory',status:'active'},
     {slug:'elegance',name:'Elegance',status:'active'},
     {slug:'karsa',name:'Karsa',status:'active'},
     {slug:'lumiere-bloom',name:'Lumière Bloom',status:'active'},
@@ -361,9 +364,9 @@ async function loadKatalog(){
     if(active.length)themes=[...new Map(active.map(item=>[item.slug,item])).values()];
   }catch(err){console.warn('Registry tema tidak dapat dimuat; memakai daftar tema aktif cadangan.',err)}
   const categories={
-    'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral',
-    'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','sirein':'classic',
-    'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark',
+    'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral','serena-ivory':'floral',
+    'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','sirein':'classic','groom':'classic',
+    'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark','kinze':'dark',
     'elegance':'modern'
   };
   const categoryLabels={floral:'Floral & romantis',classic:'Klasik & timeless',modern:'Modern & elegan',dark:'Dark luxury'};
@@ -373,6 +376,9 @@ async function loadKatalog(){
     'aurelia-noir':'Kemewahan gelap dengan aksen berkelas',
     'botanical-garden':'Romantis dengan sentuhan taman alami',
     'calestial':'Kemegahan langit malam, bintang, dan aksen emas',
+    'groom':'Hangat, earthy, dan anggun dengan karakter editorial',
+    'kinze':'Editorial modern dengan palet navy dan emas',
+    'serena-ivory':'Ivory lembut dengan aksen mauve yang romantis',
     'elegance':'Minimalis modern yang bersih dan anggun',
     'karsa':'Hangat, klasik, dan sarat makna',
     'lumiere-bloom':'Lembut, floral, dan bercahaya',
