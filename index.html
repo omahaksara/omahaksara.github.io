@@ -410,7 +410,7 @@ async function loadKatalog(){
     shown.forEach(theme=>{
       const title=theme.name;
       const previewGuest=(guestInput?.value||'').trim()||'Nama Tamu';
-      const demo='https://omahaksara.github.io/invitation/?c=demo-katalog&theme='+encodeURIComponent(theme.slug)+'&to='+encodeURIComponent(previewGuest);
+      const demo='https://omahaksara.github.io/i/demo-katalog/'+encodeURIComponent(previewGuest)+'?theme='+encodeURIComponent(theme.slug);
       const waLink='https://wa.me/'+wa+'?text='+encodeURIComponent('Halo Omah Aksara, saya tertarik melihat dan memesan tema '+title+'.');
       const card=document.createElement('article');card.className='card';
       const thumb=document.createElement('div');thumb.className='thumb';
