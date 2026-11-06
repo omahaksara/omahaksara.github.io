@@ -30,9 +30,10 @@
   });
   const params = new URLSearchParams(window.location.search);
   const systemPaths = new Set(["album", "lagu", "index.html", "404.html"]);
-  const client = (parts[0] || "").split("&")[0].split("?")[0];
-  const pathTheme = parts.length >= 2 ? parts[1] : "";
-  const pathGuest = parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "";
+  const isPersonalizedShortPath = parts[0] === "i";
+  const client = (isPersonalizedShortPath ? parts[1] : (parts[0] || "")).split("&")[0].split("?")[0];
+  const pathTheme = isPersonalizedShortPath ? "" : (parts.length >= 2 ? parts[1] : "");
+  const pathGuest = isPersonalizedShortPath ? parts.slice(2).join(" ") : (parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "");
   const guest = (params.get("to") || pathGuest || "").trim();
   const queryTheme = params.get("theme") || "";
   const themePattern = /^[a-z0-9][a-z0-9-]*$/i;
