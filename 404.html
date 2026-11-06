@@ -54,7 +54,11 @@
       return response.json();
     })
     .then(async data => {
-      if ((data.slug && data.slug !== client) || data.status !== "published" || data.demoMode === true) {
+      const isDemoClient = client === "demo-katalog";
+      const invalidDemoMode = isDemoClient
+        ? (!isPersonalizedShortPath || data.demoMode !== true)
+        : data.demoMode === true;
+      if ((data.slug && data.slug !== client) || data.status !== "published" || invalidDemoMode) {
         throw new Error("Undangan tidak tersedia untuk dibagikan.");
       }
       const groom = data.couple && data.couple.groom && data.couple.groom.nickname || "";
