@@ -395,7 +395,7 @@ async function loadKatalog(){
   function updateDemoLinks(){
     const guest=(guestInput?.value||'').trim()||'Nama Tamu';
     grid.querySelectorAll('.catalog-demo-link').forEach(link=>{
-      link.href='https://omahaksara.github.io/invitation/?c=demo-katalog&theme='+encodeURIComponent(link.dataset.theme||'')+'&to='+encodeURIComponent(guest);
+      link.href='https://omahaksara.github.io/i/demo-katalog/'+encodeURIComponent(guest)+'?theme='+encodeURIComponent(link.dataset.theme||'');
     });
   }
   function render(){
