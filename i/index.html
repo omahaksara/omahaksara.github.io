@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>Membuka Undangan — Omah Aksara</title>
+  <meta name="theme-color" content="#f7f2e9">
+  <style>
+    :root{color-scheme:light}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px;background:#f7f2e9;color:#342d28;font-family:Georgia,serif}
+    main{text-align:center;max-width:360px}
+    .mark{font-size:30px;letter-spacing:.12em;color:#98764d}
+    h1{font-size:22px;font-weight:500;margin:18px 0 8px}
+    p{font:14px/1.6 system-ui,sans-serif;color:#746b62;margin:0}
+    a{display:inline-block;margin-top:20px;color:#805f3b;font:13px system-ui,sans-serif}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true">OA</div>
+    <h1>Menyiapkan undangan…</h1>
+    <p id="message">Mohon tunggu sebentar.</p>
+    <a id="manual" hidden>Jika tidak terbuka otomatis, ketuk di sini.</a>
+  </main>
+  <script>
+    (() => {
+      const parts = location.pathname.split("/").filter(Boolean);
+      const slug = parts[1] || "";
+      let guest = "";
+      try { guest = parts.length > 2 ? decodeURIComponent(parts.slice(2).join("/")) : ""; }
+      catch (_) { guest = ""; }
+
+      const message = document.getElementById("message");
+      const manual = document.getElementById("manual");
+      if (!/^[a-z0-9][a-z0-9-]*$/i.test(slug)) {
+        message.textContent = "Tautan undangan tidak valid. Periksa kembali alamat yang diberikan.";
+        return;
+      }
+
+      const destination = new URL("/invitation/", location.origin);
+      destination.searchParams.set("c", slug);
+      if (guest.trim()) destination.searchParams.set("to", guest.trim());
+
+      // Keep optional, explicitly supplied preview parameters such as theme.
+      const incoming = new URLSearchParams(location.search);
+      for (const [key, value] of incoming) {
+        if (key === "theme") destination.searchParams.set(key, value);
+      }
+
+      manual.href = destination.href;
+      manual.hidden = false;
+      location.replace(destination.href);
+    })();
+  </script>
+</body>
+</html>
