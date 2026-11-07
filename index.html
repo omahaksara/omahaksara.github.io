@@ -698,7 +698,11 @@ async function loadKatalog(){
     {slug:'sirein',name:'Sirein',status:'active'},
     {slug:'velvet-romance',name:'Velvet Romance',status:'active'},
 {slug:'kencana-jawa',name:'Kencana Jawa',category:'Adat Nusantara',description:'Nuansa tradisi Jawa yang anggun dengan sentuhan klasik.'},
-{slug:'lumina',name:'Lumina Gen-Z',category:'Modern Editorial',description:'Bento layout, polaroid, dan warna cerah untuk undangan modern.'}
+{slug:'lumina',name:'Lumina Gen-Z',category:'Modern Editorial',description:'Bento layout, polaroid, dan warna cerah untuk undangan modern.'},
+    {slug:'lume',name:'Lume',status:'active'},
+    {slug:'nox',name:'Nox',status:'active'},
+    {slug:'taupe',name:'Taupe',status:'active'},
+    {slug:'earty',name:'Earty',status:'active'}
 ];
   let themes=fallback;
   try{
@@ -713,7 +717,7 @@ async function loadKatalog(){
     'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','aksara-velora':'classic','sirein':'classic','groom':'classic',
     'sagara':'modern','atelier-editorial':'modern','lumina':'modern','kencana-jawa':'classic',
     'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark','kinze':'dark',
-    'elegance':'modern'
+    'elegance':'modern','lume':'floral','taupe':'classic','nox':'dark','earty':'dark'
   };
   const categoryLabels={floral:'Floral & romantis',classic:'Klasik & timeless',modern:'Modern & elegan',dark:'Dark luxury'};
   const themeDescriptions={
@@ -736,7 +740,11 @@ async function loadKatalog(){
     'romantic-floral':'Romansa bunga dengan nuansa lembut',
     'royal-vintage':'Klasik megah dengan rasa vintage',
     'sirein':'Sederhana, tenang, dan personal',
-    'velvet-romance':'Romantis mewah dengan suasana sinematik'
+    'velvet-romance':'Romantis mewah dengan suasana sinematik',
+    'lume':'Romantis lembut dengan nuansa beige, taupe, dan tipografi script',
+    'nox':'Terracotta hangat dengan karakter editorial dan suasana senja',
+    'taupe':'Minimalis premium dengan palet cream, taupe, dan bentuk arch',
+    'earty':'Dark luxury bernuansa navy dengan aksen emas klasik'
   };
   const guestInput=document.getElementById('preview-guest-name');
   const search=document.getElementById('catalog-search');
