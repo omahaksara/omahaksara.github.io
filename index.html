@@ -400,7 +400,7 @@ async function loadKatalog(){
   let selectedFilter='all', query='';
   function updateDemoLinks(){
     const guest=(guestInput?.value||'').trim()||'Nama Tamu';
-    const guestSegment=encodeURIComponent(guest.normalize('NFKC').replace(/\\s+/g,'-'));
+    const guestSegment=encodeURIComponent(guest.normalize('NFKC').replace(/\s+/g,'-'));
     grid.querySelectorAll('.catalog-demo-link, iframe[data-demo-preview]').forEach(link=>{
       const url='https://omahaksara.github.io/i/demo-katalog/'+guestSegment+'?theme='+encodeURIComponent(link.dataset.theme||'');
       if(link.tagName==='IFRAME') link.src=url;
@@ -419,7 +419,7 @@ async function loadKatalog(){
     shown.forEach(theme=>{
       const title=theme.name;
       const previewGuest=(guestInput?.value||'').trim()||'Nama Tamu';
-      const guestSegment=encodeURIComponent(previewGuest.normalize('NFKC').trim().replace(/\\s+/g,'-'));
+      const guestSegment=encodeURIComponent(previewGuest.normalize('NFKC').trim().replace(/\s+/g,'-'));
       const demo='https://omahaksara.github.io/i/demo-katalog/'+guestSegment+'?theme='+encodeURIComponent(theme.slug);
       const waLink='https://wa.me/'+wa+'?text='+encodeURIComponent('Halo Omah Aksara, saya tertarik melihat dan memesan tema '+title+'.');
       const card=document.createElement('article');card.className='card';
