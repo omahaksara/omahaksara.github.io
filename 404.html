@@ -51,7 +51,7 @@
   }
 
   const dataUrl = new URL("clients/" + encodeURIComponent(client) + "/data.json", baseUrl + "/");
-  dataUrl.searchParams.set("_v", "20261107-payment-theme-assets2");
+  dataUrl.searchParams.set("_v", "20261110-link-architecture-v1");
   fetch(dataUrl, { cache: "no-store" })
     .then(response => {
       if (!response.ok) throw new Error("Data undangan tidak ditemukan.");
@@ -73,7 +73,7 @@
       let theme = "";
       if (requestedTheme) {
         try {
-          const registryResponse = await fetch(baseUrl + "/templates/registry.json?_v=20261107-payment-theme-assets2", { cache: "no-store" });
+          const registryResponse = await fetch(baseUrl + "/templates/registry.json?_v=20261110-link-architecture-v1", { cache: "no-store" });
           if (registryResponse.ok) {
             const registry = await registryResponse.json();
             const candidate = requestedTheme === "royal" ? "royal-vintage" : requestedTheme;
