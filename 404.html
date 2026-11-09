@@ -33,11 +33,15 @@
   const isPersonalizedShortPath = parts[0] === "i";
   const client = (isPersonalizedShortPath ? parts[1] : (parts[0] || "")).split("&")[0].split("?")[0];
   const pathTheme = isPersonalizedShortPath ? "" : (parts.length >= 2 ? parts[1] : "");
-  const pathGuest = isPersonalizedShortPath ? parts.slice(2).join(" ") : (parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "");
+  const pathGuest = isPersonalizedShortPath
+    ? parts.slice(2).join(" ").replace(/-/g, " ")
+    : (parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "");
   const guest = (params.get("to") || pathGuest || "").trim();
   const queryTheme = params.get("theme") || "";
   const themePattern = /^[a-z0-9][a-z0-9-]*$/i;
-  const requestedTheme = themePattern.test(pathTheme) ? pathTheme : (themePattern.test(queryTheme) ? queryTheme : "");
+  const requestedTheme = client === "demo-katalog" && isPersonalizedShortPath
+    ? (themePattern.test(pathTheme) ? pathTheme : (themePattern.test(queryTheme) ? queryTheme : ""))
+    : "";
   const names = document.getElementById("names");
   const setStatus = message => { if (names) names.textContent = message; };
 
@@ -85,7 +89,7 @@
       const finalTheme = theme || configured;
       const target = new URL(baseUrl + "/");
       target.searchParams.set("c", client);
-      if (finalTheme && themePattern.test(finalTheme)) target.searchParams.set("theme", finalTheme);
+      if (isDemoClient && finalTheme && themePattern.test(finalTheme)) target.searchParams.set("theme", finalTheme);
       if (guest) target.searchParams.set("to", guest);
       window.location.replace(target.toString());
     })
