@@ -38,7 +38,7 @@
   const pathGuest = isPersonalizedShortPath
     ? parts.slice(2).join(" ").replace(/-/g, " ")
     : (parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "");
-  const guest = (params.get("to") || pathGuest || "").replace(/\\s+/g, " ").trim();
+  const guest = (params.get("to") || pathGuest || "").replace(/\s+/g, " ").trim();
   const queryTheme = params.get("theme") || "";
   const themePattern = /^[a-z0-9][a-z0-9-]*$/i;
   const requestedTheme = themePattern.test(pathTheme) ? pathTheme : (themePattern.test(queryTheme) ? queryTheme : "");
