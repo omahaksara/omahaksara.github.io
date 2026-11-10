@@ -33,8 +33,12 @@
   const isPersonalizedShortPath = parts[0] === "i";
   const client = (isPersonalizedShortPath ? parts[1] : (parts[0] || "")).split("&")[0].split("?")[0];
   const pathTheme = isPersonalizedShortPath ? "" : (parts.length >= 2 ? parts[1] : "");
-  const pathGuest = isPersonalizedShortPath ? parts.slice(2).join(" ") : (parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "");
-  const guest = (params.get("to") || pathGuest || "").trim();
+  // In /i/{client}/{guest-name}, hyphens are word separators for readable personal links.
+  // Decode each path segment first, then normalize whitespace before forwarding to the engine.
+  const pathGuest = isPersonalizedShortPath
+    ? parts.slice(2).join(" ").replace(/-/g, " ")
+    : (parts.length >= 3 ? parts.slice(2).join(" ").replace(/-/g, " ") : "");
+  const guest = (params.get("to") || pathGuest || "").replace(/\s+/g, " ").trim();
   const queryTheme = params.get("theme") || "";
   const themePattern = /^[a-z0-9][a-z0-9-]*$/i;
   const requestedTheme = themePattern.test(pathTheme) ? pathTheme : (themePattern.test(queryTheme) ? queryTheme : "");
@@ -47,7 +51,7 @@
   }
 
   const dataUrl = new URL("clients/" + encodeURIComponent(client) + "/data.json", baseUrl + "/");
-  dataUrl.searchParams.set("_v", "20261107-payment-theme-assets2");
+  dataUrl.searchParams.set("_v", "20261110-shortlink-guest-v2");
   fetch(dataUrl, { cache: "no-store" })
     .then(response => {
       if (!response.ok) throw new Error("Data undangan tidak ditemukan.");
@@ -69,7 +73,7 @@
       let theme = "";
       if (requestedTheme) {
         try {
-          const registryResponse = await fetch(baseUrl + "/templates/registry.json?_v=20261107-payment-theme-assets2", { cache: "no-store" });
+          const registryResponse = await fetch(baseUrl + "/templates/registry.json?_v=20261110-shortlink-guest-v2", { cache: "no-store" });
           if (registryResponse.ok) {
             const registry = await registryResponse.json();
             const candidate = requestedTheme === "royal" ? "royal-vintage" : requestedTheme;
