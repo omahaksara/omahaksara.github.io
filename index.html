@@ -523,7 +523,7 @@ async function loadPortofolio(){
       const title=document.createElement('h3');title.className='portfolio-title';title.textContent=item.title;
       const meta=document.createElement('div');meta.className='portfolio-meta';meta.textContent='Tema '+item.theme;
       const link=document.createElement('a');link.className='portfolio-link';
-      link.href='https://omahaksara.github.io/i/'+encodeURIComponent(item.slug);
+      link.href='https://omahaksara.github.io/i/'+encodeURIComponent(item.slug)+'?view=portfolio';
       link.target='_blank';link.rel='noopener noreferrer';link.textContent='Lihat undangan ↗';
       body.append(title,meta,link);card.append(cover,body);grid.append(card);
     });
