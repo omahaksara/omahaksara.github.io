@@ -487,6 +487,7 @@ function selectedAddons(){
     const input=document.querySelector('input[data-addon="'+key+'"]');
     if(!input?.checked)return;
     if(key==='rsvpEnvelope'&&selectedPackage!=='cepat')return;
+    if(key==='storyShort'&&selectedPackage==='signature')return;
     const quantity=key==='revision'?Math.max(1,Math.min(5,Number(document.querySelector('.addon-qty')?.value)||1)):1;
     chosen.push({key,name:addons[key].name,price:addons[key].price*quantity,quantity});
   });
@@ -500,6 +501,16 @@ function updateAddonAvailability(){
   if(included)core.checked=false;
   coreRow.classList.toggle('is-disabled',included);
   coreRow.querySelector('.addon-copy small').textContent=included?'Sudah termasuk di Paket '+packages[selectedPackage].name+'.':'Tambahan khusus Paket Cepat.';
+
+  const shortStory=document.querySelector('input[data-addon="storyShort"]');
+  const shortStoryRow=shortStory.closest('.addon-row');
+  const storyIncluded=selectedPackage==='signature';
+  shortStory.disabled=storyIncluded;
+  if(storyIncluded)shortStory.checked=false;
+  shortStoryRow.classList.toggle('is-disabled',storyIncluded);
+  shortStoryRow.querySelector('.addon-copy small').textContent=storyIncluded
+    ?'Cerita singkat sudah termasuk di Paket Signature. Pilih Love Story + Timeline jika ingin versi lebih lengkap.'
+    :'3 paragraf yang dibantu dirangkai dan disunting.';
 }
 function updateSummary(){
   updateAddonAvailability();
