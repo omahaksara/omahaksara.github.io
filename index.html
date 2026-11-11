@@ -496,7 +496,9 @@ function updateAddonAvailability(){
   const core=document.querySelector('input[data-addon="rsvpEnvelope"]');
   const coreRow=core.closest('.addon-row');
   const included=selectedPackage!=='cepat';
-  core.disabled=included;core.checked=false;coreRow.classList.toggle('is-disabled',included);
+  core.disabled=included;
+  if(included)core.checked=false;
+  coreRow.classList.toggle('is-disabled',included);
   coreRow.querySelector('.addon-copy small').textContent=included?'Sudah termasuk di Paket '+packages[selectedPackage].name+'.':'Tambahan khusus Paket Cepat.';
 }
 function updateSummary(){
