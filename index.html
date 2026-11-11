@@ -1,655 +1,596 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omah Aksara — Digital Invitation Studio</title>
-<meta name="description" content="Undangan digital cinematic, elegan, modern, dan premium untuk wedding, aqiqah, ulang tahun, dan acara spesial lainnya.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f3efe7">
+<meta name="description" content="Undangan pernikahan digital Omah Aksara. Pilih tema, sesuaikan layanan, dan hitung biaya secara transparan mulai Rp85.000.">
+<meta property="og:title" content="Omah Aksara — Cerita yang Abadi">
+<meta property="og:description" content="Undangan pernikahan digital yang dirangkai sesuai cerita kalian.">
+<title>Omah Aksara — Cerita yang Abadi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #fbfaf8;
-  --primary: #8b6b4a;
-  --primary-dark: #6f5235;
-  --secondary: #d8c3a5;
-  --text: #221f1c;
-  --muted: #6e665e;
-  --line: #eeeae4;
-  --white: #ffffff;
-  --shopee-orange: #ee4d2d;
-  --shadow: 0 10px 30px rgba(139,107,74,0.05);
-  --shadow-lg: 0 20px 45px rgba(0,0,0,0.06);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.5; }
-body::before {
-  content: ''; position: fixed; inset: 0;
-  background-image: url('https://www.transparenttextures.com/patterns/noise.png');
-  opacity: .02; pointer-events: none; z-index: 999;
-}
-h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: .01em; }
-.container { max-width: 1100px; margin: auto; padding: 0 16px; }
-
-.top-bar {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 16px; background: var(--white); border-bottom: 1px solid var(--line);
-  position: sticky; top: 0; z-index: 1000;
-}
-.brand-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--text); }
-.music-controls-wrapper { display: flex; align-items: center; gap: 8px; }
-#music-select {
-  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line);
-  font-size: 11px; background: var(--bg); color: var(--text); max-width: 120px; outline: none; cursor: pointer;
-}
-.music-btn {
-  background: var(--bg); border: 1px solid var(--line); padding: 6px 12px;
-  border-radius: 999px; font-size: 11px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500;
-}
-
-.hero { padding: 12px 0; background: var(--white); }
-.promo-slider { width: 100%; aspect-ratio: 16/7; overflow: hidden; border-radius: 12px; position: relative; box-shadow: var(--shadow); background: var(--line); }
-.slider-wrapper { display: flex; width: 300%; height: 100%; animation: slideAnimation 12s infinite ease-in-out; }
-.slide { width: 100%; height: 100%; position: relative; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
-.slide-overlay {
-  position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.6), transparent);
-  display: flex; flex-direction: column; justify-content: center; padding: 20px; color: var(--white);
-}
-.slide-overlay h2 { font-size: clamp(18px, 5vw, 32px); line-height: 1.2; margin-bottom: 4px; }
-.slide-overlay p { font-size: 11px; opacity: 0.9; }
-@keyframes slideAnimation {
-  0%, 25% { transform: translateX(0); }
-  33%, 58% { transform: translateX(-33.33%); }
-  66%, 91% { transform: translateX(-66.66%); }
-  100% { transform: translateX(0); }
-}
-
-.shopee-menu { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 20px 0 10px 0; text-align: center; }
-.menu-item { text-decoration: none; color: var(--text); display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.menu-icon {
-  width: 48px; height: 48px; background: #fdf6ed; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
-  box-shadow: 0 4px 10px rgba(139,107,74,0.1); border: 1px solid rgba(139,107,74,0.1); transition: transform 0.2s;
-}
-.menu-item:hover .menu-icon { transform: translateY(-3px); background: var(--secondary); }
-.menu-item span { font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--muted); }
-
-
-.section { padding: 40px 0; }
-.section-head { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: baseline; border-left: 4px solid var(--primary); padding-left: 10px; }
-.section-head h2 { font-size: 18px; font-weight: 600; font-family: 'Inter', sans-serif; }
-.section-head p { color: var(--primary); font-size: 12px; font-weight: 600; }
-
-.demo-name-control { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin: 0 0 18px; box-shadow: var(--shadow); }
-.demo-name-control label { display:block; font-size:12px; font-weight:600; margin-bottom:8px; }
-.demo-name-control input { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--text); background:#fffdf9; }
-.demo-name-control p { margin:7px 0 0; color:var(--muted); font-size:11px; line-height:1.6; }
-
-.catalog-intro{max-width:660px;color:var(--muted);font-size:13px;line-height:1.8;margin:-8px 0 20px}
-.catalog-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;margin:0 0 20px}
-.catalog-search{width:100%;min-width:0;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:#fffdf9;color:var(--text);font:inherit;font-size:13px;outline-offset:3px}
-.catalog-filters{display:flex;gap:7px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:thin}
-.filter-chip{border:1px solid var(--line);background:white;color:var(--muted);border-radius:999px;padding:9px 13px;font:inherit;font-size:11px;white-space:nowrap;cursor:pointer}
-.filter-chip[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:white}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{background:var(--white);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#d9c8ac}
-.thumb{aspect-ratio:4/5;overflow:hidden;position:relative;background:#eee7dc}
-.thumb iframe{display:block;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#f8f6f0}.preview-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;text-align:center;background:linear-gradient(135deg,#f5efe5,#e9dfd0);color:#78664f;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:opacity .25s ease;pointer-events:none;z-index:1}.thumb.is-loaded .preview-loading{opacity:0}.thumb.is-error .preview-loading{opacity:1;background:#f3e9dd;color:#6b0505}.preview-loading:before{content:"";width:8px;height:8px;border-radius:50%;border:1px solid currentColor;border-right-color:transparent;display:inline-block;margin-right:8px;animation:preview-spin .8s linear infinite}.thumb.is-loaded .preview-loading:before{display:none}.thumb.is-error .preview-loading:before{display:none}@keyframes preview-spin{to{transform:rotate(360deg)}}
-.thumb:after{content:"";position:absolute;inset:0;border:1px solid #00000008;pointer-events:none}
-.badge{position:absolute;top:10px;left:10px;z-index:2;background:#fffdf0eF;color:#5d4a31;padding:6px 9px;border:1px solid #d8c3a5;border-radius:999px;font-size:9px;font-weight:600;letter-spacing:.04em}
-.card-body{padding:14px;display:flex;flex-direction:column;flex-grow:1}
-.card-title{font:500 clamp(17px,2vw,22px)/1.15 'Cormorant Garamond',serif;margin:0 0 6px;white-space:normal}
-.card-meta{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
-.price{display:none}
-.card-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
-.card-buttons .btn{padding:11px 8px;font-size:11px;border-radius:8px;text-align:center;text-decoration:none;border:1px solid var(--line);color:var(--text);font-weight:600;min-height:40px;display:flex;align-items:center;justify-content:center}
-.card-buttons .btn-solid{background:var(--text)!important;color:#fff!important;border-color:var(--text)}
-.catalog-empty{grid-column:1/-1;padding:38px 18px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
-
-/* Portofolio karya klien */
-.portfolio-intro{max-width:660px;color:var(--muted);font-size:13px;line-height:1.8;margin:-8px 0 20px}
-.portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.portfolio-card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
-.portfolio-cover{aspect-ratio:4/3;background:linear-gradient(135deg,#eee5d8,#d9c8ac);overflow:hidden}
-.portfolio-cover img{width:100%;height:100%;object-fit:cover;display:block}
-.portfolio-body{padding:14px;display:flex;flex-direction:column;flex:1}
-.portfolio-title{font:500 clamp(18px,2vw,23px)/1.15 'Cormorant Garamond',serif;margin:0 0 6px}
-.portfolio-meta{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
-.portfolio-link{margin-top:auto;display:flex;align-items:center;justify-content:center;min-height:40px;padding:10px;border-radius:8px;background:var(--text);color:#fff;text-decoration:none;font-size:11px;font-weight:600}
-.portfolio-empty{grid-column:1/-1;padding:24px;text-align:center;color:var(--muted);font-size:12px}
-@media(min-width:760px){.portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.portfolio-body{padding:17px}}
-@media(max-width:560px){.portfolio-grid{grid-template-columns:1fr 1fr;gap:10px}.portfolio-body{padding:11px}.portfolio-link{font-size:10px;min-height:38px}}
-@media(prefers-reduced-motion:reduce){.portfolio-card{transition:none!important}}
-
-@media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.thumb{aspect-ratio:4/4.7}.card-body{padding:17px}.catalog-tools{grid-template-columns:minmax(220px,1fr)}}
-@media(max-width:560px){.catalog-tools{grid-template-columns:1fr;gap:8px}.catalog-filters{margin-right:-16px;padding-right:16px}.thumb{aspect-ratio:4/5}.card-body{padding:11px}.card-buttons{grid-template-columns:1fr}.card-buttons .btn{min-height:38px}.badge{top:8px;left:8px;font-size:8px;padding:5px 8px}}
-@media(prefers-reduced-motion:reduce){.card,.menu-icon,.preview-loading{transition:none!important}.preview-loading:before{animation:none!important}.card:hover{transform:none}}
-
-.gallery { overflow-x: auto; position: relative; padding: 10px 16px; cursor: grab; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.gallery::-webkit-scrollbar { display: none; }
-.gallery-track { display: flex; gap: 12px; width: max-content; user-select: none; }
-.gallery-item { width: 140px; height: 190px; overflow: hidden; border-radius: 10px; flex-shrink: 0; box-shadow: var(--shadow); position: relative; background: #f3ede4; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-.gallery-overlay {
-  position: absolute; inset: 0; background: rgba(34, 31, 28, 0.85);
-  display: flex; align-items: center; justify-content: center; padding: 10px; text-align: center; opacity: 0; transition: opacity 0.3s ease;
-}
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay p { color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; line-height: 1.3; }
-
-.footer { padding: 40px 16px 100px 16px; text-align: center; border-top: 1px solid var(--line); background: var(--white); }
-.footer h2 { font-size: 24px; margin-bottom: 6px; }
-.footer p { color: var(--muted); font-size: 12px; }
-
-
-.floating-actions {
-  position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px); padding: 10px 16px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-  display: flex; justify-content: space-between; align-items: center; z-index: 998; border-top: 1px solid var(--line);
-}
-.floating-wa { width: 40px; height: 40px; border-radius: 8px; background: #25D366; display: flex; align-items: center; justify-content: center; }
-.floating-wa svg { width: 20px; fill: white; }
-.sticky-co-btn {
-  flex-grow: 1; margin-left: 10px; background: var(--shopee-orange); color: white;
-  text-decoration: none; text-align: center; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 600;
-}
-
-/* OMAH AKSARA — EDITORIAL LUXURY CATALOG */
-:root{--bg:#f2eee7;--primary:#b99b70;--primary-dark:#8e714c;--secondary:#d8c5a7;--text:#24231f;--muted:#77736a;--line:#ded8ce;--white:#faf8f3;--shadow:0 14px 36px rgba(35,31,25,.07);--shadow-lg:0 24px 60px rgba(25,23,20,.13)}
-body{background:#f2eee7;color:#24231f;font-family:Inter,sans-serif}
-body::before{opacity:.035}
-.top-bar{background:rgba(25,25,23,.97);color:#f7f2e9;border:0;padding:15px clamp(18px,5vw,76px);min-height:76px}
-.brand-lockup{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
-.brand-mark{width:37px;height:37px;border:1px solid #b99b70;border-radius:50%;display:grid;place-items:center;color:#d8c5a7;font:italic 16px 'Cormorant Garamond',serif}
-.brand-name{font:600 19px 'Cormorant Garamond',serif;letter-spacing:.03em;color:#f7f2e9}
-.brand-name>span{color:#c4a77d}.brand-name small{display:block;font:8px Inter,sans-serif;letter-spacing:.2em;color:#a8a197;margin-top:2px}
-.top-nav{display:flex;gap:clamp(14px,3vw,38px);align-items:center;margin-left:auto;margin-right:clamp(15px,4vw,54px)}
-.top-nav a{color:#e5ded2;text-decoration:none;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transition:color .25s}
-.top-nav a:hover{color:#c9aa7c}
-.music-controls-wrapper{gap:6px}.music-controls-wrapper select,.music-btn{background:transparent;color:#e5ded2;border-color:#514c43;font-size:10px}.music-controls-wrapper select{max-width:108px}.music-btn{padding:7px 10px}
-.hero-editorial{position:relative;min-height:min(760px,calc(100svh - 76px));background:#252521;color:#f6f0e6;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:clamp(55px,8vw,110px) clamp(22px,8vw,120px) 80px;gap:clamp(24px,6vw,90px);overflow:hidden}
-.hero-editorial:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(185,155,112,.12),transparent 45%);pointer-events:none}
-.hero-copy{position:relative;z-index:2;max-width:600px}.hero-kicker,.section-kicker{font-size:9px;letter-spacing:.24em;font-weight:600;color:#bda27b}.hero-kicker{display:flex;align-items:center;gap:12px}.hero-kicker span{width:30px;height:1px;background:#bda27b}
-.hero-copy h1{font-size:clamp(58px,8vw,112px);line-height:.86;letter-spacing:-.045em;font-weight:400;margin:32px 0 25px}.hero-copy h1 em,.catalog-heading h2 em,.experience-band h2 em{font-weight:400;color:#c4a77d}
-.hero-copy>p{max-width:390px;color:#c5bfb4;font-size:13px;line-height:1.9}
-.hero-actions{display:flex;align-items:center;gap:24px;margin-top:34px;flex-wrap:wrap}.hero-primary{display:inline-flex;gap:28px;align-items:center;padding:15px 19px;background:#c4a77d;color:#24231f;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.hero-primary span{font-size:16px}.hero-secondary{color:#d5cfc4;text-decoration:none;font-size:10px;border-bottom:1px solid #777064;padding-bottom:5px}
-.hero-footnote{display:flex;gap:24px;margin-top:68px;color:#8f897e;font-size:8px;letter-spacing:.18em}.hero-footnote span:first-child{color:#c4a77d}
-.hero-visual{height:clamp(390px,48vw,590px);position:relative;max-width:510px;width:100%;justify-self:end}
-.hero-image-main{position:absolute;inset:0 9% 7% 8%;background:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85') center/cover;filter:saturate(.72);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
-.hero-image-main:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,18,15,.48))}
-.hero-image-inset{position:absolute;width:36%;height:39%;right:0;bottom:0;background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=85') center/cover;border:7px solid #252521;filter:saturate(.72)}
-.hero-image-caption{position:absolute;left:0;bottom:14%;display:flex;flex-direction:column;color:#fff;text-shadow:0 2px 14px #0008;gap:3px}.hero-image-caption span{font-size:8px;letter-spacing:.22em}.hero-image-caption strong{font:italic 34px 'Cormorant Garamond',serif}.hero-vertical-note{position:absolute;right:-16px;top:10%;writing-mode:vertical-rl;font-size:8px;letter-spacing:.25em;color:#bda27b}
-.hero-bottomline{position:absolute;left:clamp(22px,8vw,120px);right:clamp(22px,8vw,120px);bottom:25px;display:flex;justify-content:space-between;color:#8d877d;font-size:8px;letter-spacing:.2em}
-#catalog{padding:clamp(65px,9vw,115px) 0 85px;background:#f2eee7}
-#catalog .container{max-width:1320px;padding:0 clamp(18px,5vw,72px)}
-.catalog-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:20px}
-.catalog-heading h2{font:400 clamp(43px,6vw,76px)/.92 'Cormorant Garamond',serif;letter-spacing:-.025em;margin-top:18px;color:#292821}
-.catalog-heading h2 em{color:#a58a64}
-#catalog-count{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#8e795b;padding-bottom:7px;white-space:nowrap}
-.catalog-intro{max-width:570px;color:#77736a;font-size:12px;line-height:1.9;margin:0 0 30px}
-.demo-name-control{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#e9e3d9;border:1px solid #ded6c9;border-radius:2px;padding:12px 15px;box-shadow:none;margin-bottom:18px}
-.demo-name-control label{font:600 9px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;margin:0;color:#6f624e}
-.demo-name-control input{width:min(260px,100%);padding:9px 11px;border:1px solid #d4cabb;border-radius:0;background:#f8f5ef;font-size:11px}
-.demo-name-control p{font-size:10px;margin:0;color:#81796d}
-.catalog-tools{grid-template-columns:minmax(190px,290px) 1fr;gap:18px;align-items:start;margin-bottom:28px}
-.catalog-search{border:0;border-bottom:1px solid #bdb4a6;border-radius:0;background:transparent;padding:12px 2px;font-size:11px;color:#282720}
-.catalog-filters{gap:6px;padding:0 0 8px;justify-content:flex-end}
-.filter-chip{background:transparent;border:1px solid #d4ccbf;color:#6f6a60;border-radius:0;padding:9px 13px;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
-.filter-chip[aria-pressed=true]{background:#292821;border-color:#292821;color:#f6f0e6}
-.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 18px}
-.card{position:relative;background:#faf8f3;border:0;border-radius:0;box-shadow:none;overflow:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-.card:hover{transform:translateY(-5px);box-shadow:0 22px 48px #2a251b12;border-color:transparent}
-.thumb{aspect-ratio:4/5;background:#ded7cb}
-.thumb iframe{width:200%;height:200%}
-.badge{top:13px;left:13px;border-radius:0;background:#262621eF;color:#f4eddf;border:0;padding:8px 10px;font-size:8px;letter-spacing:.12em;text-transform:uppercase}
-.card-body{padding:17px 2px 4px;background:transparent}
-.card-title{font:500 25px/1.05 'Cormorant Garamond',serif;color:#292821;margin-bottom:7px}
-.card-meta{font-size:9px;letter-spacing:.045em;text-transform:none;color:#77736a;line-height:1.6;min-height:30px;margin-bottom:15px}
-.card-buttons{gap:8px}
-.card-buttons .btn{border-radius:0;min-height:42px;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
-.card-buttons .btn-outline{background:transparent;border-color:#b9ad9b}
-.card-buttons .btn-solid{background:#292821!important;border-color:#292821}
-.catalog-empty{background:#faf8f3;border:1px dashed #c9c0b3;border-radius:0}
-.experience-band{background:#292821;color:#f6f0e6;padding:clamp(65px,9vw,110px) clamp(20px,7vw,100px)}
-.experience-inner{max-width:1180px;margin:auto}.experience-band h2{font:400 clamp(43px,6vw,72px)/.98 'Cormorant Garamond',serif;margin:20px 0 48px}.experience-points{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;border-top:1px solid #514c42;padding-top:23px}.experience-points>div{display:grid;grid-template-columns:30px 1fr;column-gap:12px;align-content:start}.experience-points b{grid-row:span 2;color:#c4a77d;font:italic 16px 'Cormorant Garamond',serif}.experience-points strong{font:500 17px 'Cormorant Garamond',serif}.experience-points p{grid-column:2;color:#b7b0a4;font-size:11px;line-height:1.8;margin-top:7px}
-.section:not(#catalog){padding:65px 0}.section-head{border:0;padding:0;margin:0 0 18px}.section-head h2{font:400 34px 'Cormorant Garamond',serif}.section-head p{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#987e59}
-.gallery{padding:10px clamp(18px,5vw,72px)}.gallery-item{border-radius:0}
-.footer{background:#1f201d;color:#f4eee4;border:0;padding:45px 16px 110px}.footer h2{font:500 34px 'Cormorant Garamond',serif}.footer p{color:#a8a196;font-size:10px;letter-spacing:.08em}
-.floating-actions{background:rgba(31,32,29,.94);border-color:#4b4941;backdrop-filter:blur(16px);padding:10px clamp(16px,5vw,72px)}
-.floating-wa{border-radius:50%;width:39px;height:39px}.sticky-co-btn{background:#c4a77d;color:#24231f;border-radius:0;font-size:10px;letter-spacing:.1em;text-transform:uppercase;max-width:350px}
-@media(min-width:1100px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px}}
-@media(max-width:760px){.top-bar{padding:12px 16px;min-height:65px}.top-nav{display:none}.brand-mark{width:32px;height:32px}.brand-name{font-size:17px}.hero-editorial{grid-template-columns:1fr;min-height:auto;padding:65px 22px 65px;gap:35px}.hero-copy h1{font-size:clamp(62px,15vw,90px);margin:26px 0 19px}.hero-footnote{margin-top:38px}.hero-visual{height:390px;max-width:100%;width:90%;justify-self:center}.hero-bottomline{bottom:18px;font-size:7px}.catalog-heading{align-items:start}.catalog-heading h2{font-size:53px}.catalog-tools{grid-template-columns:1fr;gap:12px}.catalog-filters{justify-content:flex-start;margin-right:-18px;padding-right:18px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.card-title{font-size:22px}.card-body{padding-top:13px}.experience-points{grid-template-columns:1fr;gap:22px}.experience-band h2{margin-bottom:30px}.demo-name-control{align-items:flex-start;flex-direction:column}.demo-name-control input{width:100%}.demo-name-control p{line-height:1.6}.floating-actions{padding:9px 14px}.sticky-co-btn{font-size:9px}}
-@media(max-width:380px){.music-controls-wrapper select{max-width:78px}.music-btn{padding:7px}.catalog-heading h2{font-size:45px}.grid{gap:20px 10px}.card-title{font-size:20px}.card-buttons .btn{font-size:8px;padding:9px 5px}}
-@media(prefers-reduced-motion:reduce){.card,.top-nav a{transition:none!important}.hero-editorial *{scroll-behavior:auto}}
-
-
-/* FIRST SCREEN CLARITY — jelaskan fungsi halaman sejak kunjungan pertama */
-.hero-copy h1{font-size:clamp(52px,7vw,92px);line-height:.94;letter-spacing:-.025em;margin:25px 0 20px}
-.hero-copy>p{max-width:470px;font-size:14px;line-height:1.95;color:#d2ccc1}
-.hero-kicker{font-size:9px;letter-spacing:.16em;line-height:1.7}
-.hero-howto{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:30px;color:#d8d0c2;font-size:9px;letter-spacing:.06em}
-.hero-howto span{display:flex;align-items:center;gap:7px;white-space:nowrap}.hero-howto b{color:#c4a77d;font:italic 16px 'Cormorant Garamond',serif}.hero-howto i{width:22px;height:1px;background:#71695d;display:block}
-.hero-footnote{margin-top:34px;flex-wrap:wrap;line-height:1.7}
-.hero-bottomline{left:clamp(22px,8vw,120px);right:clamp(22px,8vw,120px);bottom:18px;display:flex;align-items:center;gap:18px;text-decoration:none;color:#bdb5a8;border-top:1px solid #ffffff24;padding-top:13px;letter-spacing:.12em}
-.scroll-prompt{display:inline-flex;align-items:center;gap:12px;color:#e8d8bb;font-weight:700}.scroll-prompt b{font-size:19px;animation:oa-scroll-nudge 1.5s ease-in-out infinite}
-@keyframes oa-scroll-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-@media(max-width:760px){.hero-editorial{grid-template-columns:1fr;gap:24px;padding:48px 22px 78px;min-height:auto}.hero-copy{max-width:none}.hero-copy h1{font-size:clamp(48px,13vw,72px);margin:22px 0 17px}.hero-copy>p{font-size:13px;max-width:560px}.hero-actions{gap:16px;margin-top:24px}.hero-primary{padding:14px 15px;gap:15px}.hero-howto{margin-top:24px;gap:9px}.hero-howto i{width:12px}.hero-footnote{margin-top:25px;gap:12px}.hero-visual{height:clamp(250px,72vw,390px);max-width:none;width:100%;justify-self:stretch}.hero-image-main{inset:0 10% 6% 5%}.hero-image-inset{border-width:5px}.hero-image-caption{left:2%;bottom:12%}.hero-image-caption strong{font-size:27px}.hero-vertical-note{right:-2px}.hero-bottomline{left:22px;right:22px;bottom:17px;flex-direction:column;align-items:flex-start;gap:5px;font-size:7px}.scroll-prompt{font-size:9px}}
-@media(prefers-reduced-motion:reduce){.scroll-prompt b{animation:none}}
+:root{--paper:#f3efe7;--paper-2:#ebe4d8;--white:#fffdf8;--ink:#292820;--muted:#777267;--line:#ded6c9;--gold:#b49a70;--gold-dark:#8d7048;--dark:#292a25;--green:#207a4b;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif;--shadow:0 16px 42px rgba(48,39,25,.08);--radius:4px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input{font:inherit}
+button{cursor:pointer}
+img,iframe{max-width:100%}
+:focus-visible{outline:2px solid var(--gold-dark);outline-offset:3px}
+.container{width:min(1240px,calc(100% - 44px));margin-inline:auto}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold-dark);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.eyebrow:before{content:"";width:28px;height:1px;background:currentColor}
+.section{padding:88px 0}
+.section-head{max-width:700px;margin-bottom:30px}
+.section-head h2{font:400 clamp(36px,5.5vw,64px)/1.02 var(--serif);letter-spacing:-.035em;margin:14px 0;color:var(--ink)}
+.section-head h2 em{color:var(--gold-dark);font-weight:400}
+.section-head p{max-width:610px;margin:14px 0 0;color:var(--muted);font-size:13px;line-height:1.85}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:13px 20px;border:1px solid transparent;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#f8f2e7}
+.btn-dark:hover{background:#46453d}
+.btn-light{background:transparent;border-color:#bcb19f;color:var(--ink)}
+.btn-gold{background:#c6aa7d;color:#282720}
+.btn-wa{background:var(--green);color:white}
+.site-header{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(22px,calc((100vw - 1240px)/2));background:#252620;color:#f4eee4}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:#d7bd92;font:italic 15px var(--serif)}
+.brand-name{font:600 19px var(--serif);letter-spacing:.02em}
+.brand-name span{color:#c8ad82}
+.brand-name small{display:block;font:8px var(--sans);letter-spacing:.2em;color:#aaa397;margin-top:1px}
+.header-nav{display:flex;gap:25px;align-items:center}
+.header-nav a{color:#ded7ca;text-decoration:none;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.header-nav a:hover{color:#d7bd92}
+.header-contact{font-size:9px;color:#e3d4b8;text-decoration:none;border-bottom:1px solid #9b8664;padding-bottom:4px;letter-spacing:.1em;text-transform:uppercase}
+.hero{background:#292a25;color:#f5efe5;position:relative;overflow:hidden;padding:70px 0 62px}
+.hero:before{content:"";position:absolute;width:620px;height:620px;border:1px solid #b49a7028;border-radius:50%;right:-180px;top:-280px;box-shadow:0 0 0 44px #b49a700b,0 0 0 90px #b49a7008;pointer-events:none}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:clamp(35px,7vw,90px)}
+.hero-copy{max-width:610px}
+.promo-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #b49a7070;border-radius:99px;padding:7px 12px;color:#dfc89f;font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.promo-pill:before{content:"✦";font-size:10px}
+.hero h1{font:400 clamp(48px,6.6vw,82px)/.98 var(--serif);letter-spacing:-.045em;margin:24px 0 20px}
+.hero h1 em{color:#c5a77b;font-weight:400}
+.hero-copy>p{max-width:475px;color:#c9c2b6;font-size:13px;line-height:1.9;margin:0}
+.hero-price{display:flex;align-items:baseline;gap:10px;margin:28px 0 22px;color:#d8c5a4;font-size:11px}
+.hero-price strong{font:600 clamp(36px,5vw,54px)/1 var(--serif);color:#dfc28f;letter-spacing:-.03em}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-actions .btn{min-width:230px}
+.hero-link{color:#d5cbb9;text-decoration:none;font-size:10px;border-bottom:1px solid #777064;padding-bottom:5px}
+.hero-visual{position:relative;max-width:500px;width:100%;justify-self:end;padding:14px;border:1px solid #b49a7070;background:#ffffff08;box-shadow:0 25px 70px #0005}
+.hero-visual:before{content:"";position:absolute;inset:25px -12px -12px 25px;border:1px solid #b49a7040;pointer-events:none}
+.hero-visual iframe{position:relative;display:block;width:100%;height:510px;border:0;background:#e9e1d4}
+.hero-caption{position:absolute;left:28px;bottom:26px;color:white;text-shadow:0 2px 12px #0008;font:italic 17px var(--serif);pointer-events:none}
+.hero-note{position:absolute;right:-27px;top:24px;writing-mode:vertical-rl;color:#c8b28e;font-size:8px;letter-spacing:.22em}
+.hero-foot{display:flex;gap:18px;flex-wrap:wrap;margin-top:32px;color:#9f998e;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+.trustbar{background:#e8e0d2;border-bottom:1px solid #ded4c4;border-top:1px solid #ded4c4}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:19px 0}
+.trust-item{display:flex;align-items:center;gap:10px;color:#615b50;font-size:10px;font-weight:600}
+.trust-check{width:20px;height:20px;flex:0 0 20px;display:grid;place-items:center;border:1px solid #b59a70;border-radius:50%;color:#8d7048;font-size:11px}
+#themes{background:var(--paper)}
+.theme-toolbar{display:grid;grid-template-columns:minmax(210px,280px) 1fr;gap:18px;align-items:start;margin:28px 0 18px}
+.search-wrap{position:relative}
+.search-wrap:before{content:"⌕";position:absolute;left:3px;top:5px;color:#897b64;font-size:22px}
+.theme-search{width:100%;border:0;border-bottom:1px solid #bdb3a4;background:transparent;padding:12px 4px 12px 27px;color:var(--ink);font-size:11px;outline-offset:4px}
+.theme-filters{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap}
+.filter-pill{border:1px solid #d2c9bb;background:transparent;color:#716b60;border-radius:99px;padding:9px 13px;font-size:9px;letter-spacing:.06em;white-space:nowrap}
+.filter-pill[aria-pressed=true]{background:var(--dark);border-color:var(--dark);color:#fff9ef}
+.theme-count{color:#8b806e;font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 15px}
+.theme-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 20px}
+.theme-card{min-width:0;position:relative}
+.theme-card.is-selected .theme-thumb{outline:3px solid var(--gold);outline-offset:3px}
+.theme-thumb{position:relative;aspect-ratio:4/5;overflow:hidden;background:#e4dbcd;border:1px solid #d7cdbd;transition:outline .2s}
+.theme-thumb iframe{position:absolute;inset:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#f8f5ef}
+.theme-thumb:after{content:"";position:absolute;inset:0;border:1px solid #fff6;pointer-events:none}
+.theme-label{position:absolute;z-index:2;left:11px;top:11px;background:#292a25eF;color:#f6efe3;padding:6px 9px;font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.theme-selected-label{position:absolute;z-index:3;right:10px;top:10px;background:#c9ae80;color:#292820;padding:6px 9px;font-size:8px;font-weight:700;letter-spacing:.08em}
+.theme-info{padding:15px 1px 0}
+.theme-info h3{font:500 24px/1.1 var(--serif);margin:0 0 6px}
+.theme-info p{min-height:34px;color:var(--muted);font-size:10px;line-height:1.65;margin:0 0 14px}
+.theme-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.theme-actions button,.theme-actions a{min-height:40px;padding:9px 8px;font-size:8px;letter-spacing:.07em}
+.theme-actions .choose-theme{border:1px solid var(--dark);background:var(--dark);color:white}
+.theme-actions .choose-theme[aria-pressed=true]{background:#c5ad85;border-color:#c5ad85;color:#292820}
+.theme-actions .see-demo{display:flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #c7bdad;color:#575246}
+.theme-empty{grid-column:1/-1;padding:38px 18px;text-align:center;border:1px dashed #c9c0b3;color:var(--muted);font-size:12px}
+.demo-section{background:#e9e2d7}
+.demo-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:35px;align-items:start}
+.demo-copy{position:sticky;top:95px}
+.demo-frame-shell{background:#fffdf8;border:1px solid #cfc4b3;padding:10px;box-shadow:var(--shadow)}
+.demo-frame-shell iframe{display:block;width:100%;height:600px;border:0;background:#f5f0e8}
+.demo-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:15px}
+.demo-caption{color:var(--muted);font-size:10px}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ded6c9;border:1px solid #ded6c9}
+.feature{background:#faf8f3;padding:25px 22px;min-height:170px}
+.feature-icon{font-size:21px;color:#9a8059}
+.feature h3{font:500 21px var(--serif);margin:12px 0 6px}
+.feature p{font-size:10px;line-height:1.75;color:var(--muted);margin:0}
+.feature-note{margin-top:18px;padding:15px 18px;background:#e9e1d4;border-left:2px solid var(--gold);color:#675f52;font-size:10px;line-height:1.8}
+.config-section{background:#e9e2d7}
+.config-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.9fr);gap:30px;align-items:start}
+.config-main{min-width:0}
+.config-step{background:#faf8f3;border:1px solid #ded6c9;padding:23px;margin-bottom:16px}
+.step-kicker{color:#9b8058;font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.config-step h3{font:500 24px var(--serif);margin:6px 0 15px}
+.selected-theme-row{display:flex;align-items:center;gap:14px}
+.selected-theme-thumb{width:58px;height:74px;overflow:hidden;background:#e7dfd2;border:1px solid #d4c8b5;flex:0 0 auto}
+.selected-theme-thumb iframe{width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none}
+.selected-theme-copy{flex:1;min-width:0}
+.selected-theme-copy strong{display:block;font:500 19px var(--serif)}
+.selected-theme-copy span{font-size:10px;color:var(--muted)}
+.text-link{border:0;background:transparent;color:#8a704b;text-decoration:underline;text-underline-offset:3px;font-size:10px;white-space:nowrap}
+.package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.package-card{display:block;text-align:left;width:100%;border:1px solid #d8d0c4;background:#fffdf8;color:var(--ink);padding:15px 13px;min-width:0;transition:background .2s,border-color .2s}
+.package-card[aria-pressed=true]{background:#292a25;color:#f7f1e8;border-color:#292a25}
+.package-top{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.package-name{font:500 18px var(--serif)}
+.package-tag{font-size:7px;letter-spacing:.06em;color:#8b7048;background:#eee4d3;padding:5px 6px;white-space:nowrap}
+.package-card[aria-pressed=true] .package-tag{background:#c5aa7b;color:#292820}
+.package-old{display:block;margin-top:15px;color:#918b80;font-size:9px;text-decoration:line-through}
+.package-price{display:block;font:600 27px/1.15 var(--serif);margin-top:1px}
+.package-card small{display:block;color:#a39b8f;font-size:8px;margin-top:3px}
+.package-card[aria-pressed=true] small{color:#c8c0b3}
+.package-includes{list-style:none;padding:13px 0 0;margin:12px 0 0;border-top:1px solid #d8d0c4;font-size:9px;line-height:1.9}
+.package-card[aria-pressed=true] .package-includes{border-color:#56564e}
+.package-includes li:before{content:"✓";margin-right:6px;color:#a98c5d}
+.package-card[aria-pressed=true] .package-includes li:before{color:#d8bd8d}
+.revision-label{display:block;margin-top:12px;font-size:9px;font-weight:700}
+.package-note{margin:12px 0 0;color:var(--muted);font-size:9px;line-height:1.7}
+.addon-list{display:grid;gap:0}
+.addon-row{display:grid;grid-template-columns:20px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #e8e1d6}
+.addon-row:last-child{border-bottom:0}
+.addon-row input{width:16px;height:16px;accent-color:#88704e}
+.addon-copy{min-width:0}
+.addon-copy strong{display:block;font-size:10px;font-weight:600}
+.addon-copy small{display:block;color:var(--muted);font-size:8px;line-height:1.5;margin-top:2px}
+.addon-price{font-size:10px;font-weight:600;white-space:nowrap}
+.addon-row.is-disabled{opacity:.55}
+.addon-qty{width:55px;padding:5px;border:1px solid #d5ccbe;background:white;font-size:10px}
+.addon-footnote{font-size:9px;color:var(--muted);margin:12px 0 0}
+.summary-card{position:sticky;top:95px;background:#fffdf8;border:1px solid #cbb995;padding:22px;box-shadow:var(--shadow)}
+.summary-heading{font:500 22px var(--serif);margin:0 0 16px}
+.summary-line{display:flex;justify-content:space-between;gap:12px;margin:9px 0;color:#6c665b;font-size:10px}
+.summary-line strong{color:var(--ink);text-align:right;font-weight:600}
+.summary-addons{padding:8px 0;border-top:1px solid #e7dfd2;border-bottom:1px solid #e7dfd2;margin-top:12px}
+.summary-total{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:18px 0}
+.summary-total span{font-size:9px;font-weight:700;letter-spacing:.15em}
+.summary-total strong{font:600 31px/1 var(--serif);color:#8d7048}
+.summary-card .btn{width:100%}
+.summary-fineprint{font-size:8px;line-height:1.65;text-align:center;color:var(--muted);margin:10px 0 0}
+.summary-promo{font-size:8px;color:#8d7048;text-align:center;margin:10px 0 0}
+.mobile-totalbar{display:none}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.order-step{border-top:1px solid #c9bda9;padding:19px 0 0}
+.order-step b{display:block;color:#a58a62;font:italic 30px var(--serif)}
+.order-step h3{font:500 21px var(--serif);margin:8px 0 5px}
+.order-step p{font-size:10px;line-height:1.75;color:var(--muted);margin:0}
+.portfolio-hidden{display:none!important}
+.faq-list{border-top:1px solid #d6cdbf}
+.faq-list details{border-bottom:1px solid #d6cdbf}
+.faq-list summary{list-style:none;cursor:pointer;position:relative;padding:18px 34px 18px 0;font:500 19px var(--serif)}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:after{content:"+";position:absolute;right:3px;top:14px;color:#94784f;font:22px var(--sans)}
+.faq-list details[open] summary:after{content:"−"}
+.faq-list details p{max-width:760px;margin:0;padding:0 35px 18px 0;color:var(--muted);font-size:11px;line-height:1.85}
+.final-cta{background:#292a25;color:#f5efe5;text-align:center;padding:78px 20px}
+.final-cta .eyebrow{justify-content:center;color:#c6aa7d}
+.final-cta h2{font:400 clamp(38px,6vw,65px)/1.04 var(--serif);margin:18px auto 12px;max-width:760px}
+.final-cta h2 em{color:#c6aa7d}
+.final-cta p{color:#c2bbaf;font-size:11px;margin:0 0 24px}
+.final-cta .btn{min-width:240px}
+.site-footer{background:#20211d;color:#aaa397;border-top:1px solid #49483f;padding:22px 0 30px;font-size:9px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-brand{color:#e8dfd0;font:500 19px var(--serif)}
+.footer-links{display:flex;gap:17px}
+.footer-links a{color:#c7bda9;text-decoration:none}
+.bottom-sheet-backdrop{position:fixed;inset:0;background:#17171399;z-index:1000;opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+.bottom-sheet-backdrop.is-open{opacity:1;visibility:visible}
+.bottom-sheet{position:fixed;left:0;right:0;bottom:0;z-index:1001;background:#fffdf8;border-radius:16px 16px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));max-height:82svh;overflow:auto;transform:translateY(105%);transition:transform .25s ease}
+.bottom-sheet.is-open{transform:translateY(0)}
+.sheet-handle{width:38px;height:4px;background:#d8d0c4;border-radius:9px;margin:-8px auto 18px}
+.sheet-close{float:right;border:0;background:transparent;font-size:20px;color:#777}
+.sheet-title{font:500 24px var(--serif);margin:0 0 15px}
+.sheet-summary{clear:both}
+body.sheet-open{overflow:hidden}
+@media(min-width:1000px){.theme-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr  .85fr;gap:30px}.hero-visual iframe{height:430px}.config-layout{grid-template-columns:minmax(0,1fr) 290px;gap:18px}.package-grid{grid-template-columns:1fr}.package-card{display:grid;grid-template-columns:1fr auto;column-gap:12px}.package-card .package-top{grid-column:1/-1}.package-card .package-old{margin-top:8px}.package-card .package-price{grid-column:1}.package-card small{grid-column:1}.package-includes{grid-column:1/-1}.revision-label{grid-column:1/-1}}
+@media(max-width:700px){.container{width:calc(100% - 34px)}.site-header{height:62px;padding:0 17px}.header-nav{display:none}.hero{padding:28px 0 48px}.hero-inner{display:flex;flex-direction:column;align-items:stretch;gap:27px}.hero-visual{order:0;width:78%;max-width:340px;align-self:center;padding:9px;margin-right:13px}.hero-visual iframe{height:340px}.hero-note{right:-19px}.hero-caption{left:20px;bottom:19px;font-size:14px}.hero-copy{order:1}.hero h1{font-size:clamp(46px,12vw,65px);margin:17px 0 13px}.hero-copy>p{font-size:11px}.hero-price{margin:20px 0 17px}.hero-price strong{font-size:43px}.hero-actions{gap:13px}.hero-actions .btn{width:100%;min-width:0;min-height:47px}.hero-link{margin-left:2px}.hero-foot{margin-top:23px;font-size:7px;gap:10px}.trust-grid{grid-template-columns:repeat(2,1fr);gap:13px 8px;padding:15px 0}.trust-item{font-size:9px}.section{padding:62px 0}.section-head{margin-bottom:23px}.section-head h2{font-size:clamp(35px,10vw,49px)}.section-head p{font-size:11px}.theme-toolbar{grid-template-columns:1fr;gap:12px;margin-top:22px}.theme-filters{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:2px 0 8px;margin-right:-17px;padding-right:17px;scrollbar-width:none}.theme-filters::-webkit-scrollbar{display:none}.filter-pill{flex:0 0 auto}.theme-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 12px}.theme-info{padding-top:11px}.theme-info h3{font-size:19px}.theme-info p{font-size:9px;min-height:42px;margin-bottom:10px}.theme-actions{grid-template-columns:1fr;gap:6px}.theme-actions button,.theme-actions a{min-height:36px;font-size:8px}.theme-label{top:7px;left:7px;padding:5px 7px;font-size:7px}.theme-selected-label{top:7px;right:7px;padding:5px 6px;font-size:7px}.demo-layout{grid-template-columns:1fr;gap:18px}.demo-copy{position:static}.demo-frame-shell{padding:6px}.demo-frame-shell iframe{height:540px}.demo-actions .btn{min-height:42px}.features-grid{grid-template-columns:repeat(2,1fr)}.feature{padding:18px 14px;min-height:150px}.feature h3{font-size:18px}.feature p{font-size:9px}.config-layout{grid-template-columns:1fr;gap:15px}.config-step{padding:17px 14px;margin-bottom:12px}.config-step h3{font-size:22px}.package-grid{grid-template-columns:1fr;gap:8px}.package-card{display:block;padding:13px}.package-old{margin-top:10px}.package-price{font-size:25px}.package-includes{font-size:9px}.summary-card{position:static}.summary-card.desktop-summary{display:none}.mobile-totalbar{display:none;position:fixed;z-index:900;left:0;right:0;bottom:0;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#292a25;color:#f7f0e5;border-top:1px solid #8f7958;box-shadow:0 -8px 28px #0002}.mobile-totalbar.is-visible{display:flex}.mobile-total-copy span{display:block;color:#c7b99f;font-size:7px;letter-spacing:.13em}.mobile-total-copy strong{display:block;color:#e0c391;font:600 24px/1.1 var(--serif)}.mobile-totalbar button{border:0;background:#c5aa7b;color:#292820;padding:12px 15px;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;min-height:42px}.steps-grid{grid-template-columns:1fr;gap:24px}.order-step{padding-top:13px}.order-step b{font-size:25px}.order-step h3{font-size:19px}.final-cta{padding:62px 20px}.site-footer{padding-bottom:calc(88px + env(safe-area-inset-bottom))}.footer-inner{justify-content:center;text-align:center}.footer-links{width:100%;justify-content:center}.bottom-sheet{padding-left:18px;padding-right:18px}}
+@media(max-width:370px){.theme-grid{grid-template-columns:1fr}.theme-thumb{aspect-ratio:4/4.6}.theme-actions{grid-template-columns:1fr 1fr}.trust-item{font-size:8px}.hero-visual{width:86%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.btn:hover{transform:none}}
 </style>
 </head>
 <body>
-
-<audio id="bg-music" loop></audio>
-
-<header class="top-bar">
-  <a class="brand-lockup" href="#" aria-label="Omah Aksara beranda">
-    <span class="brand-mark">OA</span>
-    <span class="brand-name">omah<span>aksara</span><small> DIGITAL WEDDING STUDIO</small></span>
-  </a>
-  <nav class="top-nav" aria-label="Navigasi utama">
-    <a href="#catalog">Koleksi</a><a href="#experience">Pengalaman</a><a href="https://wa.me/6285796461157" target="_blank" rel="noopener">Konsultasi ↗</a>
-  </nav>
-  <div class="music-controls-wrapper">
-    <select id="music-select" aria-label="Pilih musik" onchange="changeMusic(this.value)"><option value="">Memuat musik...</option></select>
-    <button class="music-btn" id="music-toggle" onclick="toggleMusic()" aria-label="Putar atau jeda musik"><span>♫</span><span id="music-status">Mute</span></button>
-  </div>
+<header class="site-header">
+  <a class="brand" href="#" aria-label="Omah Aksara beranda"><span class="brand-mark">OA</span><span class="brand-name">omah<span>aksara</span><small>CERITA YANG ABADI</small></span></a>
+  <nav class="header-nav" aria-label="Navigasi utama"><a href="#themes">Koleksi tema</a><a href="#features">Fitur</a><a href="#configurator">Paket & harga</a><a href="#faq">FAQ</a></nav>
+  <a class="header-contact" href="https://wa.me/6285796461157" target="_blank" rel="noopener">Konsultasi ↗</a>
 </header>
 
-<section class="hero hero-editorial">
-  <div class="hero-copy">
-    <div class="hero-kicker"><span></span> OMAH AKSARA · UNDANGAN PERNIKAHAN DIGITAL</div>
-    <h1>Hari istimewa,<br><em>cerita</em> yang abadi.</h1>
-    <p>Selamat datang di Omah Aksara. Di sini, kamu bisa menemukan undangan pernikahan digital dengan desain yang beragam—lihat contoh undangannya, pilih tema yang kamu suka, lalu konsultasikan pesananmu.</p>
-    <div class="hero-actions"><a class="hero-primary" href="#catalog">Lihat pilihan undangan <span>↓</span></a><a class="hero-secondary" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ingin%20konsultasi%20undangan%20digital" target="_blank" rel="noopener">Tanya cara pesan</a></div>
-    <div class="hero-howto" aria-label="Cara menjelajahi Omah Aksara"><span><b>01</b> Pilih desain</span><i></i><span><b>02</b> Lihat demo</span><i></i><span><b>03</b> Konsultasi</span></div>
-    <div class="hero-footnote"><span>UNDANGAN DIGITAL UNTUK HARI SPESIAL</span><span>MUDAH DILIHAT · MUDAH DIPESAN</span></div>
-  </div>
-  <div class="hero-visual" role="img" aria-label="Suasana pernikahan romantis dengan pencahayaan hangat">
-    <div class="hero-image-main"></div><div class="hero-image-inset"></div>
-    <div class="hero-image-caption"><span>THE ART OF</span><strong>celebrating love</strong><span>OMAH AKSARA · EST. WITH LOVE</span></div>
-    <div class="hero-vertical-note">DIGITAL WEDDING EXPERIENCE</div>
-  </div>
-  <a class="hero-bottomline" href="#catalog" aria-label="Gulir ke bawah untuk melihat koleksi undangan"><span>DI BAWAH INI ADA PILIHAN TEMA & CONTOH UNDANGAN</span><span class="scroll-prompt">GULIR KE BAWAH <b>↓</b></span></a>
-</section>
-
-<section class="section" id="catalog">
-  <div class="container">
-    <div class="catalog-heading">
-      <div><span class="section-kicker">THE SIGNATURE COLLECTION · 2026</span><h2>Find the feeling.<br><em>Choose your story.</em></h2></div>
-      <p id="catalog-count">Koleksi tema</p>
+<main>
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="promo-pill">Diskon 15% · Semua paket</span>
+      <h1>Hari istimewa,<br><em>cerita yang abadi.</em></h1>
+      <p>Undangan pernikahan digital yang dibuat satu per satu, sesuai cerita kalian. Bukan sekadar template yang asal ganti nama.</p>
+      <div class="hero-price"><span>Mulai</span><strong>Rp85.000</strong></div>
+      <div class="hero-actions"><a class="btn btn-gold" href="#configurator">Buat undanganmu <span>↗</span></a><a class="hero-link" href="#themes">Lihat koleksi tema dulu →</a></div>
+      <div class="hero-foot"><span>DESIGNED WITH INTENTION</span><span>MADE FOR YOUR STORY</span></div>
     </div>
-    <p class="catalog-intro">Dari romantis yang lembut hingga modern yang berani. Setiap desain punya bahasa visualnya sendiri—temukan yang paling mewakili cerita kalian.</p>
-    <div class="demo-name-control">
-      <label for="preview-guest-name">Nama tamu untuk pratinjau</label>
-      <input id="preview-guest-name" type="text" maxlength="80" autocomplete="off" placeholder="Contoh: Ridwan dan Keluarga" value="Nama Tamu">
-      <p>Nama ini hanya ditambahkan ke tautan demo, tidak disimpan sebagai data pelanggan.</p>
+    <div class="hero-visual" aria-label="Pratinjau tema Aksara Nocturne">
+      <iframe title="Sampul undangan Aksara Nocturne" loading="lazy" src="https://omahaksara.github.io/invitation/?c=demo-katalog&amp;theme=aksara-nocturne&amp;to=Nama%20Tamu"></iframe>
+      <span class="hero-caption">Aksara Nocturne · A story in every detail</span><span class="hero-note">THE INVITATION COLLECTION</span>
     </div>
-    <div class="catalog-tools">
-      <input id="catalog-search" class="catalog-search" type="search" placeholder="Cari nama tema…" aria-label="Cari tema undangan">
-      <div id="catalog-filters" class="catalog-filters" aria-label="Filter kategori tema">
-        <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">Semua tema</button>
-        <button type="button" class="filter-chip" data-filter="floral" aria-pressed="false">Floral</button>
-        <button type="button" class="filter-chip" data-filter="classic" aria-pressed="false">Klasik</button>
-        <button type="button" class="filter-chip" data-filter="modern" aria-pressed="false">Modern</button>
-        <button type="button" class="filter-chip" data-filter="dark" aria-pressed="false">Dark luxury</button>
-      </div>
-    </div>
-    <div id="catalog-grid" class="grid" aria-live="polite"></div>
   </div>
 </section>
 
-<!-- Etalase Karya Klien tetap disembunyikan sementara. -->
-<section class="experience-band" id="experience"><div class="experience-inner"><span class="section-kicker">BEYOND THE INVITATION</span><h2>Made to be opened.<br><em>Designed to be remembered.</em></h2><div class="experience-points"><div><b>01</b><strong>Personal by design</strong><p>Detail dan cerita dirangkai sesuai karakter pasangan.</p></div><div><b>02</b><strong>Beautiful on every screen</strong><p>Pengalaman yang nyaman dan indah di ponsel.</p></div><div><b>03</b><strong>More than a link</strong><p>Galeri, acara, RSVP, musik, hingga hadiah dalam satu pengalaman.</p></div></div></div></section>
+<section class="trustbar" aria-label="Keunggulan layanan">
+  <div class="container trust-grid">
+    <div class="trust-item"><span class="trust-check">✓</span>Semua tema bebas pilih</div>
+    <div class="trust-item"><span class="trust-check">✓</span>Harga transparan</div>
+    <div class="trust-item"><span class="trust-check">✓</span>Dibuat sesuai cerita</div>
+    <div class="trust-item"><span class="trust-check">✓</span>Revisi jelas & terukur</div>
+  </div>
+</section>
 
-
-<section class="section">
+<section class="section" id="themes">
   <div class="container">
     <div class="section-head">
-      <h2>Inspirasi & Kartun Couple</h2>
-      <p>Geser Foto</p>
+      <span class="eyebrow">The signature collection</span>
+      <h2>Find the feeling.<br><em>Choose your story.</em></h2>
+      <p>Semua tema berstatus aktif bisa dipilih di setiap paket. Harga ditentukan oleh layanan yang kalian pilih, bukan nama atau tampilan temanya.</p>
     </div>
-  </div>
-  <div class="gallery" id="swipe-gallery">
-    <div id="gallery-track" class="gallery-track"></div>
+    <div class="theme-toolbar">
+      <label class="search-wrap"><span class="sr-only"></span><input class="theme-search" id="theme-search" type="search" placeholder="Cari nama atau suasana tema…" aria-label="Cari tema"></label>
+      <div class="theme-filters" id="theme-filters" aria-label="Filter kategori tema">
+        <button class="filter-pill" type="button" data-filter="all" aria-pressed="true">Semua</button>
+        <button class="filter-pill" type="button" data-filter="dark" aria-pressed="false">Signature Gelap</button>
+        <button class="filter-pill" type="button" data-filter="floral" aria-pressed="false">Floral Romantis</button>
+        <button class="filter-pill" type="button" data-filter="cultural" aria-pressed="false">Budaya</button>
+        <button class="filter-pill" type="button" data-filter="modern" aria-pressed="false">Modern Gen-Z</button>
+        <button class="filter-pill" type="button" data-filter="niche" aria-pressed="false">Niche</button>
+      </div>
+    </div>
+    <p class="theme-count" id="theme-count" aria-live="polite">Memuat tema aktif…</p>
+    <div class="theme-grid" id="theme-grid" aria-live="polite"><div class="theme-empty">Menyiapkan koleksi tema Omah Aksara…</div></div>
   </div>
 </section>
 
-<footer class="footer">
-  <h2>Omah Aksara</h2>
-  <p>Digital Invitation Studio — Elegant, Cinematic, Timeless.</p>
-</footer>
+<section class="section demo-section" id="demo">
+  <div class="container demo-layout">
+    <div class="demo-copy">
+      <span class="eyebrow">Open the experience</span>
+      <div class="section-head"><h2>Coba buka,<br><em>rasakan sendiri.</em></h2><p>Ini contoh tampilan saat tamu membuka undangan. Pilih tema di koleksi untuk mengganti demo ini secara langsung.</p></div>
+      <div class="demo-actions"><a class="btn btn-dark" id="demo-fullscreen" href="https://omahaksara.github.io/invitation/?c=demo-katalog&amp;theme=aksara-nocturne&amp;to=Nama%20Tamu" target="_blank" rel="noopener">Buka demo fullscreen ↗</a></div>
+      <p class="demo-caption">Nama tamu contoh: <strong>Tamu Undangan</strong>. Demo tidak mengirim RSVP atau ucapan ke database produksi.</p>
+    </div>
+    <div class="demo-frame-shell"><iframe id="selected-demo" title="Demo undangan tema terpilih" loading="lazy" src="https://omahaksara.github.io/invitation/?c=demo-katalog&amp;theme=aksara-nocturne&amp;to=Nama%20Undangan"></iframe></div>
+  </div>
+</section>
 
-<div class="floating-actions">
-  <a class="floating-wa" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20tertarik%20tanya%20undangan" target="_blank">
-    <svg viewBox="0 0 32 32"><path d="M19.11 17.2c-.27-.14-1.58-.78-1.82-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.16.18-.31.2-.58.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.13-.13.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.14-.6-1.45-.82-1.98-.22-.53-.45-.46-.6-.47-.16-.01-.34-.01-.53-.01s-.47.07-.71.34c-.24.27-.93.91-.93 2.21s.96 2.56 1.1 2.74c.13.18 1.88 2.87 4.55 4.02.64.28 1.14.45 1.53.58.64.2 1.22.17 1.68.1.51-.08 1.58-.64 1.8-1.25.22-.6.22-1.12.16-1.25-.07-.13-.24-.2-.51-.34z"/></svg>
-  </a>
-  <a href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ingin%20konsultasi%20dan%20memesan%20undangan%20digital." class="sticky-co-btn">Konsultasi & Pesan via WhatsApp ➔</a>
-</div>
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">More than a link</span><h2>Satu undangan,<br><em>semua lengkap.</em></h2><p>Ruang untuk cerita, detail acara, dan interaksi dengan para tamu dalam satu tautan.</p></div>
+    <div class="features-grid">
+      <article class="feature"><span class="feature-icon">⌁</span><h3>RSVP</h3><p>Tamu dapat mengonfirmasi kehadiran langsung dari undangan.</p></article>
+      <article class="feature"><span class="feature-icon">✉</span><h3>Buku Tamu</h3><p>Ucapan dan doa dari keluarga serta sahabat tersimpan rapi.</p></article>
+      <article class="feature"><span class="feature-icon">♡</span><h3>Amplop Digital</h3><p>Hadiah transfer menjadi lebih mudah dan praktis.</p></article>
+      <article class="feature"><span class="feature-icon">♫</span><h3>Musik</h3><p>Pilih backsound dari daftar musik yang tersedia.</p></article>
+      <article class="feature"><span class="feature-icon">▧</span><h3>Galeri</h3><p>Foto-foto pilihan untuk merangkai cerita kalian.</p></article>
+      <article class="feature"><span class="feature-icon">◷</span><h3>Countdown</h3><p>Hitung mundur menuju hari yang dinantikan.</p></article>
+    </div>
+    <div class="feature-note">Fitur RSVP, Buku Tamu, Amplop Digital, Musik, Galeri, dan Countdown termasuk dalam Paket Standar & Signature. Untuk Paket Cepat, fitur RSVP dan Amplop Digital dapat ditambahkan melalui kalkulator. Detail fitur mengikuti dukungan tema dan data undangan yang disiapkan.</div>
+  </div>
+</section>
 
+<section class="section config-section" id="configurator">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">Your invitation, your choice</span><h2>Hitung sendiri,<br><em>tanpa tanya-tanya.</em></h2><p>Pilih tema, pilih paket, lalu tambahkan layanan sesuai kebutuhan. Total pesanan akan diperbarui otomatis.</p></div>
+    <div class="config-layout">
+      <div class="config-main">
+        <section class="config-step">
+          <span class="step-kicker">Langkah 01 · Tema</span><h3>Tema yang dipilih</h3>
+          <div class="selected-theme-row"><div class="selected-theme-thumb"><iframe id="chosen-thumb" title="Tema yang dipilih" loading="lazy" src="https://omahaksara.github.io/invitation/?c=demo-katalog&amp;theme=aksara-nocturne"></iframe></div><div class="selected-theme-copy"><strong id="chosen-theme-name">Aksara Nocturne</strong><span id="chosen-theme-desc">Gelap, intim, dan berkarakter.</span></div><button class="text-link" type="button" id="change-theme">Ganti tema ↗</button></div>
+        </section>
+        <section class="config-step">
+          <span class="step-kicker">Langkah 02 · Paket layanan</span><h3>Pilih paket</h3>
+          <div class="package-grid" id="package-grid">
+            <button class="package-card" type="button" data-package="cepat" aria-pressed="false"><span class="package-top"><span class="package-name">Cepat</span></span><span class="package-old">Rp50.000</span><strong class="package-price">Rp42.500</strong><small>Setelah diskon 15%</small><ul class="package-includes"><li>Cover &amp; profil pasangan</li><li>Detail acara &amp; peta lokasi</li><li>Galeri dasar</li><li>Musik dari daftar</li></ul><b class="revision-label">Revisi 1x</b></button>
+            <button class="package-card" type="button" data-package="standar" aria-pressed="true"><span class="package-top"><span class="package-name">Standar</span></span><span class="package-old">Rp100.000</span><strong class="package-price">Rp85.000</strong><small>Setelah diskon 15%</small><ul class="package-includes"><li>Semua fitur Paket Cepat</li><li>RSVP &amp; Buku Tamu</li><li>Amplop Digital</li><li>Countdown &amp; galeri lengkap</li></ul><b class="revision-label">Revisi 2x</b></button>
+            <button class="package-card" type="button" data-package="signature" aria-pressed="false"><span class="package-top"><span class="package-name">Signature</span></span><span class="package-old">Rp175.000</span><strong class="package-price">Rp148.750</strong><small>Setelah diskon 15%</small><ul class="package-includes"><li>Semua fitur Paket Standar</li><li>Story pasangan dibantu dirangkai</li><li>Penyesuaian detail visual</li><li>Prioritas pengerjaan</li></ul><b class="revision-label">Revisi 3x</b></button>
+          </div>
+          <p class="package-note">Diskon 15% dihitung dari harga paket. Semua tema aktif memiliki harga paket yang sama.</p>
+        </section>
+        <section class="config-step">
+          <span class="step-kicker">Langkah 03 · Personalisasi</span><h3>Pilih tambahan</h3>
+          <div class="addon-list" id="addon-list">
+            <div class="addon-row" data-addon="photos5"><input id="addon-photos5" type="checkbox" data-addon="photos5"><label class="addon-copy" for="addon-photos5"><strong>Tambahan 5 foto</strong><small>Untuk memperluas galeri dasar.</small></label><span class="addon-price">Rp10.000</span></div>
+            <div class="addon-row" data-addon="photos10"><input id="addon-photos10" type="checkbox" data-addon="photos10"><label class="addon-copy" for="addon-photos10"><strong>Tambahan 10 foto</strong><small>Pilih ini sebagai pengganti tambahan 5 foto.</small></label><span class="addon-price">Rp15.000</span></div>
+            <div class="addon-row" data-addon="gallery30"><input id="addon-gallery30" type="checkbox" data-addon="gallery30"><label class="addon-copy" for="addon-gallery30"><strong>Galeri lengkap hingga 30 foto</strong><small>Menggantikan opsi tambahan foto lainnya.</small></label><span class="addon-price">Rp25.000</span></div>
+            <div class="addon-row" data-addon="song"><input id="addon-song" type="checkbox" data-addon="song"><label class="addon-copy" for="addon-song"><strong>Request lagu di luar daftar</strong><small>Jika lagu yang diinginkan belum tersedia.</small></label><span class="addon-price">Rp10.000</span></div>
+            <div class="addon-row" data-addon="songTrim"><input id="addon-songTrim" type="checkbox" data-addon="songTrim"><label class="addon-copy" for="addon-songTrim"><strong>Request lagu + potong bagian reff</strong><small>Pengaturan bagian lagu sesuai permintaan.</small></label><span class="addon-price">Rp15.000</span></div>
+            <div class="addon-row" data-addon="storyShort"><input id="addon-storyShort" type="checkbox" data-addon="storyShort"><label class="addon-copy" for="addon-storyShort"><strong>Love story singkat</strong><small>3 paragraf yang dibantu dirangkai dan disunting.</small></label><span class="addon-price">Rp25.000</span></div>
+            <div class="addon-row" data-addon="storyLong"><input id="addon-storyLong" type="checkbox" data-addon="storyLong"><label class="addon-copy" for="addon-storyLong"><strong>Love story + timeline</strong><small>Cerita pertemuan, perjalanan, hingga lamaran.</small></label><span class="addon-price">Rp50.000</span></div>
+            <div class="addon-row" data-addon="rsvpEnvelope"><input id="addon-rsvpEnvelope" type="checkbox" data-addon="rsvpEnvelope"><label class="addon-copy" for="addon-rsvpEnvelope"><strong>RSVP + Amplop Digital</strong><small>Tambahan khusus Paket Cepat. Sudah termasuk di Standar &amp; Signature.</small></label><span class="addon-price">Rp20.000</span></div>
+            <div class="addon-row" data-addon="revision"><input id="addon-revision" type="checkbox" data-addon="revision"><label class="addon-copy" for="addon-revision"><strong>Revisi tambahan</strong><small>Rp15.000 per revisi di luar jatah paket.</small></label><span class="addon-price"><input class="addon-qty" type="number" min="1" max="5" value="1" aria-label="Jumlah revisi tambahan"> × Rp15.000</span></div>
+            <div class="addon-row" data-addon="express"><input id="addon-express" type="checkbox" data-addon="express"><label class="addon-copy" for="addon-express"><strong>Express · pengerjaan hari yang sama</strong><small>Hanya jika slot dan materi lengkap tersedia. Konfirmasi dahulu melalui WhatsApp.</small></label><span class="addon-price">Rp30.000</span></div>
+          </div>
+          <p class="addon-footnote">Harga tambahan tidak ikut diskon 15%. Opsi foto, lagu, dan love story yang sejenis tidak dijumlahkan satu sama lain.</p>
+        </section>
+      </div>
+
+      <aside class="summary-card desktop-summary" aria-live="polite">
+        <h3 class="summary-heading">Ringkasan pesanan</h3>
+        <div class="summary-line"><span>Tema</span><strong id="sum-theme">Aksara Nocturne</strong></div>
+        <div class="summary-line"><span>Paket</span><strong id="sum-package">Standar · Rp85.000</strong></div>
+        <div class="summary-addons"><div class="summary-line"><span>Tambahan</span><strong id="sum-addon-empty">—</strong></div><div id="sum-addon-lines"></div></div>
+        <div class="summary-total"><span>TOTAL</span><strong id="sum-total">Rp85.000</strong></div>
+        <button class="btn btn-wa" type="button" id="whatsapp-order">Pesan via WhatsApp ↗</button>
+        <p class="summary-fineprint">Tanpa biaya tersembunyi. Kamu membayar sesuai total yang tertera. Express tetap menunggu konfirmasi ketersediaan.</p>
+        <p class="summary-promo">Promo 15% berlaku untuk harga paket, bukan tambahan.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how-to">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">A thoughtful process</span><h2>Semudah ini<br><em>pesannya.</em></h2></div>
+    <div class="steps-grid">
+      <article class="order-step"><b>01</b><h3>Pilih &amp; hitung</h3><p>Tentukan tema, paket, dan tambahan. Total langsung terlihat sebelum menghubungi kami.</p></article>
+      <article class="order-step"><b>02</b><h3>Kirim pesanan</h3><p>Klik tombol WhatsApp. Rincian pilihanmu otomatis disiapkan agar konsultasi lebih mudah.</p></article>
+      <article class="order-step"><b>03</b><h3>Rangkai cerita</h3><p>Kami siapkan undangan, kamu periksa hasilnya, lalu undangan siap dibagikan setelah disetujui.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- Portofolio karya klien sengaja tidak ditampilkan sampai izin publikasi dan kurasi disetujui. -->
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">A few good questions</span><h2>Yang sering<br><em>ditanyakan.</em></h2></div>
+    <div class="faq-list">
+      <details><summary>Apakah semua tema harganya sama?</summary><p>Ya. Semua tema berstatus aktif dapat dipilih di setiap paket. Harga ditentukan oleh paket layanan dan tambahan yang dipilih, bukan tema.</p></details>
+      <details><summary>Berapa lama pengerjaan undangan?</summary><p>Waktu pengerjaan dikonfirmasi saat pemesanan berdasarkan kelengkapan materi dan antrean yang sedang berjalan. Express hari yang sama hanya tersedia jika slot pengerjaan memungkinkan dan seluruh materi sudah lengkap.</p></details>
+      <details><summary>Bagaimana jika jatah revisi habis?</summary><p>Revisi tambahan dikenakan Rp15.000 per revisi. Kesalahan pengerjaan dari pihak Omah Aksara tidak mengurangi jatah revisi. Perubahan besar pada konsep atau tema setelah pengerjaan dimulai dapat memerlukan penyesuaian biaya.</p></details>
+      <details><summary>Apakah bisa request lagu di luar daftar?</summary><p>Bisa. Request lagu di luar daftar tersedia dengan tambahan Rp10.000. Jika sekaligus meminta pemotongan bagian reff, biayanya Rp15.000.</p></details>
+      <details><summary>Apakah RSVP dan Amplop Digital termasuk?</summary><p>Keduanya termasuk di Paket Standar dan Signature. Untuk Paket Cepat, keduanya dapat ditambahkan dengan biaya Rp20.000.</p></details>
+      <details><summary>Apakah demo mengirim data RSVP atau buku tamu?</summary><p>Tidak. Demo katalog hanya untuk mencoba tampilan. Data RSVP dan ucapan demo tidak dikirim ke database undangan pelanggan.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="eyebrow">Your story starts here</span>
+  <h2>Mulai Rp85.000.<br><em>Diskon 15% untuk semua paket.</em></h2>
+  <p>Temukan tema yang terasa seperti kalian, lalu hitung kebutuhan undanganmu.</p>
+  <a class="btn btn-gold" href="#configurator">Buat undanganmu sekarang ↗</a>
+</section>
+</main>
+
+<footer class="site-footer"><div class="container footer-inner"><div><div class="footer-brand">Omah Aksara</div><div>Cerita yang Abadi.</div></div><div class="footer-links"><a href="https://wa.me/6285796461157" target="_blank" rel="noopener">WhatsApp</a></div><span>© 2026 Omah Aksara Studio</span></div></footer>
+
+<div class="mobile-totalbar" id="mobile-totalbar"><div class="mobile-total-copy"><span>TOTAL PESANAN</span><strong id="mobile-total">Rp85.000</strong></div><button type="button" id="open-summary">Lihat ringkasan ↗</button></div>
+<div class="bottom-sheet-backdrop" id="sheet-backdrop"></div>
+<section class="bottom-sheet" id="summary-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
+  <div class="sheet-handle"></div><button class="sheet-close" type="button" id="close-summary" aria-label="Tutup ringkasan">×</button>
+  <h2 class="sheet-title" id="sheet-title">Ringkasan pesanan</h2>
+  <div class="sheet-summary">
+    <div class="summary-line"><span>Tema</span><strong id="sheet-theme">Aksara Nocturne</strong></div>
+    <div class="summary-line"><span>Paket</span><strong id="sheet-package">Standar · Rp85.000</strong></div>
+    <div class="summary-addons"><div class="summary-line"><span>Tambahan</span><strong id="sheet-addon-empty">—</strong></div><div id="sheet-addon-lines"></div></div>
+    <div class="summary-total"><span>TOTAL</span><strong id="sheet-total">Rp85.000</strong></div>
+    <button class="btn btn-wa" type="button" id="whatsapp-order-mobile">Pesan via WhatsApp ↗</button>
+    <p class="summary-fineprint">Tanpa biaya tersembunyi. Express menunggu konfirmasi ketersediaan.</p>
+  </div>
+</section>
 
 <script>
-const wa = "6285796461157";
-const audio = document.getElementById('bg-music');
-const musicStatus = document.getElementById('music-status');
-const musicSelect = document.getElementById('music-select');
-let musicStarted = false;
-
-async function loadDaftarLagu() {
-  try {
-    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/lagu');
-    const files = await res.json();
-    const audioFiles = files.filter(f => /\.(mp3|wav|ogg|m4a)$/i.test(f.name));
-    
-    if(audioFiles.length > 0) {
-      musicSelect.innerHTML = '';
-      audioFiles.forEach((file, index) => {
-        let cleanName = file.name
-          .replace(/tiktokio\.com\d*_/i, '')
-          .replace(/\.(mp3|wav|ogg|m4a)$/i, '')
-          .replace(/[_-]/g, ' ')
-          .substring(0, 18);
-        
-        const option = document.createElement('option');
-        option.value = file.download_url;
-        option.text = `🎵 ${cleanName || 'Opsi Musik ' + (index + 1)}`;
-        musicSelect.appendChild(option);
-      });
-      audio.src = audioFiles[0].download_url;
-      audio.load();
-    } else {
-      musicSelect.innerHTML = '<option>Tidak ada musik</option>';
-    }
-  } catch (err) {
-    console.error("Gagal memuat lagu:", err);
-    musicSelect.innerHTML = '<option>Gagal memuat</option>';
-  }
-}
-
-function startMusicOnInteraction() {
-  if (!musicStarted && audio.src) {
-    audio.play().then(() => {
-      musicStatus.innerText = "Play";
-      musicStarted = true;
-    }).catch(err => console.log("Autoplay ditahan"));
-    document.removeEventListener('click', startMusicOnInteraction);
-    document.removeEventListener('touchstart', startMusicOnInteraction);
-  }
-}
-document.addEventListener('click', startMusicOnInteraction);
-document.addEventListener('touchstart', startMusicOnInteraction);
-
-function toggleMusic() {
-  if (audio.paused) {
-    audio.play();
-    musicStatus.innerText = "Play";
-  } else {
-    audio.pause();
-    musicStatus.innerText = "Mute";
-  }
-}
-
-function changeMusic(downloadUrl) {
-  if(!downloadUrl) return;
-  audio.src = downloadUrl;
-  audio.load();
-  audio.play().then(() => {
-    musicStatus.innerText = "Play";
-    musicStarted = true;
-  }).catch(err => console.error(err));
-}
-
-async function loadKatalog(){
-  const grid=document.getElementById('catalog-grid');
-  if(!grid)return;
-  const fallback=[
-    {slug:'aksara-nocturne',name:'Aksara Nocturne',status:'active'},
-    {slug:'aksara-signature',name:'Aksara Signature',status:'active'},
-    {slug:'aksara-velora',name:'Aksara Velora',status:'active'},
-    {slug:'atelier-editorial',name:'Atelier Editorial',status:'active'},
-    {slug:'sagara',name:'Sagara',status:'active'},
-    {slug:'aurelia-noir',name:'Aurelia Noir',status:'active'},
-    {slug:'botanical-garden',name:'Botanical Garden',status:'active'},
-    {slug:'calestial',name:'Calestial Royale',status:'active'},
-    {slug:'groom',name:'Groom — Serenade Taupe',status:'active'},
-    {slug:'kinze',name:'Kinze',status:'active'},
-    {slug:'serena-ivory',name:'Serena Ivory',status:'active'},
-    {slug:'elegance',name:'Elegance',status:'active'},
-    {slug:'karsa',name:'Karsa',status:'active'},
-    {slug:'lumiere-bloom',name:'Lumière Bloom',status:'active'},
-    {slug:'romantic-floral',name:'Romantic Floral',status:'active'},
-    {slug:'royal-vintage',name:'Royal Vintage',status:'active'},
-    {slug:'sirein',name:'Sirein',status:'active'},
-    {slug:'velvet-romance',name:'Velvet Romance',status:'active'},
-{slug:'kencana-jawa',name:'Kencana Jawa',category:'Adat Nusantara',description:'Nuansa tradisi Jawa yang anggun dengan sentuhan klasik.'},
-{slug:'lumina',name:'Lumina Gen-Z',category:'Modern Editorial',description:'Bento layout, polaroid, dan warna cerah untuk undangan modern.'},
-    {slug:'lume',name:'Lume',status:'active'},
-    {slug:'nox',name:'Nox',status:'active'},
-    {slug:'taupe',name:'Taupe',status:'active'},
-    {slug:'earty',name:'Earty',status:'active'},
-    {slug:'aksav',name:'Aksav',status:'active'}
-];
-  let themes=fallback;
-  try{
-    const res=await fetch('https://raw.githubusercontent.com/omahaksara/invitation/main/templates/registry.json',{cache:'no-store'});
-    if(!res.ok)throw new Error('Registry tema tidak tersedia');
-    const registry=await res.json();
-    const active=Array.isArray(registry.themes)?registry.themes.filter(item=>item&&item.status==='active'&&/^[a-z0-9][a-z0-9-]*$/.test(item.slug)&&typeof item.name==='string').map(item=>({slug:item.slug,name:item.name,status:item.status})):[];
-    if(active.length)themes=[...new Map(active.map(item=>[item.slug,item])).values()];
-  }catch(err){console.warn('Registry tema tidak dapat dimuat; memakai daftar tema aktif cadangan.',err)}
-  const categories={
-    'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral','serena-ivory':'floral',
-    'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','aksara-velora':'classic','sirein':'classic','groom':'classic',
-    'sagara':'modern','atelier-editorial':'modern','lumina':'modern','kencana-jawa':'classic',
-    'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark','kinze':'dark',
-    'elegance':'modern','lume':'floral','taupe':'classic','nox':'dark','earty':'dark','aksav':'modern'
-  };
-  const categoryLabels={floral:'Floral & romantis',classic:'Klasik & timeless',modern:'Modern & elegan',dark:'Dark luxury'};
-  const themeDescriptions={
-    'aksara-nocturne':'Nuansa malam yang dramatis dan intim',
-    'aksara-signature':'Elegan, editorial, dan berkarakter',
-    'aksara-velora':'Minimalis hangat dengan sentuhan editorial',
-    'sagara':'Nuansa pesisir, biru laut, dan kaca yang lembut',
-    'atelier-editorial':'Editorial modern dengan palet sage dan ivory',
-    'kencana-jawa':'Adat Jawa yang anggun dengan sentuhan klasik',
-    'lumina':'Gen-Z editorial dengan bento layout dan nuansa polaroid',
-    'aurelia-noir':'Kemewahan gelap dengan aksen berkelas',
-    'botanical-garden':'Romantis dengan sentuhan taman alami',
-    'calestial':'Kemegahan langit malam, bintang, dan aksen emas',
-    'groom':'Hangat, earthy, dan anggun dengan karakter editorial',
-    'kinze':'Editorial modern dengan palet navy dan emas',
-    'serena-ivory':'Ivory lembut dengan aksen mauve yang romantis',
-    'elegance':'Minimalis modern yang bersih dan anggun',
-    'karsa':'Hangat, klasik, dan sarat makna',
-    'lumiere-bloom':'Lembut, floral, dan bercahaya',
-    'romantic-floral':'Romansa bunga dengan nuansa lembut',
-    'royal-vintage':'Klasik megah dengan rasa vintage',
-    'sirein':'Sederhana, tenang, dan personal',
-    'velvet-romance':'Romantis mewah dengan suasana sinematik',
-    'lume':'Romantis lembut dengan nuansa beige, taupe, dan tipografi script',
-    'nox':'Terracotta hangat dengan karakter editorial dan suasana senja',
-    'taupe':'Minimalis premium dengan palet cream, taupe, dan bentuk arch',
-    'earty':'Dark luxury bernuansa navy dengan aksen emas klasik',
-    'aksav':'Cokelat hangat yang cerah, estetik, dan elegan dengan sentuhan editorial'
-  };
-  const guestInput=document.getElementById('preview-guest-name');
-  const search=document.getElementById('catalog-search');
-  const filterWrap=document.getElementById('catalog-filters');
-  const count=document.getElementById('catalog-count');
-  let selectedFilter='all', query='';
-  function updateDemoLinks(){
-    const guest=(guestInput?.value||'').trim()||'Nama Tamu';
-    grid.querySelectorAll('.catalog-demo-link').forEach(link=>{
-      link.href='https://omahaksara.github.io/i/demo-katalog/'+encodeURIComponent(guest)+'?theme='+encodeURIComponent(link.dataset.theme||'');
-    });
-  }
-  function render(){
-    const shown=themes.filter(theme=>{
-      const cat=categories[theme.slug]||'modern';
-      return (selectedFilter==='all'||cat===selectedFilter)&&((theme.name+' '+theme.slug).toLowerCase().includes(query));
-    });
-    grid.replaceChildren();
-    if(!shown.length){
-      const empty=document.createElement('div');empty.className='catalog-empty';empty.textContent='Tema tidak ditemukan. Coba kata kunci atau kategori lain.';grid.append(empty);
-    }
-    shown.forEach(theme=>{
-      const title=theme.name;
-      const previewGuest=(guestInput?.value||'').trim()||'Nama Tamu';
-      const demo='https://omahaksara.github.io/i/demo-katalog/'+encodeURIComponent(previewGuest)+'?theme='+encodeURIComponent(theme.slug);
-      const waLink='https://wa.me/'+wa+'?text='+encodeURIComponent('Halo Omah Aksara, saya tertarik melihat dan memesan tema '+title+'.');
-      const card=document.createElement('article');card.className='card';
-      const thumb=document.createElement('div');thumb.className='thumb';
-      const badge=document.createElement('div');badge.className='badge';badge.textContent=categoryLabels[categories[theme.slug]||'modern'];
-      const loading=document.createElement('div');loading.className='preview-loading';loading.textContent='Memuat pratinjau';
-      const frame=document.createElement('iframe');frame.src=demo;frame.loading='lazy';frame.title='Pratinjau visual '+title;frame.tabIndex=-1;frame.setAttribute('aria-hidden','true');frame.referrerPolicy='no-referrer';frame.setAttribute('loading','lazy');
-      frame.addEventListener('load',()=>{thumb.classList.add('is-loaded');thumb.classList.remove('is-error');loading.textContent='Pratinjau siap'});
-      frame.addEventListener('error',()=>{thumb.classList.add('is-error');loading.textContent='Pratinjau belum tersedia'});
-      thumb.append(badge,frame,loading);
-      const body=document.createElement('div');body.className='card-body';
-      const heading=document.createElement('h3');heading.className='card-title';heading.textContent=title;
-      const meta=document.createElement('div');meta.className='card-meta';meta.textContent=themeDescriptions[theme.slug]||'Desain undangan digital yang dapat dipersonalisasi';
-      const buttons=document.createElement('div');buttons.className='card-buttons';
-      const demoButton=document.createElement('a');demoButton.href=demo;demoButton.target='_blank';demoButton.rel='noopener noreferrer';demoButton.className='btn btn-outline catalog-demo-link';demoButton.dataset.theme=theme.slug;demoButton.textContent='Lihat demo ↗';
-      const orderButton=document.createElement('a');orderButton.href=waLink;orderButton.target='_blank';orderButton.rel='noopener noreferrer';orderButton.className='btn btn-solid';orderButton.textContent='Tanya / pesan';
-      buttons.append(demoButton,orderButton);body.append(heading,meta,buttons);card.append(thumb,body);grid.append(card);
-    });
-    if(count)count.textContent=shown.length+' dari '+themes.length+' tema aktif';
-  }
-  guestInput?.addEventListener('input',updateDemoLinks);
-  search?.addEventListener('input',()=>{query=search.value.trim().toLocaleLowerCase('id');render()});
-  filterWrap?.addEventListener('click',event=>{
-    const button=event.target.closest('[data-filter]');if(!button)return;
-    selectedFilter=button.dataset.filter;
-    filterWrap.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-    render();
+(function(){
+'use strict';
+const ENGINE='https://omahaksara.github.io/invitation/';
+const REGISTRY='https://raw.githubusercontent.com/omahaksara/invitation/main/templates/registry.json';
+const WHATSAPP='6285796461157';
+const DISCOUNT=.15;
+const packages={
+  cepat:{name:'Cepat',base:50000,revision:1,features:['Cover & profil pasangan','Detail acara & peta lokasi','Galeri dasar','Musik dari daftar']},
+  standar:{name:'Standar',base:100000,revision:2,features:['Semua fitur Paket Cepat','RSVP & Buku Tamu','Amplop Digital','Countdown & galeri lengkap']},
+  signature:{name:'Signature',base:175000,revision:3,features:['Semua fitur Paket Standar','Story pasangan dibantu dirangkai','Penyesuaian detail visual','Prioritas pengerjaan']}
+};
+const addons={
+  photos5:{name:'Tambahan 5 foto',price:10000,group:'photos'},
+  photos10:{name:'Tambahan 10 foto',price:15000,group:'photos'},
+  gallery30:{name:'Galeri lengkap hingga 30 foto',price:25000,group:'photos'},
+  song:{name:'Request lagu di luar daftar',price:10000,group:'song'},
+  songTrim:{name:'Request lagu + potong bagian reff',price:15000,group:'song'},
+  storyShort:{name:'Love story singkat (3 paragraf)',price:25000,group:'story'},
+  storyLong:{name:'Love story + timeline',price:50000,group:'story'},
+  rsvpEnvelope:{name:'RSVP + Amplop Digital',price:20000,group:'core'},
+  revision:{name:'Revisi tambahan',price:15000,group:'quantity'},
+  express:{name:'Express · hari yang sama',price:30000,group:'express'}
+};
+const descriptions={
+  'aksara-nocturne':'Gelap, intim, dan berkarakter.',
+  'kencana-jawa':'Tradisi Jawa yang anggun dan berwibawa.',
+  'botanical-garden':'Romantis, alami, dan penuh detail botani.',
+  'royal-vintage':'Klasik, hangat, dan terasa abadi.',
+  'sirein':'Tenang, sederhana, dan personal.',
+  'kinze':'Editorial modern dengan karakter kuat.',
+  'groom':'Earthy, lembut, dan elegan.',
+  'atelier-editorial':'Editorial modern dengan palet yang tenang.',
+  'sagara':'Nuansa pesisir yang lapang dan lembut.',
+  'lumina':'Modern, ekspresif, dan playful.'
+};
+const categoryMap={
+  'aksara-nocturne':'dark','aurelia-noir':'dark','nox':'dark','earty':'dark',
+  'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral','serena-ivory':'floral','lume':'floral',
+  'kencana-jawa':'cultural',
+  'aksara-signature':'modern','aksara-velora':'modern','atelier-editorial':'modern','lumina':'modern','kinze':'modern','sagara':'modern','aksav':'modern','groom':'modern',
+  'royal-vintage':'niche','calestial':'niche','elegance':'niche','jendela-senja':'niche','sirein':'niche','taupe':'niche','army':'niche','karsa':'niche'
+};
+const categoryNames={dark:'Signature Gelap',floral:'Floral Romantis',cultural:'Budaya',modern:'Modern Gen-Z',niche:'Niche'};
+const $=id=>document.getElementById(id);
+const money=value=>'Rp'+Math.round(value).toLocaleString('id-ID');
+const packagePrice=key=>Math.round(packages[key].base*(1-DISCOUNT));
+let themes=[],selectedTheme=null,selectedPackage='standar',previewObserver=null;
+const grid=$('theme-grid'),search=$('theme-search'),filterWrap=$('theme-filters');
+function demoUrl(slug,guest){const u=new URL(ENGINE);u.searchParams.set('c','demo-katalog');u.searchParams.set('theme',slug);u.searchParams.set('to',guest||'Tamu Undangan');return u.toString();}
+function make(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
+function renderThemes(){
+  if(previewObserver){previewObserver.disconnect();previewObserver=null;}
+  const q=(search.value||'').trim().toLocaleLowerCase('id');
+  const active=filterWrap.querySelector('[aria-pressed="true"]')?.dataset.filter||'all';
+  const visible=themes.filter(t=>{
+    const cat=categoryMap[t.slug]||'niche';
+    return (active==='all'||cat===active)&&((t.name+' '+t.slug+' '+(descriptions[t.slug]||'')+' '+(categoryNames[cat]||'')).toLocaleLowerCase('id').includes(q));
   });
-  render();
+  grid.replaceChildren();
+  if(!visible.length){grid.append(make('div','theme-empty','Tema tidak ditemukan. Coba kata kunci atau kategori lain.'));}
+  visible.forEach(theme=>{
+    const cat=categoryMap[theme.slug]||'niche';
+    const card=make('article','theme-card'+(selectedTheme?.slug===theme.slug?' is-selected':''));
+    card.dataset.slug=theme.slug;
+    const thumb=make('div','theme-thumb');
+    const label=make('span','theme-label',categoryNames[cat]||'Koleksi Omah Aksara');
+    const iframe=document.createElement('iframe');iframe.title='Preview '+theme.name;iframe.loading='lazy';iframe.tabIndex=-1;iframe.setAttribute('aria-hidden','true');iframe.dataset.src=demoUrl(theme.slug,'Tamu Undangan');
+    thumb.append(label,iframe);
+    if(selectedTheme?.slug===theme.slug)thumb.append(make('span','theme-selected-label','✓ Terpilih'));
+    const info=make('div','theme-info');info.append(make('h3','',theme.name),make('p','',descriptions[theme.slug]||'Desain dengan karakter visual yang dirangkai untuk cerita kalian.'));
+    const actions=make('div','theme-actions');
+    const choose=make('button','choose-theme',selectedTheme?.slug===theme.slug?'✓ Terpilih':'Pilih tema ini');choose.type='button';choose.setAttribute('aria-pressed',String(selectedTheme?.slug===theme.slug));choose.addEventListener('click',()=>selectTheme(theme,false));
+    const demo=make('a','see-demo','Lihat demo ↗');demo.href=demoUrl(theme.slug,'Tamu Undangan');demo.target='_blank';demo.rel='noopener';
+    actions.append(choose,demo);info.append(actions);card.append(thumb,info);grid.append(card);
+  });
+  $('theme-count').textContent=visible.length+' dari '+themes.length+' tema aktif · harga sama di semua tema';
+  const frames=grid.querySelectorAll('iframe[data-src]');
+  const activate=frame=>{if(!frame.src){frame.src=frame.dataset.src;frame.removeAttribute('data-src');}};
+  if('IntersectionObserver'in window){previewObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){activate(entry.target);previewObserver.unobserve(entry.target);}}),{rootMargin:'450px 0px'});frames.forEach(frame=>previewObserver.observe(frame));}
+  else frames.forEach(activate);
 }
-async function loadPortofolio(){
-  const grid=document.getElementById('portfolio-grid');
-  const count=document.getElementById('portfolio-count');
-  if(!grid)return;
-  const api='https://api.github.com/repos/omahaksara/invitation/contents/clients';
-  const raw='https://raw.githubusercontent.com/omahaksara/invitation/main/clients/';
-  const excluded=new Set(['demo-katalog','qa-test-oma','budi-ani']);
+function selectTheme(theme,scrollToConfig){
+  selectedTheme=theme;
+  $('chosen-theme-name').textContent=theme.name;
+  $('chosen-theme-desc').textContent=descriptions[theme.slug]||'Desain dengan karakter visual yang dirangkai untuk cerita kalian.';
+  $('sum-theme').textContent=theme.name;$('sheet-theme').textContent=theme.name;
+  $('chosen-thumb').src=demoUrl(theme.slug,'Tamu Undangan');
+  const url=demoUrl(theme.slug,'Tamu Undangan');
+  $('selected-demo').src=url;$('demo-fullscreen').href=url;
+  renderThemes();updateSummary();
+  if(scrollToConfig){$('configurator').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+}
+function selectedAddons(){
+  const chosen=[];
+  Object.keys(addons).forEach(key=>{
+    const input=document.querySelector('input[data-addon="'+key+'"]');
+    if(!input?.checked)return;
+    if(key==='rsvpEnvelope'&&selectedPackage!=='cepat')return;
+    if(key==='storyShort'&&selectedPackage==='signature')return;
+    const quantity=key==='revision'?Math.max(1,Math.min(5,Number(document.querySelector('.addon-qty')?.value)||1)):1;
+    chosen.push({key,name:addons[key].name,price:addons[key].price*quantity,quantity});
+  });
+  return chosen;
+}
+function updateAddonAvailability(){
+  const core=document.querySelector('input[data-addon="rsvpEnvelope"]');
+  const coreRow=core.closest('.addon-row');
+  const included=selectedPackage!=='cepat';
+  core.disabled=included;
+  if(included)core.checked=false;
+  coreRow.classList.toggle('is-disabled',included);
+  coreRow.querySelector('.addon-copy small').textContent=included?'Sudah termasuk di Paket '+packages[selectedPackage].name+'.':'Tambahan khusus Paket Cepat.';
+
+  const shortStory=document.querySelector('input[data-addon="storyShort"]');
+  const shortStoryRow=shortStory.closest('.addon-row');
+  const storyIncluded=selectedPackage==='signature';
+  shortStory.disabled=storyIncluded;
+  if(storyIncluded)shortStory.checked=false;
+  shortStoryRow.classList.toggle('is-disabled',storyIncluded);
+  shortStoryRow.querySelector('.addon-copy small').textContent=storyIncluded
+    ?'Cerita singkat sudah termasuk di Paket Signature. Pilih Love Story + Timeline jika ingin versi lebih lengkap.'
+    :'3 paragraf yang dibantu dirangkai dan disunting.';
+}
+function updateSummary(){
+  updateAddonAvailability();
+  const base=packagePrice(selectedPackage),chosen=selectedAddons(),extra=chosen.reduce((sum,item)=>sum+item.price,0),total=base+extra;
+  $('sum-package').textContent=packages[selectedPackage].name+' · '+money(base);
+  $('sheet-package').textContent=packages[selectedPackage].name+' · '+money(base);
+  $('sum-total').textContent=money(total);$('sheet-total').textContent=money(total);$('mobile-total').textContent=money(total);
+  const lines=chosen.length?chosen.map(item=>({name:item.name+(item.quantity>1?' ('+item.quantity+'x)':''),price:money(item.price)})):[];
+  ['sum-addon-lines','sheet-addon-lines'].forEach(id=>{
+    const target=$(id);target.replaceChildren();
+    lines.forEach(line=>{const row=make('div','summary-line');row.append(make('span','',line.name),make('strong','',line.price));target.append(row);});
+  });
+  $('sum-addon-empty').textContent=chosen.length?'':'—';$('sheet-addon-empty').textContent=chosen.length?'':'—';
+}
+function buildOrderMessage(){
+  const base=packagePrice(selectedPackage),chosen=selectedAddons(),total=base+chosen.reduce((sum,item)=>sum+item.price,0);
+  const lines=['Halo Omah Aksara, saya ingin memesan undangan digital.','','Tema: '+(selectedTheme?.name||'Belum dipilih'),'Paket: '+packages[selectedPackage].name+' ('+money(base)+' setelah diskon 15%)','Tambahan:'];
+  if(chosen.length)chosen.forEach(item=>lines.push('- '+item.name+': '+money(item.price)));
+  else lines.push('- Tidak ada');
+  lines.push('','TOTAL: '+money(total),'','Mohon konfirmasi ketersediaan jadwal, terutama jika memilih Express. Saya ingin melanjutkan konsultasi dan pengisian data.');return lines.join('\n');
+}
+function sendWhatsApp(){const url='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(buildOrderMessage());window.open(url,'_blank','noopener');}
+let sheetReturnFocus=null;
+function openSheet(){
+  const sheet=$('summary-sheet'),backdrop=$('sheet-backdrop');
+  sheetReturnFocus=document.activeElement;
+  sheet.classList.add('is-open');backdrop.classList.add('is-open');
+  sheet.setAttribute('aria-hidden','false');document.body.classList.add('sheet-open');
+  $('close-summary').focus();
+}
+function closeSheet(){
+  const sheet=$('summary-sheet'),backdrop=$('sheet-backdrop');
+  if(!sheet.classList.contains('is-open'))return;
+  sheet.classList.remove('is-open');backdrop.classList.remove('is-open');
+  sheet.setAttribute('aria-hidden','true');document.body.classList.remove('sheet-open');
+  const target=sheetReturnFocus&&typeof sheetReturnFocus.focus==='function'?sheetReturnFocus:$('open-summary');
+  sheetReturnFocus=null;target.focus();
+}
+function trapSheetFocus(event){
+  if(event.key!=='Tab'||!$('summary-sheet').classList.contains('is-open'))return;
+  const focusable=$('summary-sheet').querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])');
+  const items=Array.from(focusable).filter(item=>item.getClientRects().length>0);
+  if(!items.length){event.preventDefault();$('close-summary').focus();return;}
+  const first=items[0],last=items[items.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+}
+function bind(){
+  search.addEventListener('input',renderThemes);
+  filterWrap.addEventListener('click',event=>{const btn=event.target.closest('[data-filter]');if(!btn)return;filterWrap.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===btn)));renderThemes();});
+  $('change-theme').addEventListener('click',()=>$('themes').scrollIntoView({behavior:'smooth'}));
+  $('package-grid').addEventListener('click',event=>{const btn=event.target.closest('[data-package]');if(!btn)return;selectedPackage=btn.dataset.package;$('package-grid').querySelectorAll('[data-package]').forEach(item=>item.setAttribute('aria-pressed',String(item===btn)));updateSummary();});
+  $('addon-list').addEventListener('change',event=>{
+    const input=event.target.closest('input[data-addon]');if(!input)return;
+    const key=input.dataset.addon,group=addons[key].group;
+    if(input.checked&&['photos','song','story'].includes(group))document.querySelectorAll('input[data-addon]').forEach(other=>{if(other!==input&&addons[other.dataset.addon]?.group===group)other.checked=false;});
+    updateSummary();
+  });
+  document.querySelector('.addon-qty').addEventListener('change',updateSummary);
+  $('whatsapp-order').addEventListener('click',sendWhatsApp);$('whatsapp-order-mobile').addEventListener('click',sendWhatsApp);
+  $('open-summary').addEventListener('click',openSheet);$('close-summary').addEventListener('click',closeSheet);$('sheet-backdrop').addEventListener('click',closeSheet);
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&$('summary-sheet').classList.contains('is-open'))closeSheet();else trapSheetFocus(event);});
+}
+async function loadRegistry(){
   try{
-    const response=await fetch(api,{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});
-    if(!response.ok)throw new Error('Folder klien tidak dapat dimuat');
-    const folders=await response.json();
-    const candidates=folders.filter(item=>item.type==='dir'&&/^[a-z0-9][a-z0-9-]*$/.test(item.name)&&!excluded.has(item.name));
-    const published=await Promise.all(candidates.map(async folder=>{
-      try{
-        const dataResponse=await fetch(raw+encodeURIComponent(folder.name)+'/data.json',{cache:'no-store'});
-        if(!dataResponse.ok)return null;
-        const data=await dataResponse.json();
-        if(data.status!=='published'||data.demoMode===true)return null;
-        const groom=data.couple?.groom?.nickname||data.couple?.groom?.fullName||'';
-        const bride=data.couple?.bride?.nickname||data.couple?.bride?.fullName||'';
-        const names=[groom,bride].filter(Boolean);
-        if(!names.length)return null;
-        return {slug:folder.name,title:names.join(' & '),theme:(data.theme||'Undangan digital').replace(/-/g,' '),cover:data.cover?.image||data.cover?.heroImage||''};
-      }catch(_){return null}
-    }));
-    const items=published.filter(Boolean);
-    grid.replaceChildren();
-    if(!items.length){
-      grid.innerHTML='<div class="portfolio-empty">Portofolio sedang diperbarui.</div>';
-      if(count)count.textContent='Segera hadir';
-      return;
-    }
-    items.sort((a,b)=>a.title.localeCompare(b.title,'id'));
-    items.forEach(item=>{
-      const card=document.createElement('article');card.className='portfolio-card';
-      const cover=document.createElement('div');cover.className='portfolio-cover';
-      if(item.cover){
-        const image=document.createElement('img');
-        image.src=raw+encodeURIComponent(item.slug)+'/'+item.cover.split('/').map(encodeURIComponent).join('/');
-        image.alt='Sampul undangan '+item.title;
-        image.loading='lazy';image.decoding='async';
-        image.onerror=()=>{image.remove()};
-        cover.append(image);
-      }
-      const body=document.createElement('div');body.className='portfolio-body';
-      const title=document.createElement('h3');title.className='portfolio-title';title.textContent=item.title;
-      const meta=document.createElement('div');meta.className='portfolio-meta';meta.textContent='Tema '+item.theme;
-      const link=document.createElement('a');link.className='portfolio-link';
-      link.href='https://omahaksara.github.io/i/'+encodeURIComponent(item.slug)+'?view=portfolio';
-      link.target='_blank';link.rel='noopener noreferrer';link.textContent='Lihat undangan ↗';
-      body.append(title,meta,link);card.append(cover,body);grid.append(card);
-    });
-    if(count)count.textContent=items.length+' karya terbit';
+    const response=await fetch(REGISTRY,{cache:'no-store'});if(!response.ok)throw new Error('Registry tema tidak tersedia ('+response.status+').');
+    const registry=await response.json();
+    themes=(Array.isArray(registry.themes)?registry.themes:[]).filter(item=>item&&item.status==='active'&&/^[a-z0-9][a-z0-9-]*$/.test(item.slug)&&typeof item.name==='string').sort((a,b)=>a.name.localeCompare(b.name,'id'));
+    if(!themes.length)throw new Error('Belum ada tema aktif yang dapat ditampilkan.');
+    const initial=themes.find(item=>item.slug==='aksara-nocturne')||themes[0];selectTheme(initial,false);renderThemes();
   }catch(error){
-    console.error('Portofolio gagal dimuat:',error);
-    grid.innerHTML='<div class="portfolio-empty">Portofolio belum dapat dimuat. Silakan coba beberapa saat lagi.</div>';
-    if(count)count.textContent='Portofolio';
+    $('theme-grid').innerHTML='<div class="theme-empty">Koleksi tema belum dapat dimuat. Silakan muat ulang halaman beberapa saat lagi.<br><small>'+String(error.message).replace(/[<>&]/g,'')+'</small></div>';
+    $('theme-count').textContent='Katalog belum tersambung';
   }
 }
-
-const loveQuotes = [
-  "Menemukanmu adalah takdir terbaik dalam hidupku.",
-  "Dua hati, satu detak, satu komitmen selamanya.",
-  "Cinta sejati tidak memiliki batas akhir.",
-  "Membangun masa depan indah bersama dirimu.",
-  "Tempat terfavorit di dunia adalah di sisimu."
-];
-
-async function loadAlbum(){
-  try {
-    const res = await fetch('https://api.github.com/repos/omahaksara/omahaksara.github.io/contents/album');
-    const files = await res.json();
-    const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
-    const track = document.getElementById('gallery-track');
-
-    if(images.length > 0) {
-      images.forEach(img => {
-        const randomQuote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
-        track.innerHTML += `
-        <div class="gallery-item">
-          <img src="${img.download_url}" loading="lazy">
-          <div class="gallery-overlay">
-            <p>" ${randomQuote} "</p>
-          </div>
-        </div>`;
-      });
-      initSwipeGallery();
-    }
-  } catch(err) { console.error(err); }
-}
-
-function initSwipeGallery() {
-  const slider = document.getElementById('swipe-gallery');
-  let isDown = false, startX, scrollLeft;
-
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
-  });
-  slider.addEventListener('mouseleave', () => { isDown = false; });
-  slider.addEventListener('mouseup', () => { isDown = false; });
-  slider.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    slider.scrollLeft = scrollLeft - ((x - startX) * 1.5);
-  });
-
-  slider.addEventListener('touchstart', (e) => {
-    isDown = true; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
-  });
-  slider.addEventListener('touchend', () => { isDown = false; });
-  slider.addEventListener('touchmove', (e) => {
-    if(!isDown) return;
-    const x = e.touches[0].pageX - slider.offsetLeft;
-    slider.scrollLeft = scrollLeft - ((x - startX) * 1.5);
-  });
-}
-
-loadKatalog();
-// loadPortofolio(); // Etalase publik sedang dinonaktifkan.
-loadAlbum();
-loadDaftarLagu();
+const configObserver='IntersectionObserver'in window?new IntersectionObserver(entries=>{entries.forEach(entry=>$('mobile-totalbar').classList.toggle('is-visible',entry.isIntersecting));},{threshold:0}):null;
+if(configObserver)configObserver.observe($('configurator'));
+else $('mobile-totalbar').classList.add('is-visible');
+bind();updateSummary();loadRegistry();
+})();
 </script>
 </body>
 </html>
