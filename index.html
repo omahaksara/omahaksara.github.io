@@ -226,6 +226,19 @@ body::before{opacity:.035}
 @media(max-width:380px){.music-controls-wrapper select{max-width:78px}.music-btn{padding:7px}.catalog-heading h2{font-size:45px}.grid{gap:20px 10px}.card-title{font-size:20px}.card-buttons .btn{font-size:8px;padding:9px 5px}}
 @media(prefers-reduced-motion:reduce){.card,.top-nav a{transition:none!important}.hero-editorial *{scroll-behavior:auto}}
 
+
+/* FIRST SCREEN CLARITY — jelaskan fungsi halaman sejak kunjungan pertama */
+.hero-copy h1{font-size:clamp(52px,7vw,92px);line-height:.94;letter-spacing:-.025em;margin:25px 0 20px}
+.hero-copy>p{max-width:470px;font-size:14px;line-height:1.95;color:#d2ccc1}
+.hero-kicker{font-size:9px;letter-spacing:.16em;line-height:1.7}
+.hero-howto{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:30px;color:#d8d0c2;font-size:9px;letter-spacing:.06em}
+.hero-howto span{display:flex;align-items:center;gap:7px;white-space:nowrap}.hero-howto b{color:#c4a77d;font:italic 16px 'Cormorant Garamond',serif}.hero-howto i{width:22px;height:1px;background:#71695d;display:block}
+.hero-footnote{margin-top:34px;flex-wrap:wrap;line-height:1.7}
+.hero-bottomline{left:clamp(22px,8vw,120px);right:clamp(22px,8vw,120px);bottom:18px;display:flex;align-items:center;gap:18px;text-decoration:none;color:#bdb5a8;border-top:1px solid #ffffff24;padding-top:13px;letter-spacing:.12em}
+.scroll-prompt{display:inline-flex;align-items:center;gap:12px;color:#e8d8bb;font-weight:700}.scroll-prompt b{font-size:19px;animation:oa-scroll-nudge 1.5s ease-in-out infinite}
+@keyframes oa-scroll-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media(max-width:760px){.hero-editorial{grid-template-columns:1fr;gap:24px;padding:48px 22px 78px;min-height:auto}.hero-copy{max-width:none}.hero-copy h1{font-size:clamp(48px,13vw,72px);margin:22px 0 17px}.hero-copy>p{font-size:13px;max-width:560px}.hero-actions{gap:16px;margin-top:24px}.hero-primary{padding:14px 15px;gap:15px}.hero-howto{margin-top:24px;gap:9px}.hero-howto i{width:12px}.hero-footnote{margin-top:25px;gap:12px}.hero-visual{height:clamp(250px,72vw,390px);max-width:none;width:100%;justify-self:stretch}.hero-image-main{inset:0 10% 6% 5%}.hero-image-inset{border-width:5px}.hero-image-caption{left:2%;bottom:12%}.hero-image-caption strong{font-size:27px}.hero-vertical-note{right:-2px}.hero-bottomline{left:22px;right:22px;bottom:17px;flex-direction:column;align-items:flex-start;gap:5px;font-size:7px}.scroll-prompt{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.scroll-prompt b{animation:none}}
 </style>
 </head>
 <body>
@@ -248,18 +261,19 @@ body::before{opacity:.035}
 
 <section class="hero hero-editorial">
   <div class="hero-copy">
-    <div class="hero-kicker"><span></span> AN INVITATION, REIMAGINED</div>
-    <h1>Every love<br>has its <em>own story.</em></h1>
-    <p>Lebih dari sekadar undangan. Sebuah pengalaman digital yang dirancang untuk merayakan cerita paling personal dalam hidupmu.</p>
-    <div class="hero-actions"><a class="hero-primary" href="#catalog">Jelajahi koleksi <span>↗</span></a><a class="hero-secondary" href="#experience">Kenali pengalaman kami</a></div>
-    <div class="hero-footnote"><span>01 — 27+</span><span>DESIGNED WITH MEANING</span></div>
+    <div class="hero-kicker"><span></span> OMAH AKSARA · UNDANGAN PERNIKAHAN DIGITAL</div>
+    <h1>Hari istimewa,<br><em>cerita</em> yang abadi.</h1>
+    <p>Selamat datang di Omah Aksara. Di sini, kamu bisa menemukan undangan pernikahan digital dengan desain yang beragam—lihat contoh undangannya, pilih tema yang kamu suka, lalu konsultasikan pesananmu.</p>
+    <div class="hero-actions"><a class="hero-primary" href="#catalog">Lihat pilihan undangan <span>↓</span></a><a class="hero-secondary" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ingin%20konsultasi%20undangan%20digital" target="_blank" rel="noopener">Tanya cara pesan</a></div>
+    <div class="hero-howto" aria-label="Cara menjelajahi Omah Aksara"><span><b>01</b> Pilih desain</span><i></i><span><b>02</b> Lihat demo</span><i></i><span><b>03</b> Konsultasi</span></div>
+    <div class="hero-footnote"><span>UNDANGAN DIGITAL UNTUK HARI SPESIAL</span><span>MUDAH DILIHAT · MUDAH DIPESAN</span></div>
   </div>
   <div class="hero-visual" role="img" aria-label="Suasana pernikahan romantis dengan pencahayaan hangat">
     <div class="hero-image-main"></div><div class="hero-image-inset"></div>
     <div class="hero-image-caption"><span>THE ART OF</span><strong>celebrating love</strong><span>OMAH AKSARA · EST. WITH LOVE</span></div>
     <div class="hero-vertical-note">DIGITAL WEDDING EXPERIENCE</div>
   </div>
-  <div class="hero-bottomline"><span>DESIGN THAT FEELS LIKE YOU</span><span>SCROLL TO EXPLORE ↓</span></div>
+  <a class="hero-bottomline" href="#catalog" aria-label="Gulir ke bawah untuk melihat koleksi undangan"><span>DI BAWAH INI ADA PILIHAN TEMA & CONTOH UNDANGAN</span><span class="scroll-prompt">GULIR KE BAWAH <b>↓</b></span></a>
 </section>
 
 <section class="section" id="catalog">
