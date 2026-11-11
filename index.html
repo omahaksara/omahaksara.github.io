@@ -109,6 +109,22 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
 .card-buttons .btn{padding:11px 8px;font-size:11px;border-radius:8px;text-align:center;text-decoration:none;border:1px solid var(--line);color:var(--text);font-weight:600;min-height:40px;display:flex;align-items:center;justify-content:center}
 .card-buttons .btn-solid{background:var(--text)!important;color:#fff!important;border-color:var(--text)}
 .catalog-empty{grid-column:1/-1;padding:38px 18px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
+
+/* Portofolio karya klien */
+.portfolio-intro{max-width:660px;color:var(--muted);font-size:13px;line-height:1.8;margin:-8px 0 20px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.portfolio-card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+.portfolio-cover{aspect-ratio:4/3;background:linear-gradient(135deg,#eee5d8,#d9c8ac);overflow:hidden}
+.portfolio-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.portfolio-body{padding:14px;display:flex;flex-direction:column;flex:1}
+.portfolio-title{font:500 clamp(18px,2vw,23px)/1.15 'Cormorant Garamond',serif;margin:0 0 6px}
+.portfolio-meta{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.portfolio-link{margin-top:auto;display:flex;align-items:center;justify-content:center;min-height:40px;padding:10px;border-radius:8px;background:var(--text);color:#fff;text-decoration:none;font-size:11px;font-weight:600}
+.portfolio-empty{grid-column:1/-1;padding:24px;text-align:center;color:var(--muted);font-size:12px}
+@media(min-width:760px){.portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.portfolio-body{padding:17px}}
+@media(max-width:560px){.portfolio-grid{grid-template-columns:1fr 1fr;gap:10px}.portfolio-body{padding:11px}.portfolio-link{font-size:10px;min-height:38px}}
+@media(prefers-reduced-motion:reduce){.portfolio-card{transition:none!important}}
+
 @media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.thumb{aspect-ratio:4/4.7}.card-body{padding:17px}.catalog-tools{grid-template-columns:minmax(220px,1fr)}}
 @media(max-width:560px){.catalog-tools{grid-template-columns:1fr;gap:8px}.catalog-filters{margin-right:-16px;padding-right:16px}.thumb{aspect-ratio:4/5}.card-body{padding:11px}.card-buttons{grid-template-columns:1fr}.card-buttons .btn{min-height:38px}.badge{top:8px;left:8px;font-size:8px;padding:5px 8px}}
 @media(prefers-reduced-motion:reduce){.card,.menu-icon,.preview-loading{transition:none!important}.preview-loading:before{animation:none!important}.card:hover{transform:none}}
@@ -221,6 +237,19 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-
       </div>
     </div>
     <div id="catalog-grid" class="grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-head">
+      <h2>Karya Klien</h2>
+      <p id="portfolio-count">Portofolio Omah Aksara</p>
+    </div>
+    <p class="portfolio-intro">Beberapa undangan yang telah dibuat untuk pasangan dan keluarga. Buka hasil jadinya untuk melihat pengalaman undangan secara langsung.</p>
+    <div id="portfolio-grid" class="portfolio-grid" aria-live="polite">
+      <div class="portfolio-empty">Memuat karya klien…</div>
+    </div>
   </div>
 </section>
 
@@ -446,6 +475,66 @@ async function loadKatalog(){
   });
   render();
 }
+async function loadPortofolio(){
+  const grid=document.getElementById('portfolio-grid');
+  const count=document.getElementById('portfolio-count');
+  if(!grid)return;
+  const api='https://api.github.com/repos/omahaksara/invitation/contents/clients';
+  const raw='https://raw.githubusercontent.com/omahaksara/invitation/main/clients/';
+  const excluded=new Set(['demo-katalog','qa-test-oma','budi-ani']);
+  try{
+    const response=await fetch(api,{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});
+    if(!response.ok)throw new Error('Folder klien tidak dapat dimuat');
+    const folders=await response.json();
+    const candidates=folders.filter(item=>item.type==='dir'&&/^[a-z0-9][a-z0-9-]*$/.test(item.name)&&!excluded.has(item.name));
+    const published=await Promise.all(candidates.map(async folder=>{
+      try{
+        const dataResponse=await fetch(raw+encodeURIComponent(folder.name)+'/data.json',{cache:'no-store'});
+        if(!dataResponse.ok)return null;
+        const data=await dataResponse.json();
+        if(data.status!=='published'||data.demoMode===true)return null;
+        const groom=data.couple?.groom?.nickname||data.couple?.groom?.fullName||'';
+        const bride=data.couple?.bride?.nickname||data.couple?.bride?.fullName||'';
+        const names=[groom,bride].filter(Boolean);
+        if(!names.length)return null;
+        return {slug:folder.name,title:names.join(' & '),theme:(data.theme||'Undangan digital').replace(/-/g,' '),cover:data.cover?.image||data.cover?.heroImage||''};
+      }catch(_){return null}
+    }));
+    const items=published.filter(Boolean);
+    grid.replaceChildren();
+    if(!items.length){
+      grid.innerHTML='<div class="portfolio-empty">Portofolio sedang diperbarui.</div>';
+      if(count)count.textContent='Segera hadir';
+      return;
+    }
+    items.sort((a,b)=>a.title.localeCompare(b.title,'id'));
+    items.forEach(item=>{
+      const card=document.createElement('article');card.className='portfolio-card';
+      const cover=document.createElement('div');cover.className='portfolio-cover';
+      if(item.cover){
+        const image=document.createElement('img');
+        image.src=raw+encodeURIComponent(item.slug)+'/'+item.cover.split('/').map(encodeURIComponent).join('/');
+        image.alt='Sampul undangan '+item.title;
+        image.loading='lazy';image.decoding='async';
+        image.onerror=()=>{image.remove()};
+        cover.append(image);
+      }
+      const body=document.createElement('div');body.className='portfolio-body';
+      const title=document.createElement('h3');title.className='portfolio-title';title.textContent=item.title;
+      const meta=document.createElement('div');meta.className='portfolio-meta';meta.textContent='Tema '+item.theme;
+      const link=document.createElement('a');link.className='portfolio-link';
+      link.href='https://omahaksara.github.io/i/'+encodeURIComponent(item.slug);
+      link.target='_blank';link.rel='noopener noreferrer';link.textContent='Lihat undangan ↗';
+      body.append(title,meta,link);card.append(cover,body);grid.append(card);
+    });
+    if(count)count.textContent=items.length+' karya terbit';
+  }catch(error){
+    console.error('Portofolio gagal dimuat:',error);
+    grid.innerHTML='<div class="portfolio-empty">Portofolio belum dapat dimuat. Silakan coba beberapa saat lagi.</div>';
+    if(count)count.textContent='Portofolio';
+  }
+}
+
 const loveQuotes = [
   "Menemukanmu adalah takdir terbaik dalam hidupku.",
   "Dua hati, satu detak, satu komitmen selamanya.",
@@ -505,6 +594,7 @@ function initSwipeGallery() {
 }
 
 loadKatalog();
+loadPortofolio();
 loadAlbum();
 loadDaftarLagu();
 </script>
