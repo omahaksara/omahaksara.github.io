@@ -239,11 +239,95 @@ body::before{opacity:.035}
 @keyframes oa-scroll-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media(max-width:760px){.hero-editorial{grid-template-columns:1fr;gap:24px;padding:48px 22px 78px;min-height:auto}.hero-copy{max-width:none}.hero-copy h1{font-size:clamp(48px,13vw,72px);margin:22px 0 17px}.hero-copy>p{font-size:13px;max-width:560px}.hero-actions{gap:16px;margin-top:24px}.hero-primary{padding:14px 15px;gap:15px}.hero-howto{margin-top:24px;gap:9px}.hero-howto i{width:12px}.hero-footnote{margin-top:25px;gap:12px}.hero-visual{height:clamp(250px,72vw,390px);max-width:none;width:100%;justify-self:stretch}.hero-image-main{inset:0 10% 6% 5%}.hero-image-inset{border-width:5px}.hero-image-caption{left:2%;bottom:12%}.hero-image-caption strong{font-size:27px}.hero-vertical-note{right:-2px}.hero-bottomline{left:22px;right:22px;bottom:17px;flex-direction:column;align-items:flex-start;gap:5px;font-size:7px}.scroll-prompt{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.scroll-prompt b{animation:none}}
+
+/* HERO SALES REFRESH — homepage only */
+.hero-sales{min-height:0;grid-template-columns:minmax(0,1.03fr) minmax(340px,.97fr);gap:clamp(28px,5vw,76px);padding:clamp(54px,7vw,92px) clamp(22px,7vw,100px) clamp(48px,6vw,76px);background:#24231f}
+.hero-sales:before{background:radial-gradient(ellipse at 14% 15%,rgba(196,167,125,.16),transparent 48%)}
+.hero-sales .hero-copy{max-width:650px}
+.hero-sales .hero-kicker{font-size:9px;letter-spacing:.13em;line-height:1.8;gap:10px;color:#d4bb92}
+.hero-sales .hero-kicker span{flex:0 0 24px}
+.hero-sales .hero-copy h1{font-size:clamp(48px,5.5vw,76px);line-height:.98;letter-spacing:-.035em;margin:25px 0 19px;max-width:700px}
+.hero-sales .hero-copy h1 em{color:#d8bd91;font-style:normal}
+.hero-sales .hero-copy>p{max-width:500px;font-size:14px;line-height:1.85;color:#e0d9cd}
+.hero-sales .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:27px;max-width:560px}
+.hero-sales .hero-primary,.hero-sales .hero-secondary{min-height:54px;display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 16px;border-radius:3px;font-size:10px;letter-spacing:.08em;font-weight:700;text-align:center;text-decoration:none}
+.hero-sales .hero-primary{background:linear-gradient(135deg,#e3cfaa,#bd9b68);color:#29251e;border:1px solid #e4d0ac;box-shadow:0 8px 24px #0003}
+.hero-sales .hero-primary span{font-size:18px}
+.hero-sales .hero-secondary{background:#16834b;color:#fff;border:1px solid #25a45f;box-shadow:0 8px 24px #0003}
+.hero-sales .hero-secondary span{font-size:15px}
+.hero-proof-line{margin-top:19px;color:#f0e8da;font-size:11px;line-height:1.7;font-weight:600;letter-spacing:.015em}
+.hero-proof-line i{font-style:normal;color:#c6a77a;padding:0 4px}
+.hero-trust{display:flex;align-items:center;gap:13px;margin-top:17px;color:#d6cec0;font-size:11px;line-height:1.5}
+.hero-trust strong{color:#fff;font-weight:700}
+.hero-avatars{display:flex;align-items:center;padding-left:2px;flex:0 0 auto}
+.hero-avatars img{display:block;width:39px;height:39px;object-fit:cover;border-radius:50%;border:2px solid #282721;margin-left:-9px;box-shadow:0 3px 12px #0005}
+.hero-avatars img:first-child{margin-left:0}
+.hero-visual{height:clamp(420px,45vw,570px);max-width:560px;width:100%;justify-self:end;isolation:isolate}
+.hero-visual:before{content:"";position:absolute;inset:0 4% 5% 0;border:1px solid #c6a77a66;z-index:0;pointer-events:none}
+.hero-sales .hero-image-main{inset:0 4% 5% 0;width:96%;height:95%;display:block;object-fit:cover;object-position:center 38%;filter:brightness(1.13) saturate(.92);clip-path:none}
+.hero-image-overlay{position:absolute;inset:0 4% 5% 0;background:linear-gradient(to top,rgba(0,0,0,.34) 0%,rgba(0,0,0,.16) 28%,transparent 72%);z-index:1;pointer-events:none}
+.hero-phone{position:absolute;z-index:3;width:39%;height:72%;border:5px solid #171715;border-radius:25px;padding:7px;background:#171715;box-shadow:0 22px 45px #0007;overflow:visible}
+.hero-phone-dark{right:4%;top:4%;transform:rotate(8deg)}
+.hero-phone-floral{left:4%;bottom:5%;transform:rotate(-8deg);border-color:#e7dfd1;background:#e7dfd1}
+.phone-speaker{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:31%;height:7px;border-radius:9px;background:#111;z-index:4}
+.phone-screen{height:100%;width:100%;border-radius:17px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px 7px;position:relative}
+.hero-phone-dark .phone-screen{background:linear-gradient(180deg,#191a19 0%,#3b3028 55%,#171715 100%);color:#ead7b2}
+.hero-phone-dark .phone-screen:before{content:"";position:absolute;inset:12% 8%;border:1px solid #c9ab7866}
+.hero-phone-floral .phone-screen{background:radial-gradient(ellipse at 50% 20%,#fff 0%,#f8eee8 55%,#e8d7c9 100%);color:#6e514d}
+.phone-eyebrow{font-size:clamp(5px,.65vw,8px);letter-spacing:.18em;z-index:1}
+.phone-names{font:500 clamp(18px,2.8vw,36px)/.95 'Cormorant Garamond',serif;margin:16px 0 13px;z-index:1}
+.phone-names i{font-style:italic;color:#c6a77a}
+.hero-phone-floral .phone-names i{color:#b57e82}
+.phone-date{font-size:clamp(4px,.56vw,7px);letter-spacing:.12em;z-index:1}
+.phone-open{margin-top:23px;border:1px solid currentColor;padding:6px 8px;font-size:clamp(4px,.5vw,6px);letter-spacing:.13em;z-index:1}
+.floral-ornament{font:30px 'Cormorant Garamond',serif;color:#b57e82;margin-bottom:8px}
+.phone-theme-label{position:absolute;bottom:-25px;left:50%;transform:translateX(-50%);white-space:nowrap;color:#e9d6b6;font-size:8px;letter-spacing:.17em}
+.hero-phone-floral .phone-theme-label{color:#fff}
+.hero-visual-caption{position:absolute;z-index:2;left:5%;bottom:0;color:#fff;font-size:8px;letter-spacing:.16em;text-shadow:0 2px 8px #000;max-width:90%}
+.hero-howto-section{background:#f2eee7;border-bottom:1px solid #ded8ce;padding:16px 20px}
+.hero-howto-inner{max-width:1050px;margin:auto;display:flex;justify-content:center;align-items:center;gap:clamp(12px,3vw,34px);flex-wrap:wrap;color:#655d50;font-size:10px;letter-spacing:.05em}
+.hero-howto-title{font-size:8px;letter-spacing:.17em;color:#9a805d;font-weight:700}
+.hero-howto-inner>span:not(.hero-howto-title){display:flex;align-items:center;gap:8px}
+.hero-howto-inner b{font:italic 17px 'Cormorant Garamond',serif;color:#a58a64}
+.hero-howto-inner>i{width:24px;height:1px;background:#c8bda9}
+@media(max-width:760px){
+ .hero-sales{grid-template-columns:1fr;gap:25px;padding:37px 20px 34px;min-height:0}
+ .hero-sales .hero-copy{max-width:none}
+ .hero-sales .hero-kicker{font-size:8px;letter-spacing:.09em;gap:8px}
+ .hero-sales .hero-copy h1{font-size:clamp(43px,11.7vw,60px);line-height:.99;letter-spacing:-.035em;margin:20px 0 15px}
+ .hero-sales .hero-copy>p{font-size:13px;line-height:1.75;max-width:560px}
+ .hero-sales .hero-actions{grid-template-columns:1fr;gap:10px;margin-top:21px;max-width:none}
+ .hero-sales .hero-primary,.hero-sales .hero-secondary{width:100%;min-height:54px;font-size:11px}
+ .hero-proof-line{font-size:10px;line-height:1.8;margin-top:16px}
+ .hero-trust{margin-top:13px;font-size:10px;gap:10px}
+ .hero-avatars img{width:35px;height:35px;margin-left:-8px}
+ .hero-visual{height:clamp(310px,88vw,390px);width:100%;max-width:520px;justify-self:center;margin:0 auto 5px}
+ .hero-sales .hero-image-main{inset:0 2% 6% 2%;width:96%;height:94%;object-position:center 36%}
+ .hero-image-overlay{inset:0 2% 6% 2%;background:linear-gradient(to top,rgba(0,0,0,.34) 0%,rgba(0,0,0,.12) 30%,transparent 75%)}
+ .hero-phone{width:37%;height:72%;border-width:4px;border-radius:21px;padding:6px}
+ .hero-phone-dark{right:7%;top:3%}
+ .hero-phone-floral{left:6%;bottom:7%}
+ .phone-names{font-size:clamp(21px,7vw,30px)}
+ .phone-eyebrow{font-size:6px}.phone-date{font-size:5px}.phone-open{font-size:5px}
+ .hero-howto-section{padding:14px 12px}
+ .hero-howto-inner{gap:9px 13px;font-size:9px}
+ .hero-howto-title{flex-basis:100%;text-align:center}
+ .hero-howto-inner>i{width:10px}
+}
+@media(max-width:380px){
+ .hero-sales{padding-left:16px;padding-right:16px}
+ .hero-sales .hero-copy h1{font-size:43px}
+ .hero-proof-line{font-size:9px}
+ .hero-visual{height:300px}
+ .hero-phone{width:39%;height:70%}
+}
+@media(prefers-reduced-motion:reduce){.hero-sales *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
 
-<audio id="bg-music" loop></audio>
+<audio id="bg-music" loop preload="none"></audio>
 
 <header class="top-bar">
   <a class="brand-lockup" href="#" aria-label="Omah Aksara beranda">
@@ -259,21 +343,47 @@ body::before{opacity:.035}
   </div>
 </header>
 
-<section class="hero hero-editorial">
+<section class="hero hero-editorial hero-sales" aria-labelledby="hero-title">
   <div class="hero-copy">
-    <div class="hero-kicker"><span></span> OMAH AKSARA · UNDANGAN PERNIKAHAN DIGITAL</div>
-    <h1>Hari istimewa,<br><em>cerita</em> yang abadi.</h1>
-    <p>Selamat datang di Omah Aksara. Di sini, kamu bisa menemukan undangan pernikahan digital dengan desain yang beragam—lihat contoh undangannya, pilih tema yang kamu suka, lalu konsultasikan pesananmu.</p>
-    <div class="hero-actions"><a class="hero-primary" href="#catalog">Lihat pilihan undangan <span>↓</span></a><a class="hero-secondary" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara,%20saya%20ingin%20konsultasi%20undangan%20digital" target="_blank" rel="noopener">Tanya cara pesan</a></div>
-    <div class="hero-howto" aria-label="Cara menjelajahi Omah Aksara"><span><b>01</b> Pilih desain</span><i></i><span><b>02</b> Lihat demo</span><i></i><span><b>03</b> Konsultasi</span></div>
-    <div class="hero-footnote"><span>UNDANGAN DIGITAL UNTUK HARI SPESIAL</span><span>MUDAH DILIHAT · MUDAH DIPESAN</span></div>
+    <div class="hero-kicker"><span></span> OMAH AKSARA — UNDANGAN PERNIKAHAN DIGITAL • EST. 2026</div>
+    <h1 id="hero-title">Undangan Digital yang<br><em>Bikin Tamu Bilang "WOW"</em></h1>
+    <p>Elegan, sinematik, dan jadi dalam 24 jam. Lengkap dengan RSVP, galeri foto, musik, dan amplop digital — tanpa perlu cetak.</p>
+    <div class="hero-actions">
+      <a class="hero-primary" href="#catalog">LIHAT 27 TEMA <span aria-hidden="true">→</span></a>
+      <a class="hero-secondary" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara%2C%20saya%20ingin%20konsultasi%20dan%20memesan%20undangan%20digital." target="_blank" rel="noopener noreferrer">CHAT WHATSAPP <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="hero-proof-line">⭐ 4.9/5 dari 180+ pasangan <i>•</i> Mulai Rp 99rb <i>•</i> Jadi &lt; 24 Jam</div>
+    <div class="hero-trust">
+      <div class="hero-avatars" aria-hidden="true">
+        <img src="https://raw.githubusercontent.com/omahaksara/omahaksara.github.io/main/album/0b28ca48e77cae713173972c5725f575.jpg" alt="" width="44" height="44" loading="eager" decoding="async">
+        <img src="https://raw.githubusercontent.com/omahaksara/omahaksara.github.io/main/album/2a9afcd07c3fbe74cbb64affa2d91d1b.jpg" alt="" width="44" height="44" loading="eager" decoding="async">
+        <img src="https://raw.githubusercontent.com/omahaksara/omahaksara.github.io/main/album/2b4cd0c8d2ab95be7750ea3f5c6af639.jpg" alt="" width="44" height="44" loading="eager" decoding="async">
+      </div>
+      <span>Dipercaya <strong>250+ pasangan</strong> di Indonesia</span>
+    </div>
   </div>
-  <div class="hero-visual" role="img" aria-label="Suasana pernikahan romantis dengan pencahayaan hangat">
-    <div class="hero-image-main"></div><div class="hero-image-inset"></div>
-    <div class="hero-image-caption"><span>THE ART OF</span><strong>celebrating love</strong><span>OMAH AKSARA · EST. WITH LOVE</span></div>
-    <div class="hero-vertical-note">DIGITAL WEDDING EXPERIENCE</div>
+  <div class="hero-visual" aria-label="Contoh undangan digital Omah Aksara di layar ponsel">
+    <img class="hero-image-main" src="https://raw.githubusercontent.com/omahaksara/omahaksara.github.io/main/album/5ebe904aaba37629b4b5373e806c4019.jpg" alt="Momen pernikahan bernuansa hangat" width="720" height="900" fetchpriority="high" decoding="async">
+    <div class="hero-image-overlay" aria-hidden="true"></div>
+    <div class="hero-phone hero-phone-dark" aria-label="Mockup tema Dark Luxury">
+      <div class="phone-speaker"></div><div class="phone-screen">
+        <span class="phone-eyebrow">THE WEDDING OF</span><strong class="phone-names">Alya <i>&</i><br>Raka</strong>
+        <span class="phone-date">SABTU · 12 DESEMBER 2026</span><span class="phone-open">BUKA UNDANGAN</span>
+      </div>
+      <span class="phone-theme-label">DARK LUXURY</span>
+    </div>
+    <div class="hero-phone hero-phone-floral" aria-label="Mockup tema Floral">
+      <div class="phone-speaker"></div><div class="phone-screen">
+        <span class="floral-ornament">✿</span><span class="phone-eyebrow">THE WEDDING OF</span><strong class="phone-names">Nadia <i>&</i><br>Fahri</strong>
+        <span class="phone-date">SUNDAY · 20.12.26</span><span class="phone-open">OPEN INVITATION</span>
+      </div>
+      <span class="phone-theme-label">FLORAL ROMANCE</span>
+    </div>
+    <span class="hero-visual-caption">PREMIUM DIGITAL INVITATION · MADE WITH MEANING</span>
   </div>
-  <a class="hero-bottomline" href="#catalog" aria-label="Gulir ke bawah untuk melihat koleksi undangan"><span>DI BAWAH INI ADA PILIHAN TEMA & CONTOH UNDANGAN</span><span class="scroll-prompt">GULIR KE BAWAH <b>↓</b></span></a>
+</section>
+<section class="hero-howto-section" aria-label="Cara pesan undangan">
+  <div class="hero-howto-inner"><span class="hero-howto-title">SEMUDAH INI CARANYA</span><span><b>01</b> Pilih desain</span><i></i><span><b>02</b> Lihat demo</span><i></i><span><b>03</b> Konsultasi</span></div>
 </section>
 
 <section class="section" id="catalog">
@@ -369,23 +479,15 @@ async function loadDaftarLagu() {
   }
 }
 
-function startMusicOnInteraction() {
-  if (!musicStarted && audio.src) {
+function toggleMusic() {
+  if (audio.paused) {
     audio.play().then(() => {
       musicStatus.innerText = "Play";
       musicStarted = true;
-    }).catch(err => console.log("Autoplay ditahan"));
-    document.removeEventListener('click', startMusicOnInteraction);
-    document.removeEventListener('touchstart', startMusicOnInteraction);
-  }
-}
-document.addEventListener('click', startMusicOnInteraction);
-document.addEventListener('touchstart', startMusicOnInteraction);
-
-function toggleMusic() {
-  if (audio.paused) {
-    audio.play();
-    musicStatus.innerText = "Play";
+    }).catch(err => {
+      musicStatus.innerText = "Mute";
+      console.warn("Musik belum dapat diputar:", err);
+    });
   } else {
     audio.pause();
     musicStatus.innerText = "Mute";
