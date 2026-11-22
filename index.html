@@ -536,6 +536,7 @@ async function loadKatalog(){
     {slug:"sagara",name:"Sagara",status:'active'},
     {slug:"serena-ivory",name:"Serena Ivory",status:'active'},
     {slug:"sirein",name:"Sirein",status:'active'},
+    {slug:"sunda-watercolor",name:"Sunda Watercolor",status:'active'},
     {slug:"taupe",name:"Taupe",status:'active'},
     {slug:"velvet-romance",name:"Velvet Romance",status:'active'}
   ];
@@ -548,7 +549,7 @@ async function loadKatalog(){
     if(active.length)themes=[...new Map(active.map(item=>[item.slug,item])).values()];
   }catch(err){console.warn('Registry tema tidak dapat dimuat; memakai daftar tema aktif cadangan.',err)}
   const categories={
-    'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral','serena-ivory':'floral',
+    'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral','serena-ivory':'floral','sunda-watercolor':'floral',
     'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','aksara-velora':'classic','sirein':'classic','groom':'classic',
     'sagara':'modern','atelier-editorial':'modern','lumina':'modern','kencana-jawa':'classic',
     'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark','kinze':'dark','gebyok-candra':'dark',
@@ -576,6 +577,7 @@ async function loadKatalog(){
     'romantic-floral':'Romansa bunga dengan nuansa lembut',
     'royal-vintage':'Klasik megah dengan rasa vintage',
     'sirein':'Sederhana, tenang, dan personal',
+    'sunda-watercolor':'Watercolor Pasundan dengan tekstur kertas, floral lembut, dan detail budaya Sunda yang halus',
     'velvet-romance':'Romantis mewah dengan suasana sinematik',
     'lume':'Romantis lembut dengan nuansa beige, taupe, dan tipografi script',
     'nox':'Terracotta hangat dengan karakter editorial dan suasana senja',
