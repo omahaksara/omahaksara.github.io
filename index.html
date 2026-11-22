@@ -349,7 +349,7 @@ body::before{opacity:.035}
     <h1 id="hero-title">Undangan Digital yang<br><em>Bikin Tamu Bilang "WOW"</em></h1>
     <p>Elegan, sinematik, dan jadi dalam 24 jam. Lengkap dengan RSVP, galeri foto, musik, dan amplop digital — tanpa perlu cetak.</p>
     <div class="hero-actions">
-      <a class="hero-primary" href="#catalog">LIHAT 27 TEMA <span aria-hidden="true">→</span></a>
+      <a class="hero-primary" id="catalog-theme-cta" href="#catalog">LIHAT KOLEKSI TEMA <span aria-hidden="true">→</span></a>
       <a class="hero-secondary" href="https://wa.me/6285796461157?text=Halo%20Omah%20Aksara%2C%20saya%20ingin%20konsultasi%20dan%20memesan%20undangan%20digital." target="_blank" rel="noopener noreferrer">CHAT WHATSAPP <span aria-hidden="true">↗</span></a>
     </div>
     <div class="hero-proof-line">⭐ 4.9/5 dari 180+ pasangan <i>•</i> Mulai Rp 99rb <i>•</i> Jadi &lt; 24 Jam</div>
@@ -508,32 +508,37 @@ async function loadKatalog(){
   const grid=document.getElementById('catalog-grid');
   if(!grid)return;
   const fallback=[
-    {slug:'aksara-nocturne',name:'Aksara Nocturne',status:'active'},
-    {slug:'aksara-signature',name:'Aksara Signature',status:'active'},
-    {slug:'aksara-velora',name:'Aksara Velora',status:'active'},
-    {slug:'atelier-editorial',name:'Atelier Editorial',status:'active'},
-    {slug:'sagara',name:'Sagara',status:'active'},
-    {slug:'aurelia-noir',name:'Aurelia Noir',status:'active'},
-    {slug:'botanical-garden',name:'Botanical Garden',status:'active'},
-    {slug:'calestial',name:'Calestial Royale',status:'active'},
-    {slug:'groom',name:'Groom — Serenade Taupe',status:'active'},
-    {slug:'kinze',name:'Kinze',status:'active'},
-    {slug:'serena-ivory',name:'Serena Ivory',status:'active'},
-    {slug:'elegance',name:'Elegance',status:'active'},
-    {slug:'karsa',name:'Karsa',status:'active'},
-    {slug:'lumiere-bloom',name:'Lumière Bloom',status:'active'},
-    {slug:'romantic-floral',name:'Romantic Floral',status:'active'},
-    {slug:'royal-vintage',name:'Royal Vintage',status:'active'},
-    {slug:'sirein',name:'Sirein',status:'active'},
-    {slug:'velvet-romance',name:'Velvet Romance',status:'active'},
-{slug:'kencana-jawa',name:'Kencana Jawa',category:'Adat Nusantara',description:'Nuansa tradisi Jawa yang anggun dengan sentuhan klasik.'},
-{slug:'lumina',name:'Lumina Gen-Z',category:'Modern Editorial',description:'Bento layout, polaroid, dan warna cerah untuk undangan modern.'},
-    {slug:'lume',name:'Lume',status:'active'},
-    {slug:'nox',name:'Nox',status:'active'},
-    {slug:'taupe',name:'Taupe',status:'active'},
-    {slug:'earty',name:'Earty',status:'active'},
-    {slug:'aksav',name:'Aksav',status:'active'}
-];
+    {slug:"aksara-nocturne",name:"Aksara Nocturne",status:'active'},
+    {slug:"aksara-signature",name:"Aksara Signature",status:'active'},
+    {slug:"aksara-velora",name:"Aksara Velora",status:'active'},
+    {slug:"aksav",name:"Aksav",status:'active'},
+    {slug:"army",name:"Army — Forest & Champagne",status:'active'},
+    {slug:"atelier-editorial",name:"Atelier Editorial",status:'active'},
+    {slug:"aurelia-noir",name:"Aurelia Noir",status:'active'},
+    {slug:"botanical-garden",name:"Botanical Garden",status:'active'},
+    {slug:"calestial",name:"Calestial Royale",status:'active'},
+    {slug:"earty",name:"Earty",status:'active'},
+    {slug:"elegance",name:"Elegance",status:'active'},
+    {slug:"gebyok-candra",name:"Gebyok Candra",status:'active'},
+    {slug:"groom",name:"Groom — Serenade Taupe",status:'active'},
+    {slug:"jendela-senja",name:"Jendela Senja",status:'active'},
+    {slug:"karsa",name:"Karsa",status:'active'},
+    {slug:"kencana-jawa",name:"Kencana Jawa",status:'active'},
+    {slug:"kinze",name:"Kinze",status:'active'},
+    {slug:"luma",name:"LUMA — Cinematic 3D Story",status:'active'},
+    {slug:"lume",name:"Lume",status:'active'},
+    {slug:"lumiere-bloom",name:"Lumière Bloom",status:'active'},
+    {slug:"lumina",name:"Lumina — Gen-Z Editorial",status:'active'},
+    {slug:"nexus",name:"Nexus — Cinematic Portal",status:'active'},
+    {slug:"nox",name:"Nox",status:'active'},
+    {slug:"romantic-floral",name:"Romantic Floral",status:'active'},
+    {slug:"royal-vintage",name:"Royal Vintage",status:'active'},
+    {slug:"sagara",name:"Sagara",status:'active'},
+    {slug:"serena-ivory",name:"Serena Ivory",status:'active'},
+    {slug:"sirein",name:"Sirein",status:'active'},
+    {slug:"taupe",name:"Taupe",status:'active'},
+    {slug:"velvet-romance",name:"Velvet Romance",status:'active'}
+  ];
   let themes=fallback;
   try{
     const res=await fetch('https://raw.githubusercontent.com/omahaksara/invitation/main/templates/registry.json',{cache:'no-store'});
@@ -546,7 +551,7 @@ async function loadKatalog(){
     'botanical-garden':'floral','romantic-floral':'floral','lumiere-bloom':'floral','velvet-romance':'floral','serena-ivory':'floral',
     'royal-vintage':'classic','karsa':'classic','aksara-signature':'classic','aksara-velora':'classic','sirein':'classic','groom':'classic',
     'sagara':'modern','atelier-editorial':'modern','lumina':'modern','kencana-jawa':'classic',
-    'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark','kinze':'dark',
+    'aksara-nocturne':'dark','aurelia-noir':'dark','calestial':'dark','kinze':'dark','gebyok-candra':'dark',
     'elegance':'modern','lume':'floral','taupe':'classic','nox':'dark','earty':'dark','aksav':'modern'
   };
   const categoryLabels={floral:'Floral & romantis',classic:'Klasik & timeless',modern:'Modern & elegan',dark:'Dark luxury'};
@@ -557,6 +562,7 @@ async function loadKatalog(){
     'sagara':'Nuansa pesisir, biru laut, dan kaca yang lembut',
     'atelier-editorial':'Editorial modern dengan palet sage dan ivory',
     'kencana-jawa':'Adat Jawa yang anggun dengan sentuhan klasik',
+    'gebyok-candra':'Gebyok Jawa bernuansa indigo malam dengan ornamen emas dan pintu pembuka yang anggun',
     'lumina':'Gen-Z editorial dengan bento layout dan nuansa polaroid',
     'aurelia-noir':'Kemewahan gelap dengan aksen berkelas',
     'botanical-garden':'Romantis dengan sentuhan taman alami',
@@ -589,6 +595,8 @@ async function loadKatalog(){
     });
   }
   function render(){
+    const cta=document.getElementById('catalog-theme-cta');
+    if(cta){const arrow=cta.querySelector('span');cta.firstChild.textContent='LIHAT '+themes.length+' TEMA ';if(arrow)cta.append(arrow)}
     const shown=themes.filter(theme=>{
       const cat=categories[theme.slug]||'modern';
       return (selectedFilter==='all'||cat===selectedFilter)&&((theme.name+' '+theme.slug).toLowerCase().includes(query));
